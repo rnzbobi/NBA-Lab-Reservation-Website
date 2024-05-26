@@ -31,19 +31,19 @@ body {
     text-align: center;
 }
 
-.main-page-header  h1 {
+.main-page-header h1 {
     font-family: 'Montserrat';
     margin-bottom: 0.5rem;
 }
 
-.main-page-header  h4 {
+.main-page-header h4 {
     font-family: 'Montserrat';
     font-weight: normal;
     margin-top: 0;
     border-bottom: 1px solid white;
     padding-bottom: 0.5rem;
     display: inline-block;
-    width: 60%;
+    width: 55%;
 }
 
 .main-page-navbar {
@@ -52,7 +52,7 @@ body {
     padding: 4rem 25rem 0 0;
     display: flex;
     justify-content: center;
-    gap: 3rem;
+    gap: 2.75rem;
 }
 
 .main-page-navbar a {
@@ -72,6 +72,7 @@ body {
     bottom: 0.5rem;
     left: 25rem;
     border-style: solid;
+    border-radius: 10px;
     padding: 0.5rem 1rem;
     transition: transform 0.2s ease;
     display: inline-block;
@@ -82,16 +83,102 @@ body {
 }
 
 .main-page-content {
-    position: relative;
-    background-color: black;
-    height: 100vh;
-    width: 100%;
-    color: white; 
-    display: flex; 
-    flex-direction: column;
-    align-items: center; 
+    background-color: white;
+    color: black;
+    display: flex;
     justify-content: center;
-    text-align: center;
+    align-items: flex-start;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+    margin-top: 100px;
+    flex-direction: column;
+    position: relative;
+}
+
+.main-page-stadiumcontent {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    gap: 40px;
+}
+
+.main-page-stadiumimage {
+    width: 230px;
+    height: 150px;
+    margin: auto;
+    border-radius: 10px;
+}
+
+.main-page-stadiuminfo {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: auto;
+}
+
+.main-page-stadiuminfo h2{
+    margin-bottom: 0;
+    font-family: 'Inter';
+    font-weight: normal;
+}
+
+.main-page-stadiumdetails {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.main-page-stadiumdetails h4{
+    font-family: 'Inter';
+    font-weight: normal;
+}
+
+.main-page-userimage {
+    width: 25px;
+    height: auto;
+}
+
+.main-page-actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 15px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 50px;
+    margin-right: 60px;
+}
+
+.main-view-available {
+    border-style: solid;
+    border-radius: 10px;
+    padding: 0.5rem 3rem;
+    transition: transform 0.2s ease;
+    display:inline-block;
+    border-color: black;
+    color: black; 
+    text-decoration: none;
+}
+
+.main-reserve-seat {
+    border-style: solid;
+    border-radius: 10px;
+    padding: 0.5rem 3.65rem;
+    transition: transform 0.2s ease;
+    display:inline-block;
+    border-color: black;
+    color: black; 
+    text-decoration: none;
+}
+
+.main-view-available:hover, .main-reserve-seat:hover{
+    transform: scale(1.05);
 }
 
 /* profile_page.html */
@@ -407,7 +494,57 @@ body {
 }
 
 /*FOOTER*/
+.footer {
+    position: relative;
+    margin: auto;
+    margin-top: 250px;
+    padding-top: 30px;
+    padding-bottom: 50px;
+    background-color: white;
+    color: black;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    border-radius: 50px;
+    height: auto;
+    width: 100%;
+    gap: 75px;
+}
 
+.footer img {
+    height: 100px;
+    width: 100px;
+}
+
+.footer h5 {
+    font-family: "Montserrat";
+    font-weight: normal;
+    font-size: 0.75rem;
+}
+
+.footer a {
+    transition: transform 0.2s ease;
+}
+
+.footer-navbar {
+    display: flex;
+    justify-content: center;
+    gap: 2.75rem;
+}
+
+.footer-navbar a {
+    font-family: "Montserrat";
+    font-weight: normal;
+    color: black; 
+    text-decoration: none;
+    font-size: 1.75rem;
+    transition: transform 0.2s ease;
+}
+
+.footer-navbar a:hover, .footer a:hover{
+    transform: scale(1.05);
+}
 
 /*PROFILE CURRENT RESERVATION PAGE*/
 
