@@ -7,7 +7,11 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    background-color: black;
+    font-family: 'Montserrat', sans-serif; 
 }
+
+/* index.html */
 
 .main-page-header {
     position: relative;
@@ -88,3 +92,319 @@ body {
     justify-content: center;
     text-align: center;
 }
+
+/* profile_page.html */
+
+.profile-page-header {
+    position: relative;
+    background-image: url('https://a.espncdn.com/photo/2017/0523/r212047_1296x864_3-2.jpg'), 
+                          linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.55));
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-blend-mode: darken;
+    height: 40vh;
+    width: 100%;
+    color: white; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    text-align: center;
+}
+
+.profile-page-header  h1 {
+    font-family: 'Montserrat';
+    margin-right: 42.5rem;
+    margin-top: 10rem;
+    font-weight: 420;
+    text-align: left;
+    font-size: 50px;
+}
+
+.profile-page-navbar {
+    position: absolute;
+    top: 0;
+    padding: 4rem 25rem 0 0;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.profile-page-navbar a {
+    color: white; 
+    text-decoration: none; 
+    font-weight: bold; 
+    font-size: 1rem;
+    transition: transform 0.2s ease;
+}
+
+.profile-page-navbar a:hover {
+    transform: scale(1.05);
+}
+
+.profile-page-registerlogin a {
+    position: relative;
+    bottom: 0.5rem;
+    left: 25rem;
+    border-style: solid;
+    padding: 0.5rem 1rem;
+    transition: transform 0.2s ease;
+    display: inline-block;
+}
+
+.profile-page-registerlogin a:hover {
+    transform: scale(1.05);
+}
+
+.profile-page-content {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    color: white; 
+    display: flex; 
+    flex-direction: row; 
+}
+
+/*  profile_page.html | LEFT SIDE OF PROFILE PAGE*/
+
+.profile-left-page {
+    flex: 1; 
+    background-color: #D9D9D9; 
+    height: 960px;
+}
+
+.profile-username {
+    width: 55%;
+    float: right;
+}
+
+.profile-username h4{
+    color:black;
+    text-align: left;
+    font-size: 24px;
+    font-weight: 2000;
+    font-family: 'Montserrat';
+}
+
+.profile-username p{
+    color:black;
+    text-align: left;
+    font-family: 'Montserrat';
+}
+
+.personal-info, .personal-reservations {
+    width: 55%;
+    float: right;
+    margin-top: 5rem;
+}
+
+.personal-info a, .personal-reservations a {
+    display: flex; 
+    align-items: center;
+    text-decoration: none; 
+    color: inherit; 
+}
+
+.personal-info h4, .personal-reservations h4 {
+    color: black;
+    font-size: 24px;
+    font-weight: 500;
+    margin: 0;
+    margin-left: 1rem; 
+    font-family: 'Montserrat';
+}
+
+.personal-info img, .personal-reservations img {
+    width: 10%;
+    height: auto;
+}
+
+/* profile_page.html | RIGHT SIDE OF PROFILE PAGE*/
+
+.profile-right-page {
+    flex: 1.2; 
+    background-color: white;  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 960px;
+}
+
+.profile-search-bar {
+    width: 80%; 
+    margin-top: 2rem;
+    margin-bottom: 2rem; 
+    display: flex;
+    justify-content: center; 
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    width: 100%; 
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.search-button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+
+.search-icon {
+    width: 24px; 
+    height: 24px; 
+}
+
+.search-input {
+    width: 100%; 
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: none; 
+    outline: none; 
+}
+
+.profile-picture-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-picture-label {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+}
+
+.profile-picture-upload img {
+    width: 150px; 
+    height: 150px; 
+    border-radius: 50%; 
+    object-fit: cover;
+    border: 2px solid #ccc; 
+    transition: background-color 0.3s ease; 
+}
+
+.profile-picture-label:hover img {
+    background-color: black; 
+}
+
+.plus-sign {
+    display: none; 
+    position: absolute;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    font-size: 2rem; 
+    color: white; 
+}
+
+.profile-picture-label:hover .plus-sign {
+    display: block;
+}
+
+#file-upload {
+    display: none;
+}
+
+.profile-details h4 {
+    color: gray;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 400;
+    font-family: 'Montserrat';
+    margin: 0;
+    padding: 0.5rem 0; 
+}
+
+.profile-details h3 {
+    color: black;
+    font-size: 18px;
+    font-weight: 700;
+    font-family: 'Montserrat';
+    margin: 0;
+    padding: 0.5rem 0; 
+}
+
+.profile-input {
+    width: 100%; 
+    padding: 0.5rem; 
+    border: 1px solid black; 
+    background-color: #f0f0f0; 
+    font-size: 1rem; 
+    border-radius: 4px; 
+    outline: none; 
+    box-sizing: border-box; 
+    margin-bottom: 2rem;
+}
+
+.description-input {
+    width: 100%; 
+    height: 10rem;
+    padding: 0.5rem; 
+    border: 1px solid black; 
+    background-color: #f0f0f0; 
+    font-size: 1rem; 
+    border-radius: 4px; 
+    outline: none; 
+    box-sizing: border-box; 
+    margin-bottom: 2rem;
+    resize: none;
+}
+
+.delete-button-text h4{
+    color: black;
+}
+
+.update-button-text h4{
+    color: black;
+}
+
+.delete-and-update-profile {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    gap: 9rem; 
+    margin-top: 2rem; 
+}
+
+.delete-button-text {
+    display: inline-block;  
+    cursor: pointer;
+    text-align: center; 
+    text-decoration: none; 
+    color: #EE2121;
+}
+
+.update-button-text {
+    display: inline-block; 
+    width: 8rem;
+    background-color: #000000;
+    padding: 1rem 2rem; 
+    border: 1px solid black;
+    border-radius: 4px; 
+    cursor: pointer; 
+    text-align: center; 
+    text-decoration: none; 
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.update-button-text:hover {
+    background-color: #ffffff; 
+    color: black;
+}
+
+.delete-button-text h4, .update-button-text h4 {
+    margin: 0; 
+    color: inherit; 
+}
+
+/*FOOTER*/
+
+
