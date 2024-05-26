@@ -9,7 +9,7 @@ body {
     box-sizing: border-box;
 }
 
-.header {
+.main-page-header {
     position: relative;
     background-image: url('https://cdn.nba.com/manage/2024/04/ANT-scaled.jpg?fbclid=IwAR3UxQSXC33ze9Mg8B05x-f00VFxSwfhPK5kZ0VEfS7Qfx948f_LRSLKD3Y'), 
                           linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.55));
@@ -26,12 +26,12 @@ body {
     text-align: center;
 }
 
-.header h1 {
+.main-page-header  h1 {
     font-family: 'Montserrat';
     margin-bottom: 0.5rem;
 }
 
-.header h4 {
+.main-page-header  h4 {
     font-family: 'Montserrat';
     font-weight: normal;
     margin-top: 0;
@@ -41,7 +41,7 @@ body {
     width: 60%;
 }
 
-.navbar {
+.main-page-navbar {
     position: absolute;
     top: 0;
     padding: 4rem 25rem 0 0;
@@ -50,7 +50,7 @@ body {
     gap: 3rem;
 }
 
-.navbar a {
+.main-page-navbar a {
     color: white; 
     text-decoration: none; 
     font-weight: bold; 
@@ -58,11 +58,11 @@ body {
     transition: transform 0.2s ease;
 }
 
-.navbar a:hover {
+.main-page-navbar a:hover {
     transform: scale(1.05);
 }
 
-.registerlogin a {
+.main-page-registerlogin a {
     position: relative;
     bottom: 0.5rem;
     left: 25rem;
@@ -72,11 +72,11 @@ body {
     display: inline-block;
 }
 
-.registerlogin a:hover {
+.main-page-registerlogin a:hover {
     transform: scale(1.05);
 }
 
-.content {
+.main-page-content {
     position: relative;
     background-color: black;
     height: 100vh;
