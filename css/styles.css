@@ -1,3 +1,4 @@
+
 * {
     font-family: 'Inter';
 }
@@ -408,3 +409,83 @@ body {
 /*FOOTER*/
 
 
+/*PROFILE CURRENT RESERVATION PAGE*/
+
+.reservation-profile-right-page {
+    flex: 1.2; 
+    background-color: white;  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 960px;
+}
+
+.reservation-box {
+    padding: 1rem 2rem; 
+    border: 1px solid black;
+    border-radius: 4px;
+    width: 40rem;
+    height: auto; 
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column; 
+}
+
+.reservation-id h3{
+    color:black;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.reservation-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.reservation-details-arena h2, .reservation-details-right h2, .reservation-details-left h2 { 
+    color: gray;
+    font-size: 16px; 
+    font-weight: 350;
+}
+
+.reservation-buttons {
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    margin-top: 20px;
+}
+
+.modify-reservation {
+    width: 12rem;
+    background-color: #ffffff;
+    border: 1px solid black;
+    border-radius: 4px; 
+    cursor: pointer; 
+    text-align: center; 
+    text-decoration: none; 
+    color: black;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modify-reservation h4 {
+    margin: 0;
+}
+
+.modify-reservation:hover {
+    background-color: #000000; 
+    color: white;
+}
+
+.cancel-reservation {
+    color: black;
+    text-decoration: none; 
+    transition: background-color 1.3s ease;
+}
+
+.cancel-reservation:hover {
+    color: #EE2121;
+}
