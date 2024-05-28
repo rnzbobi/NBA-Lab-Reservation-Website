@@ -626,3 +626,172 @@ body {
 .cancel-reservation:hover {
     color: #EE2121;
 }
+
+/*modify reservation page*/
+
+.modify-reservation-content {
+    overflow: hidden;
+    height: 860px;  
+}
+
+.left-space-transparent {
+    float: left;
+    width: 15%; 
+    height: 100%; 
+}
+
+.right-space-content { 
+    background-color: white;
+    float: right;
+    width: 85%; 
+    height: 100%;
+    border-top-left-radius: 20rem;
+    border-bottom-left-radius: 20rem;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+.header-content, .box-content, .buttons-content {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.header-content h4 {
+    font-size: 64px;
+    font-family: 'Montserrat', sans-serif; 
+}
+
+
+.box-content {
+    border: 1px solid black; 
+    padding: 10px;
+    width: 50%;
+    margin: 0 auto;
+    border-radius: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    text-align: center; 
+}
+
+/* Center the Reservation title */
+.box-content h3 {
+    margin-left: 50px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 32px;
+}
+
+.date-input-container {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    margin-left: 50px;
+    margin-bottom: 30px;
+}
+
+.date-input-container input {
+    padding: 5px;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 18px;
+}
+
+.date-input-container .calendar-icon {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.date-label {
+    margin-right: 10px;
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 18px;
+}
+
+.dropdown-container {
+    margin-top: 10px;
+    margin-left: 50px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.dropdown-container label {
+    margin-right: 10px;
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 18px;
+}
+
+.dropdown-container select {
+    padding: 5px 50px 5px 5px; 
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 18px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%231c1c1c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 5px top 50%;
+}
+
+.dropdown-container select::-ms-expand {
+    display: none;
+}
+
+.left-cancel {
+    margin-right: 0;
+    margin-left: 400px;
+    margin-top: 50px;
+}
+
+.right-update {
+    margin-left: 0;
+    margin-right: 400px;
+    margin-top: 50px;
+}
+
+.left-cancel a {
+    text-decoration: none !important;
+    font-family: 'Montserrat', sans-serif; 
+    color: #F41A1A !important;
+}
+
+.right-update a {
+    text-decoration: none !important;
+    font-family: 'Montserrat', sans-serif;
+    color: white !important;
+}
+
+.right-update a {
+    width: 12rem;
+    background-color: black;
+    border: 1px solid black;
+    border-radius: 4px; 
+    cursor: pointer; 
+    text-align: center; 
+    text-decoration: none; 
+    color: black;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.right-update a:hover {
+    background-color: white; 
+    color: black !important;
+}
+
+
+
+.buttons-content {
+    justify-content: space-around;
+}
+
+
+
