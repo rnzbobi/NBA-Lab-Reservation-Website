@@ -510,6 +510,8 @@ body {
     height: auto;
     width: 100%;
     gap: 75px;
+    border-top-left-radius: 50rem;
+    border-top-right-radius: 50rem;
 }
 
 .footer img {
@@ -793,5 +795,248 @@ body {
     justify-content: space-around;
 }
 
+/* login page  */
 
+.login-main {
+    position: relative;
+    background-image: url('https://cdn.sportsbreak.com/eyJidWNrZXQiOiJwdWItc3RvcmFnZSIsImtleSI6InNwb3J0c2JyZWFrL3dwLWNvbnRlbnQvdXBsb2Fkcy8yMDE3LzA1LzE1MTEzMDAwMjQxNi1rb2JlLWJyeWFudC1uYmEtZmluYWxzLWdhbWUtNy1ib3N0b24tY2VsdGljcy12LWxvcy1hbmdlbGVzLWxha2Vycy4xMjAweDY3Mi5qcGVnIiwiZWRpdHMiOltdfQ=='), 
+                          linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.85));
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-blend-mode: darken;
+    height: 100vh;
+    width: 100%;
+    color: white; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    text-align: center;
+}
+
+.login-main h1 {
+    font-family: 'Montserrat';
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+    font-size: 2.65rem;
+}
+
+.login-form {
+    background-color: white;
+    padding: 50px;
+    padding-top: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 35%;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.login-form label {
+    font-family: 'Inter';
+    color: black;
+    text-align: left;
+    margin-top: 0px;
+    font-size: 1.35rem;
+    margin-left: 95px;
+}
+
+.login-form input[type="text"], .login-form input[type="password"] 
+{
+    width: 70%;
+    padding: 3px;
+    margin-top: 0px;
+    font-size: 1.35rem;
+    margin: auto;
+}
+
+.login-form input[type="submit"] {
+    padding: 10px;
+    background-color: white;
+    color: black;
+    border: solid;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    margin-bottom: 20px;
+    margin-top: 15px;
+    width: 100px;
+    margin: auto;
+}
+
+.login-form input[type="submit"]:hover{
+    transform: scale(1.05);
+}
+
+.login-form a {
+    color: black;
+    font-family: 'Inter';
+    font-size: 1rem;
+    margin: auto;
+    transition: transform 0.2s ease;
+}
+
+.login-form a:hover {
+    transform: scale(1.05);
+}
+
+.back-button-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.back-button-link-login{
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    border: solid black;
+    border-radius: 5px;
+    transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.back-button-link-login:hover{
+    transform: scale(1.05);
+}
+
+/* register page */
+
+.register-main {
+    position: relative;
+    background-image: url('https://th.bing.com/th/id/R.dfd47bfa8cf6ef2ed58bab189b5e1714?rik=M%2bkRMbTe6hv0jA&riu=http%3a%2f%2fa2.espncdn.com%2fphoto%2f2014%2f0111%2fnba_dec-dunks_13.jpg&ehk=9ayDN%2f%2flJvVgMIqVCX95Y1DgQjqz%2buD%2fyej%2badPO6MM%3d&risl=&pid=ImgRaw&r=0'), 
+                          linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.85));
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-blend-mode: darken;
+    height: 100vh;
+    width: 100%;
+    color: white; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    text-align: center;
+}
+
+.register-main h1 {
+    font-family: 'Montserrat';
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+    font-size: 2.2vw;
+    margin-right: 12.5rem;
+}
+
+.register-loginlink {
+    color: white;
+    font-family: 'Inter';
+    font-size: 0.85vw;
+    transition: transform 0.2s ease;
+    margin-bottom: 1.5rem;
+    margin-right: 26.5rem;
+}
+
+.register-main a:hover {
+    transform: scale(1.05);
+}
+
+.register-form {
+    position: relative;
+    background-color: white;
+    padding-top: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 300px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 35%;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.register-form label {
+    font-family: 'Inter';
+    color: black;
+    text-align: left;
+    margin-top: 0px;
+    font-size: 1.25rem;
+    margin-left: 95px;
+}
+
+.register-form input[type="text"], .register-form input[type="password"], .register-form textarea
+{
+    width: 70%;
+    padding: 3px;
+    margin-top: 0px;
+    font-size: 1.25vw;
+    margin: auto;
+}
+
+.register-form input[type="submit"] {
+    padding: 15px;
+    background-color: white;
+    color: black;
+    border: solid;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    margin-bottom: 20px;
+    margin-top: 15px;
+    width: 130px;
+    margin: auto;
+}
+
+.register-form input[type="submit"]:hover{
+    transform: scale(1.05);
+}
+
+.register-form textarea {
+    width: 70%;
+    height: 100px;
+    padding-top: 20px;
+    padding-bottom: 45px;
+    resize: none;
+    margin-bottom: 20px;
+    font-size: 1rem;
+}
+
+.back-button-register {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.back-button-link-register{
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    border: solid black;
+    border-radius: 5px;
+    transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.back-button-link-register:hover{
+    transform: scale(1.05);
+}
 
