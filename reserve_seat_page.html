@@ -26,9 +26,9 @@
         <h4>Reserve your seats now to witness your favorite NBA basketball action live!</h4>
     </div>
     <div class="reserve-container">
-        <h2>Select Date & Time:</h2>
-        <input type="date" id="reservation-date" name="reservation-date">
-        <select id="reservation-time" name="reservation-time">
+        <h2>Select Starting Date & Time:</h2>
+        <input type="date" id="start-date" name="start-date">
+        <select id="start-time" name="start-time">
             <option value="12:00 PM">12:00 PM</option>
             <option value="1:00 PM">1:00 PM</option>
             <option value="2:00 PM">2:00 PM</option>
@@ -40,6 +40,22 @@
             <option value="8:00 PM">8:00 PM</option>
             <option value="9:00 PM">9:00 PM</option>
         </select>
+
+        <h2>Select Ending Date & Time:</h2>
+        <input type="date" id="end-date" name="end-date">
+        <select id="end-time" name="end-time">
+            <option value="12:00 PM">12:00 PM</option>
+            <option value="1:00 PM">1:00 PM</option>
+            <option value="2:00 PM">2:00 PM</option>
+            <option value="3:00 PM">3:00 PM</option>
+            <option value="4:00 PM">4:00 PM</option>
+            <option value="5:00 PM">5:00 PM</option>
+            <option value="6:00 PM">6:00 PM</option>
+            <option value="7:00 PM">7:00 PM</option>
+            <option value="8:00 PM">8:00 PM</option>
+            <option value="9:00 PM">9:00 PM</option>
+        </select>
+
         <div class="reserve-legends">
             <div class="reserve-legend"><span class="reserve-available"></span> Available</div>
             <div class="reserve-legend"><span class="reserve-reserved"></span> Reserved</div>
@@ -78,7 +94,7 @@
     </div>
     <div class="reserve-footer">
         <a href="https://www.nba.com/?17">
-            <img src="images/nba-logo.png" alt="NBA Logo" >
+            <img src="images/nba-logo.png" alt="NBA Logo">
         </a>
         <h5>© 2024 NBA All rights reserved.</h5>
         <nav class="reserve-footer-navbar">
@@ -90,20 +106,24 @@
     </div>
     <script>
         function handleSeatClick(seat) {
-            const date = document.getElementById('reservation-date').value;
-            const time = document.getElementById('reservation-time').value;
-            if (!date) {
-                alert('Please pick a date first');
+            const startDate = document.getElementById('start-date').value;
+            const startTime = document.getElementById('start-time').value;
+            const endDate = document.getElementById('end-date').value;
+            const endTime = document.getElementById('end-time').value;
+            if (!startDate || !endDate) {
+                alert('Please pick both start and end dates first');
                 return;
             }
             if (seat.classList.contains('reserve-reserved')) {
                 alert('Seat is reserved');
             } else {
                 const seatNumber = seat.innerText;
-                localStorage.setItem('selectedDate', date);
-                localStorage.setItem('selectedTime', time);
+                localStorage.setItem('selectedStartDate', startDate);
+                localStorage.setItem('selectedStartTime', startTime);
+                localStorage.setItem('selectedEndDate', endDate);
+                localStorage.setItem('selectedEndTime', endTime);
                 localStorage.setItem('selectedSeat', seatNumber);
-                alert('You have successfully reserved seat ' + seatNumber + ' on ' + date + ' at ' + time);
+                alert('You have successfully reserved seat ' + seatNumber + ' from ' + startDate + ' ' + startTime + ' to ' + endDate + ' ' + endTime);
             }
         }
 

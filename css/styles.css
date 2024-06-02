@@ -1040,7 +1040,7 @@ body {
     transform: scale(1.05);
 }
 
-/* new_page.html and reserve seat layout */
+/* reserve_seat_page.html */
 
 .reserve-page-header {
     position: relative;
@@ -1273,162 +1273,6 @@ body {
     text-decoration: none;
 }
 
-/* checkout_seat_page.css */
-
-.checkout-page-header {
-    position: relative;
-    background-image: url('https://cdn.nba.com/manage/2024/04/ANT-scaled.jpg?fbclid=IwAR3UxQSXC33ze9Mg8B05x-f00VFxSwfhPK5kZ0VEfS7Qfx948f_LRSLKD3Y'), 
-                          linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.55));
-    background-size: cover; 
-    background-repeat: no-repeat;
-    background-blend-mode: darken;
-    height: 50vh;
-    width: 100%;
-    color: white; 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    justify-content: center;
-    text-align: center;
-}
-
-.checkout-page-header h1 {
-    font-family: 'Montserrat';
-    margin-bottom: 0.5rem;
-}
-
-.checkout-page-navbar {
-    position: absolute;
-    top: 0;
-    padding: 4rem 25rem 0 0;
-    display: flex;
-    justify-content: center;
-    gap: 2.75rem;
-}
-
-.checkout-page-navbar a {
-    color: white; 
-    text-decoration: none; 
-    font-weight: bold; 
-    font-size: 1rem;
-    transition: transform 0.2s ease;
-}
-
-.checkout-page-navbar a:hover {
-    transform: scale(1.05);
-}
-
-.checkout-page-registerlogin a {
-    position: relative;
-    bottom: 0.5rem;
-    left: 25rem;
-    border-style: solid;
-    border-radius: 10px;
-    padding: 0.5rem 1rem;
-    transition: transform 0.2s ease;
-    display: inline-block;
-}
-
-.checkout-page-registerlogin a:hover {
-    transform: scale(1.05);
-}
-
-.checkout-page-content {
-    position: relative;
-    height: 100vh;
-    width: 100%;
-    color: white; 
-    display: flex; 
-    flex-direction: row; 
-}
-
-
-/* checkout_seat_page.html | RIGHT SIDE OF CHECKOUT PAGE*/
-
-.checkout-right-page {
-    flex: 1.2; 
-    background-color: white;  
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 960px;
-}
-
-
-.checkout-details h4 {
-    color: gray;
-    text-align: center;
-    font-size: 24px;
-    font-weight: 400;
-    font-family: 'Montserrat';
-    margin: 0;
-    padding: 0.5rem 0; 
-}
-
-.checkout-details h3 {
-    color: black;
-    font-size: 18px;
-    font-weight: 700;
-    font-family: 'Montserrat';
-    margin: 0;
-    padding: 0.5rem 0; 
-}
-
-.reservation-info {
-    color: black;
-}
-
-.checkout-input {
-    width: 100%; 
-    padding: 0.5rem; 
-    border: 1px solid black; 
-    background-color: #f0f0f0; 
-    font-size: 1rem; 
-    border-radius: 4px; 
-    outline: none; 
-    box-sizing: border-box; 
-    margin-bottom: 2rem;
-}
-
-.delete-and-confirm-reservation {
-    display: flex;
-    justify-content: space-between; 
-    align-items: center; 
-    gap: 9rem; 
-    margin-top: 2rem; 
-}
-
-.delete-button-text {
-    display: inline-block;  
-    cursor: pointer;
-    text-align: center; 
-    text-decoration: none; 
-    color: #EE2121;
-}
-
-.confirm-button-text {
-    display: inline-block; 
-    width: 8rem;
-    background-color: #000000;
-    padding: 1rem 2rem; 
-    border: 1px solid black;
-    border-radius: 4px; 
-    cursor: pointer; 
-    text-align: center; 
-    text-decoration: none; 
-    color: white;
-    transition: background-color 0.3s ease;
-}
-
-.confirm-button-text:hover {
-    background-color: #ffffff; 
-    color: black;
-}
-
-.delete-button-text h4, .confirm-button-text h4 {
-    margin: 0; 
-    color: inherit; 
-}
 
 /* see_reservation_page.html */
 
@@ -1700,7 +1544,7 @@ body {
     transform: scale(1.05);
 }
 
-
+/*remove_reservation.html*/
 .remove-body {
     font-family: 'Montserrat', sans-serif;
     background-color: black;
@@ -1785,58 +1629,61 @@ body {
     margin-bottom: 2rem;
 }
 
-#search-bar {
-    width: 80%;
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-}
-
-#sort-button {
-    padding: 0.5rem 1rem;
-    margin-bottom: 1rem;
-    cursor: pointer;
-}
-
+/* Table styles */
 #reservation-table {
     width: 100%;
     border-collapse: collapse;
 }
 
 #reservation-table th, #reservation-table td {
-    padding: 2rem; /* Increased padding for a larger table */
+    padding: 1rem; /* Adjusted padding for a cleaner look */
     text-align: left;
     border-bottom: 1px solid #dee2e6;
-    font-size: 1.1rem; /* Increased font size for better readability */
+    font-size: 1rem; /* Adjusted font size for readability */
 }
 
 #reservation-table th {
     background-color: #e9ecef;
 }
 
-.remove-reservation-button-custom, .edit-reservation-button-custom {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    padding: 0.75rem 1.5rem; /* Increased padding for a larger button */
-    cursor: pointer;
-    border-radius: 4px;
-    text-decoration: none; /* Ensure link button looks like a regular button */
-    display: inline-block;
-    margin-right: 0.5rem; /* Space between buttons */
+#reservation-table td {
+    background-color: #ffffff;
 }
 
+/* Button styles */
 .edit-reservation-button-custom {
-    background-color: #070707; /* Different color for edit button */
-}
-
-.remove-reservation-button-custom:hover, .edit-reservation-button-custom:hover {
-    background-color: #c82333;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #080808;
+    color: white;
+    text-decoration: none;
+    border: 1px solid #080808;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    text-align: center;
 }
 
 .edit-reservation-button-custom:hover {
-    background-color: hwb(0 100% 0% / 0.233);
+    background-color: #333;
+    color: white;
 }
 
+.remove-reservation-button-custom {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem; /* Adjusted padding for a consistent look */
+    cursor: pointer;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.remove-reservation-button-custom:hover {
+    background-color: #c82333;
+}
+
+/* Pagination controls */
 .pagination-controls-custom {
     display: flex;
     justify-content: center;
@@ -1845,10 +1692,11 @@ body {
 }
 
 .pagination-controls-custom button {
-    padding: 0.5rem 1rem; /* Increased padding for larger buttons */
+    padding: 0.5rem 1rem;
     margin: 0 0.5rem;
     border: 1px solid #000;
     background-color: #fff;
+    border-radius: 5px;
     color: #000;
     font-size: 1.2rem; /* Increased font size for better readability */
     cursor: pointer;
@@ -1866,7 +1714,7 @@ body {
 }
 
 .page-number-custom {
-    padding: 1rem 2rem; /* Increased padding for larger page numbers */
+    padding: 0.5rem 1rem; /* Adjusted padding for consistency */
     margin: 0 0.5rem;
     border: 1px solid #000;
     background-color: #fff;
