@@ -1086,3 +1086,15 @@ body {
     z-index: 2; /* Ensure the header is above the body content */
 }
 
+.datetimecontainer {
+    height: 30px;
+    width: 120px;
+}
+
+.datetimediv {
+    height: 200px;
+    width: 700px;
+    align-items: center; 
+    justify-content: center;
+}
+
