@@ -1040,3 +1040,48 @@ body {
     transform: scale(1.05);
 }
 
+/* VIEW AVAILABLE PAGE */
+
+.available-page {
+    height: 100%;
+    margin: 0;
+    background-image: url('../images/view-available.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: black;
+    font-family: 'Montserrat', sans-serif
+}
+.view-available-body {
+    position: relative;
+    z-index: 1; /* Ensure the body content is above the background */
+    width: 100%;
+    color: white; 
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    text-align: center;
+    padding-top: 40vh; /* Adjust padding to make space for header */
+    min-height: calc(100vh - 40vh); /* Ensure the body section takes the remaining height */
+}
+
+/* Transparent header */
+.viewavailable-page-header {
+    background: transparent; /* Make the header background fully transparent */
+    padding: 10px; /* Add padding for better appearance */
+    position: fixed; /* Fix the header at the top */
+    top: 0;
+    width: 100%; /* Ensure the header spans the full width */
+    height: 40vh; /* Set header height */
+    color: white; 
+    display: flex; 
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    text-align: center;
+    z-index: 2; /* Ensure the header is above the body content */
+}
+
