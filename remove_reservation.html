@@ -8,33 +8,49 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <script src="pagination.js" defer></script>
-    <title>See Reservations</title>
+    <script src="remove_reservation.js" defer></script>
+    <title>Remove Reservation</title>
 </head>
-<body>
-
+<body class="remove-body">
     <!-- Navigation Bar -->
-    <div class="see-reservation-page-header">
-        <nav class="see-reservation-page-navbar">
+    <div class="remove-reservation-page-header">
+        <nav class="remove-reservation-page-navbar">
             <a href="index.html">HOME</a>
             <a href="see_reservation_page.html">SEE RESERVATION</a>
             <a href="reserve_seat_page.html">RESERVE A SEAT</a>
             <a href="profile_page.html">PROFILE</a>
             <a href="remove_reservation.html">RESERVATION DASHBOARD</a>
-            <span class="see-reservation-page-registerlogin"><a href="login_page.html">REGISTER/LOGIN</a></span>
+            <span class="remove-reservation-page-registerlogin"><a href="login_page.html">REGISTER/LOGIN</a></span>
         </nav>
 
-        <h1>Your Reservations</h1>
+        <h1>Reservation Dashboard</h1>
     </div>
 
-    <div class="see-reservation-page-content" id="ticket-container">
-        <!-- Reservation tickets will be inserted here by JavaScript -->
-    </div>
+    <div class="container-custom">
 
-    <div class="pagination-controls">
-        <button id="prev-page" disabled>Previous</button>
-        <span id="page-numbers"></span>
-        <button id="next-page">Next</button>
+        <table id="reservation-table">
+            <thead>
+                <tr>
+                    <th>Reservation ID</th>
+                    <th>Seat Number</th>
+                    <th>Arena</th>
+                    <th>Date of Request</th>
+                    <th>Date of Reservation</th>
+                    <th>Status</th>
+                    <th>Edit Reservation</th>
+                    <th>Remove Reservation</th>
+                </tr>
+            </thead>
+            <tbody id="remove-ticket-container">
+                <!-- Reservation tickets will be inserted here by JavaScript -->
+            </tbody>
+        </table>
+
+        <div class="pagination-controls-custom">
+            <button id="prev-page">Previous</button>
+            <span id="page-numbers"></span>
+            <button id="next-page">Next</button>
+        </div>
     </div>
 
     <div class="footer">

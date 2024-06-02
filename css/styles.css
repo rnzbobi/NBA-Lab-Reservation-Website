@@ -1040,3 +1040,907 @@ body {
     transform: scale(1.05);
 }
 
+/* new_page.html and reserve seat layout */
+
+.reserve-page-header {
+    position: relative;
+    background-image: url('https://blog.ticketmaster.com/wp-content/uploads/msg-1024x768.jpg'), 
+                          linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.55));
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-blend-mode: darken;
+    height: 50vh;
+    width: 100%;
+    color: white; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    text-align: center;
+}
+
+.reserve-page-header h1 {
+    font-family: 'Montserrat';
+    margin-bottom: 0.5rem;
+}
+
+.reserve-page-header h4 {
+    font-family: 'Montserrat';
+    font-weight: normal;
+    margin-top: 0;
+    border-bottom: 1px solid white;
+    padding-bottom: 0.5rem;
+    display: inline-block;
+    width: 55%;
+}
+
+.reserve-page-navbar {
+    position: absolute;
+    top: 0;
+    padding: 4rem 25rem 0 0;
+    display: flex;
+    justify-content: center;
+    gap: 2.75rem;
+}
+
+.reserve-page-navbar a {
+    color: white; 
+    text-decoration: none; 
+    font-weight: bold; 
+    font-size: 1rem;
+    transition: transform 0.2s ease;
+}
+
+.reserve-page-navbar a:hover {
+    transform: scale(1.05);
+}
+
+.reserve-page-registerlogin a {
+    position: relative;
+    bottom: 0.5rem;
+    left: 25rem;
+    border-style: solid;
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+    transition: transform 0.2s ease;
+    display: inline-block;
+}
+
+.reserve-page-registerlogin a:hover {
+    transform: scale(1.05);
+}
+
+.reserve-container {
+    text-align: center;
+    padding-top: 50px;
+    color: white;
+}
+
+.reserve-date-time {
+    color: white;
+}
+
+.reserve-legends {
+    margin: 20px;
+    color: white;
+}
+
+.reserve-legend {
+    display: inline-block;
+    padding: 10px;
+}
+
+.reserve-legend span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
+
+.reserve-available {
+    background-color: green;
+}
+
+.reserve-reserved {
+    background-color: red;
+}
+
+.reserve-seat-chart {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.reserve-left-column, .reserve-right-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 20px;
+}
+
+.reserve-center-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.reserve-row {
+    display: flex;
+    justify-content: center;
+}
+
+.reserve-seat {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    text-align: center;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.reserve-seat.reserve-available {
+    background-color: green;
+}
+
+.reserve-seat.reserve-reserved {
+    background-color: red;
+    cursor: not-allowed;
+}
+
+.reserve-court {
+    width: 450px;
+    height: 250px;
+    background-color: #D2B48C;
+    line-height: 250px;
+    text-align: center;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.reserve-reserve-button {
+    margin-top: 20px;
+    padding: 15px 30px;
+    background-color: yellow;
+    border: none;
+    color: black;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.reserve-footer {
+    position: relative;
+    margin: auto;
+    margin-top: 50px;
+    padding-top: 30px;
+    padding-bottom: 50px;
+    background-color: white;
+    color: black;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    border-radius: 50px;
+    height: auto;
+    width: 100%;
+    gap: 75px;
+}
+
+.reserve-footer img {
+    height: 100px;
+    width: 100px;
+}
+
+.reserve-footer h5 {
+    font-family: "Montserrat";
+    font-weight: normal;
+    font-size: 0.75rem;
+}
+
+.reserve-footer a {
+    transition: transform 0.2s ease;
+}
+
+.reserve-footer-navbar {
+    display: flex;
+    justify-content: center;
+    gap: 2.75rem;
+}
+
+.reserve-footer-navbar a {
+    font-family: "Montserrat";
+    font-weight: normal;
+    color: black; 
+    text-decoration: none;
+    font-size: 1.75rem;
+    transition: transform 0.2s ease;
+}
+
+.reserve-footer-navbar a:hover, .reserve-footer a:hover {
+    transform: scale(1.05);
+}
+
+.reserve-reserve-button {
+    display: inline-block;
+    margin-top: 2vh;
+    padding: 1vw 2vw;
+    background-color: yellow;
+    border: none;
+    color: black;
+    font-size: 1.5vw;
+    cursor: pointer;
+    border-radius: 0.5vw;
+    text-align: center;
+    text-decoration: none;
+}
+
+/* checkout_seat_page.css */
+
+.checkout-page-header {
+    position: relative;
+    background-image: url('https://cdn.nba.com/manage/2024/04/ANT-scaled.jpg?fbclid=IwAR3UxQSXC33ze9Mg8B05x-f00VFxSwfhPK5kZ0VEfS7Qfx948f_LRSLKD3Y'), 
+                          linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.55));
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-blend-mode: darken;
+    height: 50vh;
+    width: 100%;
+    color: white; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    text-align: center;
+}
+
+.checkout-page-header h1 {
+    font-family: 'Montserrat';
+    margin-bottom: 0.5rem;
+}
+
+.checkout-page-navbar {
+    position: absolute;
+    top: 0;
+    padding: 4rem 25rem 0 0;
+    display: flex;
+    justify-content: center;
+    gap: 2.75rem;
+}
+
+.checkout-page-navbar a {
+    color: white; 
+    text-decoration: none; 
+    font-weight: bold; 
+    font-size: 1rem;
+    transition: transform 0.2s ease;
+}
+
+.checkout-page-navbar a:hover {
+    transform: scale(1.05);
+}
+
+.checkout-page-registerlogin a {
+    position: relative;
+    bottom: 0.5rem;
+    left: 25rem;
+    border-style: solid;
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+    transition: transform 0.2s ease;
+    display: inline-block;
+}
+
+.checkout-page-registerlogin a:hover {
+    transform: scale(1.05);
+}
+
+.checkout-page-content {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    color: white; 
+    display: flex; 
+    flex-direction: row; 
+}
+
+
+/* checkout_seat_page.html | RIGHT SIDE OF CHECKOUT PAGE*/
+
+.checkout-right-page {
+    flex: 1.2; 
+    background-color: white;  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 960px;
+}
+
+
+.checkout-details h4 {
+    color: gray;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 400;
+    font-family: 'Montserrat';
+    margin: 0;
+    padding: 0.5rem 0; 
+}
+
+.checkout-details h3 {
+    color: black;
+    font-size: 18px;
+    font-weight: 700;
+    font-family: 'Montserrat';
+    margin: 0;
+    padding: 0.5rem 0; 
+}
+
+.reservation-info {
+    color: black;
+}
+
+.checkout-input {
+    width: 100%; 
+    padding: 0.5rem; 
+    border: 1px solid black; 
+    background-color: #f0f0f0; 
+    font-size: 1rem; 
+    border-radius: 4px; 
+    outline: none; 
+    box-sizing: border-box; 
+    margin-bottom: 2rem;
+}
+
+.delete-and-confirm-reservation {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    gap: 9rem; 
+    margin-top: 2rem; 
+}
+
+.delete-button-text {
+    display: inline-block;  
+    cursor: pointer;
+    text-align: center; 
+    text-decoration: none; 
+    color: #EE2121;
+}
+
+.confirm-button-text {
+    display: inline-block; 
+    width: 8rem;
+    background-color: #000000;
+    padding: 1rem 2rem; 
+    border: 1px solid black;
+    border-radius: 4px; 
+    cursor: pointer; 
+    text-align: center; 
+    text-decoration: none; 
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.confirm-button-text:hover {
+    background-color: #ffffff; 
+    color: black;
+}
+
+.delete-button-text h4, .confirm-button-text h4 {
+    margin: 0; 
+    color: inherit; 
+}
+
+/* see_reservation_page.html */
+
+.see-reservation-page-header {
+    position: relative;
+    background-image: url('https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ig6wUGTYHohs/v1/-1x-1.jpg'), 
+                          linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.55));
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-blend-mode: darken;
+    height: 50vh;
+    width: 100%;
+    color: white; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    text-align: center;
+}
+
+.see-reservation-page-header h1 {
+    font-family: 'Montserrat';
+    font-weight: normal;
+    margin-top: 0;
+    border-bottom: 1px solid white;
+    padding-bottom: 0.5rem;
+    display: inline-block;
+    width: 55%;
+}
+
+.see-reservation-page-navbar {
+    position: absolute;
+    top: 0;
+    padding: 4rem 25rem 0 0;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.see-reservation-page-navbar a {
+    color: white; 
+    text-decoration: none; 
+    font-weight: bold; 
+    font-size: 1rem;
+    transition: transform 0.2s ease;
+}
+
+.see-reservation-page-navbar a:hover {
+    transform: scale(1.05);
+}
+
+.see-reservation-page-registerlogin a {
+    position: relative;
+    bottom: 0.5rem;
+    left: 25rem;
+    border-style: solid;
+    padding: 0.5rem 1rem;
+    transition: transform 0.2s ease;
+    display: inline-block;
+}
+
+.see-reservation-page-registerlogin a:hover {
+    transform: scale(1.05);
+}
+
+.see-reservation-page-content {
+    position: relative;
+    height: auto;
+    width: 100%;
+    color: white; 
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+}
+
+.see-reservation-profile-right-page {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    margin: 1rem 0; /* Adds space between each ticket */
+}
+
+.see-reservation-details h4 {
+    color: gray;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 400;
+    font-family: 'Montserrat';
+    margin: 0;
+    padding: 0.5rem 0; 
+}
+
+.see-reservation-details h3 {
+    color: black;
+    font-size: 18px;
+    font-weight: 700;
+    font-family: 'Montserrat';
+    margin: 0;
+    padding: 0.5rem 0; 
+}
+
+.see-reservation-box {
+    padding: 1rem 2rem; 
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 50%; /* Adjusted width to make them fit better horizontally */
+    height: auto; 
+    display: flex;
+    flex-direction: column; 
+    background-color: white;  /* Ticket background white */
+}
+
+.see-reservation-id h3 {
+    color: black;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.see-reservation-details-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.see-reservation-details-right h2, .see-reservation-details-left h2 { 
+    color: black;
+    font-size: 16px; 
+    font-weight: 350;
+}
+
+.see-reservation-dates h2 {
+    color: black;
+    font-size: 16px; 
+    font-weight: 350;
+    margin-top: 10px;
+}
+
+.see-reservation-modify-reservation {
+    width: 15rem; /* Increased width */
+    height: 3rem; /* Increased height */
+    background-color: #080808;
+    border: 1px solid black;
+    border-radius: 10px; 
+    cursor: pointer; 
+    text-align: center; 
+    text-decoration: none; 
+    color: white;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px; /* Add some spacing from the content above */
+    margin-right: auto; 
+}
+
+.see-reservation-modify-reservation h4 {
+    margin: 0;
+}
+
+.see-reservation-modify-reservation:hover {
+    background-color: #333; 
+    color: white;
+}
+
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1.5rem 0;
+}
+
+.pagination-controls button {
+    padding: 0.75rem 1.5rem;
+    margin: 0 0.5rem;
+    border: 1px solid #000;
+    border-radius: 10px;
+    background-color: #fff;
+    color: #000;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.pagination-controls button:disabled {
+    background-color: #eee;
+    cursor: not-allowed;
+}
+
+.pagination-controls button:hover:not(:disabled) {
+    background-color: #000;
+    color: #fff;
+}
+
+.page-number {
+    padding: 0.75rem 1.5rem;
+    margin: 0 0.5rem;
+    border: 1px solid #000;
+    border-radius: 10px;
+    background-color: #fff;
+    color: #000;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.page-number.active {
+    background-color: #000;
+    color: #fff;
+}
+
+.page-number:hover:not(.active) {
+    background-color: #000;
+    color: #fff;
+}
+
+.footer {
+    position: relative;
+    margin: auto;
+    margin-top: 250px;
+    padding-top: 30px;
+    padding-bottom: 50px;
+    background-color: white;
+    color: black;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    border-radius: 50px;
+    height: auto;
+    width: 100%;
+    gap: 75px;
+    border-top-left-radius: 50rem;
+    border-top-right-radius: 50rem;
+}
+
+.footer img {
+    height: 100px;
+    width: 100px;
+}
+
+.footer h5 {
+    font-family: "Montserrat";
+    font-weight: normal;
+    font-size: 0.75rem;
+}
+
+.footer a {
+    transition: transform 0.2s ease;
+}
+
+.footer-navbar {
+    display: flex;
+    justify-content: center;
+    gap: 2.75rem;
+}
+
+.footer-navbar a {
+    font-family: "Montserrat";
+    font-weight: normal;
+    color: black; 
+    text-decoration: none;
+    font-size: 1.75rem;
+    transition: transform 0.2s ease;
+}
+
+.footer-navbar a:hover, .footer a:hover{
+    transform: scale(1.05);
+}
+
+
+.remove-body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: black;
+    margin: 0;
+    padding: 0;
+}
+
+.remove-reservation-page-header {
+    position: relative;
+    background-image: url('https://cdn.nba.com/manage/2021/10/GettyImages-1228132003.png'), 
+                          linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.55));
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-blend-mode: darken;
+    height: 50vh;
+    width: 100%;
+    color: white; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    text-align: center;
+}
+
+.remove-reservation-page-header h1 {
+    font-family: 'Montserrat';
+    font-weight: normal;
+    margin-top: 0;
+    border-bottom: 1px solid white;
+    padding-bottom: 0.5rem;
+    display: inline-block;
+    width: 55%;
+}
+
+.remove-reservation-page-navbar {
+    position: absolute;
+    top: 0;
+    padding: 4rem 25rem 0 0;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.remove-reservation-page-navbar a {
+    color: white; 
+    text-decoration: none; 
+    font-weight: bold; 
+    font-size: 1rem;
+    transition: transform 0.2s ease;
+}
+
+.remove-reservation-page-navbar a:hover {
+    transform: scale(1.05);
+}
+
+.remove-reservation-page-registerlogin a {
+    position: relative;
+    bottom: 0.5rem;
+    left: 25rem;
+    border-style: solid;
+    padding: 0.5rem 1rem;
+    transition: transform 0.2s ease;
+    display: inline-block;
+}
+
+.remove-reservation-page-registerlogin a:hover {
+    transform: scale(1.05);
+}
+
+.container-custom {
+    margin: 2rem auto;
+    padding: 2rem;
+    max-width: 1200px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container-custom h1 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+#search-bar {
+    width: 80%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+#sort-button {
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+
+#reservation-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#reservation-table th, #reservation-table td {
+    padding: 2rem; /* Increased padding for a larger table */
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+    font-size: 1.1rem; /* Increased font size for better readability */
+}
+
+#reservation-table th {
+    background-color: #e9ecef;
+}
+
+.remove-reservation-button-custom, .edit-reservation-button-custom {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem; /* Increased padding for a larger button */
+    cursor: pointer;
+    border-radius: 4px;
+    text-decoration: none; /* Ensure link button looks like a regular button */
+    display: inline-block;
+    margin-right: 0.5rem; /* Space between buttons */
+}
+
+.edit-reservation-button-custom {
+    background-color: #070707; /* Different color for edit button */
+}
+
+.remove-reservation-button-custom:hover, .edit-reservation-button-custom:hover {
+    background-color: #c82333;
+}
+
+.edit-reservation-button-custom:hover {
+    background-color: hwb(0 100% 0% / 0.233);
+}
+
+.pagination-controls-custom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.pagination-controls-custom button {
+    padding: 0.5rem 1rem; /* Increased padding for larger buttons */
+    margin: 0 0.5rem;
+    border: 1px solid #000;
+    background-color: #fff;
+    color: #000;
+    font-size: 1.2rem; /* Increased font size for better readability */
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.pagination-controls-custom button:disabled {
+    background-color: #eee;
+    cursor: not-allowed;
+}
+
+.pagination-controls-custom button:hover:not(:disabled) {
+    background-color: #000;
+    color: #fff;
+}
+
+.page-number-custom {
+    padding: 1rem 2rem; /* Increased padding for larger page numbers */
+    margin: 0 0.5rem;
+    border: 1px solid #000;
+    background-color: #fff;
+    color: #000;
+    font-size: 1.2rem; /* Increased font size for better readability */
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.page-number-custom.active {
+    background-color: #000;
+    color: #fff;
+}
+
+.page-number-custom:hover:not(.active) {
+    background-color: #000;
+    color: #fff;
+}
+
+.footer {
+    position: relative;
+    margin: auto;
+    margin-top: 250px;
+    padding-top: 30px;
+    padding-bottom: 50px;
+    background-color: white;
+    color: black;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    border-radius: 50px;
+    height: auto;
+    width: 100%;
+    gap: 75px;
+    border-top-left-radius: 50rem;
+    border-top-right-radius: 50rem;
+}
+
+.footer img {
+    height: 100px;
+    width: 100px;
+}
+
+.footer h5 {
+    font-family: "Montserrat";
+    font-weight: normal;
+    font-size: 0.75rem;
+}
+
+.footer a {
+    transition: transform 0.2s ease;
+}
+
+.footer-navbar {
+    display: flex;
+    justify-content: center;
+    gap: 2.75rem;
+}
+
+.footer-navbar a {
+    font-family: "Montserrat";
+    font-weight: normal;
+    color: black; 
+    text-decoration: none;
+    font-size: 1.75rem;
+    transition: transform 0.2s ease;
+}
+
+.footer-navbar a:hover, .footer a:hover{
+    transform: scale(1.05);
+}
+
+
+
+
+

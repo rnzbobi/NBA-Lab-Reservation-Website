@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" media="all" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>Checkout Seat</title>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="checkout-page-header">
+        <nav class="checkout-page-navbar">
+            <a href="index.html">HOME</a>
+            <a href="reservation.html">SEE RESERVATION</a>
+            <a href="profile.html">PROFILE</a>
+            <span class="checkout-page-registerlogin"><a href="register_login.html">REGISTER/LOGIN</a></span>
+        </nav>
+        <h1>Checkout</h1>
+    </div>
+
+    <div class="checkout-page-content">
+        <div class="checkout-right-page">
+            <div class="checkout-search-bar">
+            </div>
+            <div class="checkout-details">
+                <h3>Reservation Details</h3>
+                <h4>Selected Date & Time:</h4>
+                <p id="selected-date-time" class="reservation-info"></p>
+                <h4>Selected Seat:</h4>
+                <p id="selected-seat" class="reservation-info"></p>
+                <h3>Contact Information</h3>
+                <input type="text" placeholder="Mobile Number" class="checkout-input">
+                <input type="text" placeholder="Email Address" class="checkout-input">
+            </div>
+            <div class="delete-and-confirm-reservation">
+                <a href="" class="delete-button-text">
+                    <h4>Cancel Reservation</h4>
+                </a>
+                <a href="" class="confirm-button-text">
+                    <h4>Confirm</h4>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const date = localStorage.getItem('selectedDate');
+            const time = localStorage.getItem('selectedTime');
+            const seat = localStorage.getItem('selectedSeat');
+
+            if (date && time && seat) {
+                document.getElementById('selected-date-time').innerText = `${date} at ${time}`;
+                document.getElementById('selected-seat').innerText = seat;
+            } else {
+                document.getElementById('selected-date-time').innerText = 'No date and time selected';
+                document.getElementById('selected-seat').innerText = 'No seat selected';
+            }
+        });
+    </script>
+</body>
+</html>
