@@ -1639,7 +1639,7 @@ body {
     padding: 1rem; /* Adjusted padding for a cleaner look */
     text-align: left;
     border-bottom: 1px solid #dee2e6;
-    font-size: 1rem; /* Adjusted font size for readability */
+    font-size: 0.9rem; /* Adjusted font size for readability */
 }
 
 #reservation-table th {
@@ -1787,6 +1787,7 @@ body {
 .footer-navbar a:hover, .footer a:hover{
     transform: scale(1.05);
 }
+
 
 
 

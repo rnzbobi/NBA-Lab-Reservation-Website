@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const reservations = [
         {
             id: 123456,
+            username: 'user1',
             seatNumber: 'A1',
             arena: 'Crypto.com Arena',
             requestDate: 'May 20, 2024',
@@ -14,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             id: 123457,
+            username: 'user2',
             seatNumber: 'B2',
             arena: 'Madison Square Garden',
             requestDate: 'May 21, 2024',
@@ -23,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             id: 123458,
+            username: 'user3',
             seatNumber: 'C3',
             arena: 'Target Center',
             requestDate: 'May 22, 2024',
@@ -32,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             id: 123459,
+            username: 'user4',
             seatNumber: 'D4',
             arena: 'Chase Center',
             requestDate: 'May 23, 2024',
@@ -41,6 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             id: 123460,
+            username: 'user5',
             seatNumber: 'E5',
             arena: 'Wells Fargo Center',
             requestDate: 'May 24, 2024',
@@ -50,6 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             id: 123461,
+            username: 'user6',
             seatNumber: 'F6',
             arena: 'Chase Center',
             requestDate: 'May 25, 2024',
@@ -59,6 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             id: 123462,
+            username: 'user7',
             seatNumber: 'G7',
             arena: 'Madison Square Garden',
             requestDate: 'May 26, 2024',
@@ -68,6 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             id: 123463,
+            username: 'user8',
             seatNumber: 'H8',
             arena: 'Madison Square Garden',
             requestDate: 'May 27, 2024',
@@ -109,6 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             ticketRow.innerHTML = `
                 <td>${ticket.id}</td>
+                <td>${ticket.username}</td>
                 <td>${ticket.seatNumber}</td>
                 <td>${ticket.arena}</td>
                 <td>${ticket.requestDate}</td>
