@@ -1073,7 +1073,7 @@ body {
 .viewavailable-page-header {
     background: transparent;
     padding: 10px;
-    position: fixed; 
+    position: absolute; 
     top: 0;
     width: 100%; 
     height: 30vh; 
@@ -1098,3 +1098,95 @@ body {
     justify-content: center;
 }
 
+.view-available-container {
+    align-items: center;
+    text-align: center;
+    padding-top: 50px;
+    color: white;
+}
+
+.view-availableview-available-date-time {
+    color: white;
+}
+
+.view-available-legends {
+    margin: 20px;
+    color: white;
+}
+
+.view-available-legend {
+    display: inline-block;
+    padding: 10px;
+}
+
+.view-available-legend span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
+
+.view-available-available {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    text-align: center;
+    border: none;
+    color: white;
+    cursor: auto;
+    background-color: green;
+}
+
+.view-available-reserved {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    text-align: center;
+    border: none;
+    color: white;
+    cursor: auto;
+    background-color: red;
+}
+
+.view-available-seat-chart {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.view-available-left-column, .view-available-right-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 20px;
+}
+
+.view-available-center-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.view-available-row {
+    display: flex;
+    justify-content: center;
+}
+
+.view-available-court {
+    width: 450px;
+    height: 250px;
+    background-color: #D2B48C;
+    line-height: 250px;
+    text-align: center;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.seat-details {
+    align-self: center;
+    display: none; 
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    color: black;
+    border: solid black 3px;
+}
