@@ -1144,6 +1144,9 @@ body {
     background-color: red;
 }
 
+.reserve-selected {
+    background-color: rgba(255, 255, 0, 0.705);
+}
 .reserve-seat-chart {
     display: flex;
     justify-content: center;
@@ -1262,15 +1265,104 @@ body {
 .reserve-reserve-button {
     display: inline-block;
     margin-top: 2vh;
-    padding: 1vw 2vw;
+    padding: .5vw 2vw;
     background-color: yellow;
     border: none;
     color: black;
-    font-size: 1.5vw;
+    font-size: 1vw;
     cursor: pointer;
     border-radius: 0.5vw;
     text-align: center;
     text-decoration: none;
+}
+
+/* Hover and selected states for available seats */
+.reserve-seat.reserve-available:hover,
+.reserve-seat.reserve-selected {
+    background-color: rgba(255, 255, 0, 0.705);
+    cursor: pointer;
+}
+
+/* Disable button by default */
+.reserve-reserve-button:disabled {
+    background-color: grey;
+    cursor: not-allowed;
+}
+/* New styles for the reserve seat page date and time inputs */
+.new-date-time-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Add space between date and time input fields */
+    margin: 0 auto 30px auto; /* Center align the container and add bottom margin */
+    width: fit-content; /* Adjust width to fit content */
+}
+
+.new-date-input-container, .new-dropdown-container {
+    display: flex;
+    align-items: center;
+}
+
+.date-input-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0 10px;
+    width: 200px; /* Adjust width to be slim like the time select box */
+}
+
+.date-input {
+    width: 100%;
+    padding: 10px 0; /* Remove side padding to align with select box */
+    border: none;
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 18px;
+    color: #333; /* Darker font color */
+}
+
+.date-input:focus {
+    outline: none;
+}
+
+.calendar-icon {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    color: #666;
+}
+
+.new-date-label, .new-dropdown-container label {
+    margin-right: 10px;
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 18px;
+    color: white; /* Ensures label color contrasts well with the background */
+}
+
+.new-dropdown-container select {
+    padding: 10px;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 18px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px; /* Adjust width to be slim */
+    color: #333; /* Darker font color */
+}
+
+.new-dropdown-container select:focus {
+    outline: none;
+    border-color: #999;
+}
+
+.new-dropdown-container select::-ms-expand {
+    display: none;
 }
 
 
