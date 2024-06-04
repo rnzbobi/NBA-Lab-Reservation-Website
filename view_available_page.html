@@ -54,17 +54,27 @@
             <a href="profile_page.html">PROFILE</a>
             <span class="profile-page-registerlogin"><a href="login_page.html">REGISTER/LOGIN</a></span>
         </nav>
-        <h1>Stadium: Stadium Name</h1>
+        <h1>Stadium: Crypto.com Arena</h1>
     </div>
 
     <div class="view-available-body">
         <div class="view-available-container">
-            <label for="start-date">Select Starting Date:</label>
-            <input type="date" id="start-date" name="start-date"><br><br>
+            <div class="view-available-date-container">
+                <label for="start-date">Select Starting Date:</label>
+                <div class="view-available-date-time-input">
+                    <input type="date" id="start-date" name="start-date">
+                    <input type="time" id="start-time" name="start-time">
+                </div>
+            </div>
             <i class="fas fa-calendar-alt calendar-icon" onclick="document.getElementById('start-date').focus();"></i>
-    
-            <label for="end-date">Select Ending Date:</label>
-            <input type="date" id="end-date" name="end-date">
+
+            <div class="view-available-date-container">
+                <label for="end-date">Select Ending Date:</label>
+                <div class="view-available-date-time-input">
+                    <input type="date" id="end-date" name="end-date">
+                    <input type="time" id="end-time" name="end-time">
+                </div>
+            </div>
             <i class="fas fa-calendar-alt calendar-icon" onclick="document.getElementById('end-date').focus();"></i>
     
             <div class="view-available-legends">

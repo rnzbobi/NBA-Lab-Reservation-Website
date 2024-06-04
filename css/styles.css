@@ -1087,31 +1087,42 @@ body {
 }
 
 .viewavailable-page-header h1 {
+    text-decoration: solid;
     margin-top: 20rem;
-}
-
-.datetimecontainer {
-    height: 30px;
-    width: 120px;
-}
-
-.datetimediv {
-    height: 200px;
-    width: 700px;
-    align-items: center; 
-    justify-content: center;
 }
 
 .view-available-container {
     align-items: center;
     text-align: center;
-    padding-top: 50px;
     color: white;
 }
 
-.view-availableview-available-date-time {
-    color: white;
+.view-available-date-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
+
+.view-available-date-container label {
+    margin-bottom: 10px;
+}
+
+.view-available-date-time-input input[type="date"],
+.view-available-date-time-input input[type="time"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px; /* Adjust margin for spacing */
+}
+
+.view-available-date-time-input input[type="date"]:focus,
+.view-available-date-time-input input[type="time"]:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+
 
 .view-available-legends {
     margin: 20px;
