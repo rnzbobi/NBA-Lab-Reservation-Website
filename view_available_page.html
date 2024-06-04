@@ -18,21 +18,29 @@
         .tooltiptext {
             visibility: hidden;
             background-color: white;
-            padding: 5px;
+            padding: 10px;
             border-radius: 3px;
-            font-size: 1.25rem;
+            font-size: 1rem;
             color: black;
-            max-width: 250px;
             position: absolute;
             z-index: 1;
-            bottom: 100%; /* Position the tooltip above the button */
+            bottom: 100%;
             left: 50%;
             transform: translateX(-50%);
-            white-space: nowrap;
+            max-width: 250px;
+            white-space: normal;
+            border: 1px solid black;
+            word-wrap: break-word;
+            text-align: center;
         }
 
         .tooltip-container:hover .tooltiptext {
             visibility: visible;
+        }
+
+        .tooltiptext a {
+            color: blue;
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -178,7 +186,6 @@
     
                 if (tooltipSpan && tooltipSpan.classList.contains('tooltiptext')) {
                     tooltipSpan.innerHTML = `This seat is reserved (ID: ${buttonId}). <a href="profile_page.html?id=${buttonId}">User</a>`;
-                    tooltipSpan.style.fontSize = '0.75rem';
                 }
             });
         });

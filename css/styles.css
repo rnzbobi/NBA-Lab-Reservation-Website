@@ -1184,31 +1184,3 @@ body {
     font-weight: bold;
     margin: 20px 0;
 }
-
-.tooltiptext {
-    visibility: hidden;
-    background-color: black;
-    padding: 20px;
-    border-radius: 3px;
-    font-size: 0.5rem;
-    color: black;
-    position: absolute;
-    z-index: 1;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    white-space: normal;
-}
-
-.view-available-available:hover + .tooltiptext {
-    visibility: hidden;
-}
-
-.view-available-reserved:hover + .tooltiptext {
-    visibility: hidden;
-}
-
-.tooltip-container {
-    position: relative;
-    display: inline-block;
-}
