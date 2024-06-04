@@ -9,13 +9,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <title>View Available Seats</title>
+    <style>
+        .tooltip-container {
+            position: relative;
+            display: inline-block;
+        }
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
-        
-    </script> 
+        .tooltiptext {
+            visibility: hidden;
+            background-color: white;
+            padding: 5px;
+            border-radius: 3px;
+            font-size: 1.25rem;
+            color: black;
+            max-width: 250px;
+            position: absolute;
+            z-index: 1;
+            bottom: 100%; /* Position the tooltip above the button */
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+        }
+
+        .tooltip-container:hover .tooltiptext {
+            visibility: visible;
+        }
+    </style>
 </head>
 <body class="available-page">
-
     <!-- Navigation Bar -->
     <div class="viewavailable-page-header">
         <nav class="profile-page-navbar">
@@ -30,35 +51,13 @@
 
     <div class="view-available-body">
         <div class="view-available-container">
-            <h2>Select Starting Date & Time:</h2>
-            <input type="date" id="start-date" name="start-date">
-            <select id="start-time" name="start-time">
-                <option value="12:00 PM">12:00 PM</option>
-                <option value="1:00 PM">1:00 PM</option>
-                <option value="2:00 PM">2:00 PM</option>
-                <option value="3:00 PM">3:00 PM</option>
-                <option value="4:00 PM">4:00 PM</option>
-                <option value="5:00 PM">5:00 PM</option>
-                <option value="6:00 PM">6:00 PM</option>
-                <option value="7:00 PM">7:00 PM</option>
-                <option value="8:00 PM">8:00 PM</option>
-                <option value="9:00 PM">9:00 PM</option>
-            </select>
+            <label for="start-date">Select Starting Date:</label>
+            <input type="date" id="start-date" name="start-date"><br><br>
+            <i class="fas fa-calendar-alt calendar-icon" onclick="document.getElementById('start-date').focus();"></i>
     
-            <h2>Select Ending Date & Time:</h2>
+            <label for="end-date">Select Ending Date:</label>
             <input type="date" id="end-date" name="end-date">
-            <select id="end-time" name="end-time">
-                <option value="12:00 PM">12:00 PM</option>
-                <option value="1:00 PM">1:00 PM</option>
-                <option value="2:00 PM">2:00 PM</option>
-                <option value="3:00 PM">3:00 PM</option>
-                <option value="4:00 PM">4:00 PM</option>
-                <option value="5:00 PM">5:00 PM</option>
-                <option value="6:00 PM">6:00 PM</option>
-                <option value="7:00 PM">7:00 PM</option>
-                <option value="8:00 PM">8:00 PM</option>
-                <option value="9:00 PM">9:00 PM</option>
-            </select>
+            <i class="fas fa-calendar-alt calendar-icon" onclick="document.getElementById('end-date').focus();"></i>
     
             <div class="view-available-legends">
                 <div class="view-available-legend"><span class="view-available-available"></span> Available</div>
@@ -66,38 +65,88 @@
             </div>
             <div class="view-available-seat-chart">
                 <div class="view-available-left-column">
-                    <button class="view-available-seat view-available-reserved" id="D1">D1</button>
-                    <button class="view-available-seat view-available-available" id="D2">D2</button>
-                    <button class="view-available-seat view-available-reserved" id="D3">D3</button>
+                    <div class="tooltip-container">
+                        <button class="view-available-reserved" id="D1">D1</button>
+                        <span class="tooltiptext"></span>
+                    </div>
+                    <div class="tooltip-container">
+                        <button class="view-available-available" id="D2">D2</button>
+                        <span class="tooltiptext"></span>
+                    </div>
+                    <div class="tooltip-container">
+                        <button class="view-available-reserved" id="D3">D3</button>
+                        <span class="tooltiptext"></span>
+                    </div>
                 </div>
                 <div class="view-available-center-column">
                     <div class="view-available-row">
-                        <button class="view-available-available" id="A1">A1</button>
-                        <button class="view-available-reserved" id="A2">A2</button>
-                        <button class="view-available-available" id="A3">A3</button>
-                        <button class="view-available-available" id="A4">A4</button>
-                        <button class="view-available-reserved" id="A5">A5</button>
-                        <button class="view-available-available" id="A6">A6</button>
+                        <div class="tooltip-container">
+                            <button class="view-available-available" id="A1">A1</button>
+                            <span class="tooltiptext"></span>
+                        </div>
+                        <div class="tooltip-container">
+                            <button class="view-available-reserved" id="A2">A2</button>
+                            <span class="tooltiptext"></span>
+                        </div>
+                        <div class="tooltip-container">
+                            <button class="view-available-available" id="A3">A3</button>
+                            <span class="tooltiptext"></span>
+                        </div>
+                        <div class="tooltip-container">
+                            <button class="view-available-available" id="A4">A4</button>
+                            <span class="tooltiptext"></span>
+                        </div>
+                        <div class="tooltip-container">
+                            <button class="view-available-reserved" id="A5">A5</button>
+                            <span class="tooltiptext"></span>
+                        </div>
+                        <div class="tooltip-container">
+                            <button class="view-available-available" id="A6">A6</button>
+                            <span class="tooltiptext"></span>
+                        </div>
                     </div>
                     <div class="view-available-court">COURT</div>
                     <div class="view-available-row">
-                        <button class="view-available-available" id="C1">C1</button>
-                        <button class="view-available-reserved" id="C2">C2</button>
-                        <button class="view-available-available" id="C3">C3</button>
-                        <button class="view-available-available" id="C4">C4</button>
-                        <button class="view-available-reserved" id="C5">C5</button>
-                        <button class="view-available-available" id="C6">C6</button>
+                        <div class="tooltip-container">
+                            <button class="view-available-available" id="C1">C1</button>
+                            <span class="tooltiptext"></span>
+                        </div>
+                        <div class="tooltip-container">
+                            <button class="view-available-reserved" id="C2">C2</button>
+                            <span class="tooltiptext"></span>
+                        </div>
+                        <div class="tooltip-container">
+                            <button class="view-available-available" id="C3">C3</button>
+                            <span class="tooltiptext"></span>
+                        </div>
+                        <div class="tooltip-container">
+                            <button class="view-available-available" id="C4">C4</button>
+                            <span class="tooltiptext"></span>
+                        </div>
+                        <div class="tooltip-container">
+                            <button class="view-available-reserved" id="C5">C5</button>
+                            <span class="tooltiptext"></span>
+                        </div>
+                        <div class="tooltip-container">
+                            <button class="view-available-available" id="C6">C6</button>
+                            <span class="tooltiptext"></span>
+                        </div>
                     </div>
                 </div>
                 <div class="view-available-right-column">
-                    <button class="view-available-available" id="B1">B1</button>
-                    <button class="view-available-reserved" id="B2">B2</button>
-                    <button class="view-available-available" id="B3">B3</button>
+                    <div class="tooltip-container">
+                        <button class="view-available-available" id="B1">B1</button>
+                        <span class="tooltiptext"></span>
+                    </div>
+                    <div class="tooltip-container">
+                        <button class="view-available-reserved" id="B2">B2</button>
+                        <span class="tooltiptext"></span>
+                    </div>
+                    <div class="tooltip-container">
+                        <button class="view-available-available" id="B3">B3</button>
+                        <span class="tooltiptext"></span>
+                    </div>
                 </div>
-            </div>
-
-            <div class="seat-details">
-                TESTING
             </div>
         </div>
     </div>
@@ -114,23 +163,24 @@
             <a href="https://www.nba.com/news">Latest News</a>
         </nav>
     </div>
-
     <script>
-        $flag =-1;
-        
-        $("button.view-available-reserved").hover(
-            function () {
-                $("div.seat-details").attr("style", "display:block");
-            },
-            function () {
-                if ($flag == -1) {
-                    $("div.seat-details").attr("style", "display:none");
+        document.addEventListener("DOMContentLoaded", function() {
+            // Set today's date for the date inputs
+            var today = new Date().toISOString().split('T')[0];
+            document.getElementById('start-date').value = today;
+            document.getElementById('end-date').value = today;
+    
+            const reservedButtons = document.querySelectorAll('.view-available-reserved');
+    
+            reservedButtons.forEach(button => {
+                const buttonId = button.id;
+                const tooltipSpan = button.nextElementSibling;
+    
+                if (tooltipSpan && tooltipSpan.classList.contains('tooltiptext')) {
+                    tooltipSpan.innerHTML = `This seat is reserved (ID: ${buttonId}). <a href="profile_page.html?id=${buttonId}">User</a>`;
+                    tooltipSpan.style.fontSize = '0.75rem';
                 }
-            }
-        );
-
-        $("button.view-available-seat.view-available-reserved").click(function () {
-            $flag = 1;
+            });
         });
     </script>
 </body>

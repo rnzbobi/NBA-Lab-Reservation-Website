@@ -1086,6 +1086,10 @@ body {
     z-index: 2; /* Ensure the header is above the body content */
 }
 
+.viewavailable-page-header h1 {
+    margin-top: 20rem;
+}
+
 .datetimecontainer {
     height: 30px;
     width: 120px;
@@ -1181,12 +1185,30 @@ body {
     margin: 20px 0;
 }
 
-.seat-details {
-    align-self: center;
-    display: none; 
-    width: 100%;
-    height: 100%;
-    background-color: white;
+.tooltiptext {
+    visibility: hidden;
+    background-color: black;
+    padding: 20px;
+    border-radius: 3px;
+    font-size: 0.5rem;
     color: black;
-    border: solid black 3px;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: normal;
+}
+
+.view-available-available:hover + .tooltiptext {
+    visibility: hidden;
+}
+
+.view-available-reserved:hover + .tooltiptext {
+    visibility: hidden;
+}
+
+.tooltip-container {
+    position: relative;
+    display: inline-block;
 }
