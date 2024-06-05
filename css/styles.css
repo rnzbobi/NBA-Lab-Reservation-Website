@@ -475,61 +475,6 @@ body {
     color: inherit; 
 }
 
-/*FOOTER*/
-.footer {
-    position: relative;
-    margin: auto;
-    margin-top: 250px;
-    padding-top: 30px;
-    padding-bottom: 50px;
-    background-color: white;
-    color: black;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    border-radius: 50px;
-    height: auto;
-    width: 100%;
-    gap: 75px;
-    border-top-left-radius: 50rem;
-    border-top-right-radius: 50rem;
-}
-
-.footer img {
-    height: 100px;
-    width: 100px;
-}
-
-.footer h5 {
-    font-family: "Montserrat";
-    font-weight: normal;
-    font-size: 0.75rem;
-}
-
-.footer a {
-    transition: transform 0.2s ease;
-}
-
-.footer-navbar {
-    display: flex;
-    justify-content: center;
-    gap: 2.75rem;
-}
-
-.footer-navbar a {
-    font-family: "Montserrat";
-    font-weight: normal;
-    color: black; 
-    text-decoration: none;
-    font-size: 1.75rem;
-    transition: transform 0.2s ease;
-}
-
-.footer-navbar a:hover, .footer a:hover{
-    transform: scale(1.05);
-}
-
 /*PROFILE CURRENT RESERVATION PAGE*/
 
 .reservation-profile-right-page {
@@ -1191,58 +1136,6 @@ body {
     cursor: pointer;
 }
 
-.reserve-footer {
-    position: relative;
-    margin: auto;
-    margin-top: 50px;
-    padding-top: 30px;
-    padding-bottom: 50px;
-    background-color: white;
-    color: black;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    border-radius: 50px;
-    height: auto;
-    width: 100%;
-    gap: 75px;
-}
-
-.reserve-footer img {
-    height: 100px;
-    width: 100px;
-}
-
-.reserve-footer h5 {
-    font-family: "Montserrat";
-    font-weight: normal;
-    font-size: 0.75rem;
-}
-
-.reserve-footer a {
-    transition: transform 0.2s ease;
-}
-
-.reserve-footer-navbar {
-    display: flex;
-    justify-content: center;
-    gap: 2.75rem;
-}
-
-.reserve-footer-navbar a {
-    font-family: "Montserrat";
-    font-weight: normal;
-    color: black; 
-    text-decoration: none;
-    font-size: 1.75rem;
-    transition: transform 0.2s ease;
-}
-
-.reserve-footer-navbar a:hover, .reserve-footer a:hover {
-    transform: scale(1.05);
-}
-
 /* VIEW AVAILABLE PAGE */
 
 .available-page {
@@ -1398,7 +1291,7 @@ body {
     font-weight: bold;
     margin: 20px 0;
 }
-=======
+
 .reserve-reserve-button {
     display: inline-block;
     margin-top: 2vh;
@@ -1719,60 +1612,6 @@ body {
     color: #fff;
 }
 
-.footer {
-    position: relative;
-    margin: auto;
-    margin-top: 250px;
-    padding-top: 30px;
-    padding-bottom: 50px;
-    background-color: white;
-    color: black;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    border-radius: 50px;
-    height: auto;
-    width: 100%;
-    gap: 75px;
-    border-top-left-radius: 50rem;
-    border-top-right-radius: 50rem;
-}
-
-.footer img {
-    height: 100px;
-    width: 100px;
-}
-
-.footer h5 {
-    font-family: "Montserrat";
-    font-weight: normal;
-    font-size: 0.75rem;
-}
-
-.footer a {
-    transition: transform 0.2s ease;
-}
-
-.footer-navbar {
-    display: flex;
-    justify-content: center;
-    gap: 2.75rem;
-}
-
-.footer-navbar a {
-    font-family: "Montserrat";
-    font-weight: normal;
-    color: black; 
-    text-decoration: none;
-    font-size: 1.75rem;
-    transition: transform 0.2s ease;
-}
-
-.footer-navbar a:hover, .footer a:hover{
-    transform: scale(1.05);
-}
-
 /*remove_reservation.html*/
 .remove-body {
     font-family: 'Montserrat', sans-serif;
@@ -1963,6 +1802,7 @@ body {
     color: #fff;
 }
 
+/*FOOTER*/
 .footer {
     position: relative;
     margin: auto;
@@ -1975,12 +1815,9 @@ body {
     align-items: center;
     display: flex;
     flex-direction: row;
-    border-radius: 50px;
     height: auto;
     width: 100%;
     gap: 75px;
-    border-top-left-radius: 50rem;
-    border-top-right-radius: 50rem;
 }
 
 .footer img {
