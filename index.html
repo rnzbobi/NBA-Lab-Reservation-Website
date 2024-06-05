@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-
     <title>Main Page</title>
 </head>
 <body>
@@ -19,8 +18,9 @@
         <nav class="main-page-navbar">
             <a href="index.html">HOME</a>
             <a href="see_reservation_page.html">SEE RESERVATION</a>
-            <a href="reserve_seat_page.html">RESERVE A SEAT</a>
+            <a href="reserve_seat_page.html" onclick="scrollToContent(event)">RESERVE A SEAT</a>
             <a href="profile_page.html">PROFILE</a>
+            <a href="remove_reservation.html">RESERVATION DASHBOARD</a>
             <span class="profile-page-registerlogin"><a href="login_page.html">REGISTER/LOGIN</a></span>
         </nav>
 
@@ -31,13 +31,13 @@
     <div class="main-page-content">
         <div class="main-page-stadiumcontainer">
             <div class="main-page-stadiumcontent">
-                <img src ="images/madison-square-garden.jpg" alt="Madison Square Garden" class="main-page-stadiumimage">
+                <img src="images/madison-square-garden.jpg" alt="Madison Square Garden" class="main-page-stadiumimage">
                 <div class="main-page-stadiuminfo">
                     <h2>Madison Square Garden</h2>
                 </div>
                 <div class="main-page-actions">
                     <a href="view_available_page.html" class="main-view-available">View Availability</a>
-                    <a href="reserve_seat_page.html" class="main-reserve-seat">Reserve Seat</a>
+                    <a href="reserve_seat_page.html" class="main-reserve-seat" data-arena="Madison Square Garden" onclick="reserveSeat(this)">Reserve Seat</a>
                 </div>
             </div>
         </div>
@@ -46,13 +46,13 @@
     <div class="main-page-content">
         <div class="main-page-stadiumcontainer">
             <div class="main-page-stadiumcontent">
-                <img src ="images/target-center.png" alt="Target Center" class="main-page-stadiumimage">
+                <img src="images/target-center.png" alt="Target Center" class="main-page-stadiumimage">
                 <div class="main-page-stadiuminfo">
                     <h2>Target Center</h2>
                 </div>
                 <div class="main-page-actions">
                     <a href="view_available_page.html" class="main-view-available">View Availability</a>
-                    <a href="reserve_seat_page.html" class="main-reserve-seat">Reserve Seat</a>
+                    <a href="reserve_seat_page.html" class="main-reserve-seat" data-arena="Target Center" onclick="reserveSeat(this)">Reserve Seat</a>
                 </div>
             </div>
         </div>
@@ -61,13 +61,13 @@
     <div class="main-page-content">
         <div class="main-page-stadiumcontainer">
             <div class="main-page-stadiumcontent">
-                <img src ="images/crypto.com-arena.jpeg" alt="Crypto.com Arena" class="main-page-stadiumimage">
+                <img src="images/crypto.com-arena.jpeg" alt="Crypto.com Arena" class="main-page-stadiumimage">
                 <div class="main-page-stadiuminfo">
                     <h2>Crypto.com Arena</h2>
                 </div>
                 <div class="main-page-actions">
                     <a href="view_available_page.html" class="main-view-available">View Availability</a>
-                    <a href="reserve_seat_page.html" class="main-reserve-seat">Reserve Seat</a>
+                    <a href="reserve_seat_page.html" class="main-reserve-seat" data-arena="Crypto.com Arena" onclick="reserveSeat(this)">Reserve Seat</a>
                 </div>
             </div>
         </div>
@@ -76,13 +76,13 @@
     <div class="main-page-content">
         <div class="main-page-stadiumcontainer">
             <div class="main-page-stadiumcontent">
-                <img src ="images/chase-center.jpg" alt="Chase Center" class="main-page-stadiumimage">
+                <img src="images/chase-center.jpg" alt="Chase Center" class="main-page-stadiumimage">
                 <div class="main-page-stadiuminfo">
                     <h2>Chase Center</h2>
                 </div>
                 <div class="main-page-actions">
                     <a href="view_available_page.html" class="main-view-available">View Availability</a>
-                    <a href="reserve_seat_page.html" class="main-reserve-seat">Reserve Seat</a>
+                    <a href="reserve_seat_page.html" class="main-reserve-seat" data-arena="Chase Center" onclick="reserveSeat(this)">Reserve Seat</a>
                 </div>
             </div>
         </div>
@@ -91,13 +91,13 @@
     <div class="main-page-content">
         <div class="main-page-stadiumcontainer">
             <div class="main-page-stadiumcontent">
-                <img src ="images/wells-fargo-center.jpg" alt="Wells Fargo Center" class="main-page-stadiumimage">
+                <img src="images/wells-fargo-center.jpg" alt="Wells Fargo Center" class="main-page-stadiumimage">
                 <div class="main-page-stadiuminfo">
                     <h2>Wells Fargo Center</h2>
                 </div>
                 <div class="main-page-actions">
                     <a href="view_available_page.html" class="main-view-available">View Availability</a>
-                    <a href="reserve_seat_page.html" class="main-reserve-seat">Reserve Seat</a>
+                    <a href="reserve_seat_page.html" class="main-reserve-seat" data-arena="Wells Fargo Center" onclick="reserveSeat(this)">Reserve Seat</a>
                 </div>
             </div>
         </div>
@@ -105,7 +105,7 @@
 
     <div class="footer">
         <a href="https://www.nba.com/?17">
-            <img src="images/nba-logo.png" alt="NBA Logo" >
+            <img src="images/nba-logo.png" alt="NBA Logo">
         </a>
         <h5>© 2024 NBA All rights reserved.</h5>
         <nav class="footer-navbar">
@@ -115,5 +115,36 @@
             <a href="https://www.nba.com/news">Latest News</a>
         </nav>
     </div>
+    <script>
+        function reserveSeat(button) {
+            const arena = button.getAttribute('data-arena');
+            localStorage.setItem('selectedArena', arena);
+            // You can also store the background image URL if needed
+            let backgroundImage = '';
+            switch (arena) {
+                case 'Madison Square Garden':
+                    backgroundImage = 'images/madison-square-garden.jpg';
+                    break;
+                case 'Target Center':
+                    backgroundImage = 'images/target-center.png';
+                    break;
+                case 'Crypto.com Arena':
+                    backgroundImage = 'images/crypto.com-arena.jpeg';
+                    break;
+                case 'Chase Center':
+                    backgroundImage = 'images/chase-center.jpg';
+                    break;
+                case 'Wells Fargo Center':
+                    backgroundImage = 'images/wells-fargo-center.jpg';
+                    break;
+            }
+            localStorage.setItem('backgroundImage', backgroundImage);
+        }
+
+        function scrollToContent(event) {
+            event.preventDefault();
+            document.querySelector('.main-page-content').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
 </body>
 </html>

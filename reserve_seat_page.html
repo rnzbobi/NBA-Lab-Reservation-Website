@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" media="all" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>Reserve Seat</title>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="reserve-page-header">
+        <nav class="reserve-page-navbar">
+            <a href="index.html">HOME</a>
+            <a href="see_reservation_page.html">SEE RESERVATION</a>
+            <a href="reserve_seat_page.html">RESERVE A SEAT</a>
+            <a href="profile_page.html">PROFILE</a>
+            <a href="remove_reservation.html">RESERVATION DASHBOARD</a>
+            <span class="reserve-page-registerlogin"><a href="register_page.html">REGISTER/LOGIN</a></span>
+        </nav>
+
+        <h1>NBA STADIUM RESERVATION</h1>
+        <h4>Reserve your seats now to witness your favorite NBA basketball action live!</h4>
+    </div>
+    <div class="reserve-container">
+        
+        <div class="new-date-time-container">
+            <div class="new-date-input-container">
+                <label class="new-date-label" for="start-date">Start Date: </label>
+                <div class="date-input-wrapper">
+                    <input type="text" id="start-date" class="date-input" data-placeholder="Select start date">
+                    <i class="fas fa-calendar-alt calendar-icon" onclick="document.getElementById('start-date').focus();"></i>
+                </div>
+            </div>
+            <div class="new-dropdown-container">
+                <label for="start-time">Time:</label>
+                <select id="start-time" name="start-time">
+                    <option value="" disabled selected>Select Time</option>
+                    <option value="12:00 PM">12:00 PM</option>
+                    <option value="1:00 PM">1:00 PM</option>
+                    <option value="2:00 PM">2:00 PM</option>
+                    <option value="3:00 PM">3:00 PM</option>
+                    <option value="4:00 PM">4:00 PM</option>
+                    <option value="5:00 PM">5:00 PM</option>
+                    <option value="6:00 PM">6:00 PM</option>
+                    <option value="7:00 PM">7:00 PM</option>
+                    <option value="8:00 PM">8:00 PM</option>
+                    <option value="9:00 PM">9:00 PM</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="new-date-time-container">
+            <div class="new-date-input-container">
+                <label class="new-date-label" for="end-date">End Date: </label>
+                <div class="date-input-wrapper">
+                    <input type="text" id="end-date" class="date-input" data-placeholder="Select end date">
+                    <i class="fas fa-calendar-alt calendar-icon" onclick="document.getElementById('end-date').focus();"></i>
+                </div>
+            </div>
+            <div class="new-dropdown-container">
+                <label for="end-time">Time:</label>
+                <select id="end-time" name="end-time">
+                    <option value="" disabled selected>Select Time</option>
+                    <option value="12:00 PM">12:00 PM</option>
+                    <option value="1:00 PM">1:00 PM</option>
+                    <option value="2:00 PM">2:00 PM</option>
+                    <option value="3:00 PM">3:00 PM</option>
+                    <option value="4:00 PM">4:00 PM</option>
+                    <option value="5:00 PM">5:00 PM</option>
+                    <option value="6:00 PM">6:00 PM</option>
+                    <option value="7:00 PM">7:00 PM</option>
+                    <option value="8:00 PM">8:00 PM</option>
+                    <option value="9:00 PM">9:00 PM</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="reserve-legends">
+            <div class="reserve-legend"><span class="reserve-available"></span> Available</div>
+            <div class="reserve-legend"><span class="reserve-reserved"></span> Reserved</div>
+            <div class="reserve-legend"><span class="reserve-selected"></span> Reserved</div>
+        </div>
+        <div class="reserve-seat-chart">
+            <div class="reserve-left-column">
+                <button class="reserve-seat" id="D1" onclick="handleSeatClick(this)">D1</button>
+                <button class="reserve-seat" id="D2" onclick="handleSeatClick(this)">D2</button>
+                <button class="reserve-seat" id="D3" onclick="handleSeatClick(this)">D3</button>
+            </div>
+            <div class="reserve-center-column">
+                <div class="reserve-row">
+                    <button class="reserve-seat" id="A1" onclick="handleSeatClick(this)">A1</button>
+                    <button class="reserve-seat" id="A2" onclick="handleSeatClick(this)">A2</button>
+                    <button class="reserve-seat" id="A3" onclick="handleSeatClick(this)">A3</button>
+                    <button class="reserve-seat" id="A4" onclick="handleSeatClick(this)">A4</button>
+                    <button class="reserve-seat" id="A5" onclick="handleSeatClick(this)">A5</button>
+                    <button class="reserve-seat" id="A6" onclick="handleSeatClick(this)">A6</button>
+                </div>
+                <div class="reserve-court">COURT</div>
+                <div class="reserve-row">
+                    <button class="reserve-seat" id="C1" onclick="handleSeatClick(this)">C1</button>
+                    <button class="reserve-seat" id="C2" onclick="handleSeatClick(this)">C2</button>
+                    <button class="reserve-seat" id="C3" onclick="handleSeatClick(this)">C3</button>
+                    <button class="reserve-seat" id="C4" onclick="handleSeatClick(this)">C4</button>
+                    <button class="reserve-seat" id="C5" onclick="handleSeatClick(this)">C5</button>
+                    <button class="reserve-seat" id="C6" onclick="handleSeatClick(this)">C6</button>
+                </div>
+            </div>
+            <div class="reserve-right-column">
+                <button class="reserve-seat" id="B1" onclick="handleSeatClick(this)">B1</button>
+                <button class="reserve-seat" id="B2" onclick="handleSeatClick(this)">B2</button>
+                <button class="reserve-seat" id="B3" onclick="handleSeatClick(this)">B3</button>
+            </div>
+        </div>
+
+        <button class="reserve-reserve-button" id="reserveButton" onclick="finalizeReservation()" disabled>Reserve</button>
+    </div>
+    <div class="reserve-footer">
+        <a href="https://www.nba.com/?17">
+            <img src="images/nba-logo.png" alt="NBA Logo">
+        </a>
+        <h5>© 2024 NBA All rights reserved.</h5>
+        <nav class="reserve-footer-navbar">
+            <a href="https://www.nba.com/news/about">About</a>
+            <a href="https://contact.nba.com/">Contact</a>
+            <a href="https://www.nba.com/teams">Teams</a>
+            <a href="https://www.nba.com/news">Latest News</a>
+        </nav>
+    </div>
+    <script>
+        let selectedSeats = [];
+
+        function handleSeatClick(seat) {
+            const startDate = document.getElementById('start-date').value;
+            const startTime = document.getElementById('start-time').value;
+            const endDate = document.getElementById('end-date').value;
+            const endTime = document.getElementById('end-time').value;
+
+            if (!startDate || !endDate) {
+                alert('Please pick both start and end dates first');
+                return;
+            }
+
+            if (seat.classList.contains('reserve-reserved')) {
+                alert('Seat is reserved');
+                return;
+            }
+
+            if (seat.classList.contains('reserve-selected')) {
+                seat.classList.remove('reserve-selected');
+                selectedSeats = selectedSeats.filter(selectedSeat => selectedSeat !== seat.id);
+            } else {
+                seat.classList.add('reserve-selected');
+                selectedSeats.push(seat.id);
+            }
+
+            document.getElementById('reserveButton').disabled = selectedSeats.length === 0;
+        }
+
+        function finalizeReservation() {
+            const startDate = document.getElementById('start-date').value;
+            const startTime = document.getElementById('start-time').value;
+            const endDate = document.getElementById('end-date').value;
+            const endTime = document.getElementById('end-time').value;
+
+            if (!startDate || !startTime || !endDate || !endTime) {
+                alert('Please fill out all date and time fields.');
+                return;
+            }
+
+            selectedSeats.forEach(seatNumber => {
+                localStorage.setItem(`reservation_${seatNumber}_startDate`, startDate);
+                localStorage.setItem(`reservation_${seatNumber}_startTime`, startTime);
+                localStorage.setItem(`reservation_${seatNumber}_endDate`, endDate);
+                localStorage.setItem(`reservation_${seatNumber}_endTime`, endTime);
+            });
+
+            alert(`You have successfully reserved seats: ${selectedSeats.join(', ')} from ${startDate} ${startTime} to ${endDate} ${endTime}`);
+
+            // Optionally, reset the selected seats and disable the reserve button
+            selectedSeats.forEach(seatNumber => {
+                document.getElementById(seatNumber).classList.remove('reserve-selected');
+            });
+            selectedSeats = [];
+            document.getElementById('reserveButton').disabled = true;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const dateInputs = document.querySelectorAll('.date-input');
+            dateInputs.forEach(input => {
+                input.addEventListener('focus', () => {
+                    input.type = 'date';
+                    input.showPicker(); // Show calendar picker
+                });
+                input.addEventListener('blur', () => {
+                    if (!input.value) {
+                        input.type = 'text';
+                        input.placeholder = input.getAttribute('data-placeholder');
+                    }
+                });
+                if (!input.value) {
+                    input.type = 'text';
+                    input.placeholder = input.getAttribute('data-placeholder');
+                }
+            });
+
+            const selectedArena = localStorage.getItem('selectedArena');
+            const backgroundImage = localStorage.getItem('backgroundImage');
+            const seatAvailability = {
+                'Madison Square Garden': ['A1', 'D1', 'C1'],
+                'Target Center': ['A2', 'D2', 'C2'],
+                'Crypto.com Arena': ['A3', 'D3', 'C3'],
+                'Chase Center': ['A4', 'B1', 'C4'],
+                'Wells Fargo Center': ['A5', 'B2', 'C5']
+            };
+
+            if (selectedArena && backgroundImage) {
+                document.querySelector('.reserve-page-header').style.backgroundImage = `url('${backgroundImage}'), linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.55))`;
+            }
+
+            const reservedSeats = seatAvailability[selectedArena] || [];
+            const allSeats = document.querySelectorAll('.reserve-seat');
+
+            allSeats.forEach(seat => {
+                if (reservedSeats.includes(seat.id)) {
+                    seat.classList.add('reserve-reserved');
+                    seat.classList.remove('reserve-available');
+                } else {
+                    seat.classList.add('reserve-available');
+                    seat.classList.remove('reserve-reserved');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
