@@ -183,19 +183,23 @@
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Set today's date for the date inputs
+            
             var today = new Date().toISOString().split('T')[0];
             document.getElementById('start-date').value = today;
             document.getElementById('end-date').value = today;
-    
-            const reservedButtons = document.querySelectorAll('.view-available-reserved');
-    
-            reservedButtons.forEach(button => {
+
+            const buttons = document.querySelectorAll('.tooltip-container button');
+            
+            buttons.forEach(button => {
                 const buttonId = button.id;
                 const tooltipSpan = button.nextElementSibling;
-    
+
                 if (tooltipSpan && tooltipSpan.classList.contains('tooltiptext')) {
-                    tooltipSpan.innerHTML = `This seat is reserved (ID: ${buttonId}). <a href="profile_page.html?id=${buttonId}">User</a>`;
+                    if (button.classList.contains('view-available-reserved')) {
+                        tooltipSpan.innerHTML = `This seat is reserved (ID: ${buttonId}). <a href="profile_page.html?id=${buttonId}">User</a>`;
+                    } else if (button.classList.contains('view-available-available')) {
+                        tooltipSpan.style.display = 'none';
+                    }
                 }
             });
         });
