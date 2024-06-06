@@ -18,7 +18,7 @@
         <nav class="main-page-navbar">
             <a href="index.html">HOME</a>
             <a href="see_reservation_page.html">SEE RESERVATION</a>
-            <a href="reserve_seat_page.html" onclick="scrollToContent(event)">RESERVE A SEAT</a>
+            <a href="index.html?scrollToContent=true">RESERVE A SEAT</a>
             <a href="profile_page.html">PROFILE</a>
             <a href="remove_reservation.html">RESERVATION DASHBOARD</a>
             <span class="profile-page-registerlogin"><a href="login_page.html">REGISTER/LOGIN</a></span>
@@ -145,6 +145,13 @@
             event.preventDefault();
             document.querySelector('.main-page-content').scrollIntoView({ behavior: 'smooth' });
         }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const params = new URLSearchParams(window.location.search);
+            if (params.has('scrollToContent')) {
+                scrollToContent(new Event('custom'));
+            }
+        });
     </script>
 </body>
 </html>
