@@ -1129,9 +1129,21 @@ body {
 .reserve-reserve-button {
     margin-top: 20px;
     padding: 15px 30px;
-    background-color: yellow;
+    background-color: white;
     border: none;
+    border-radius: 0;
     color: black;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.reserve-anon-button {
+    margin-top: 20px;
+    padding: 15px 30px;
+    background-color: black;
+    border: none;
+    border-radius: 0;
+    color: white;
     font-size: 16px;
     cursor: pointer;
 }
@@ -1314,12 +1326,11 @@ body {
     display: inline-block;
     margin-top: 2vh;
     padding: .5vw 2vw;
-    background-color: yellow;
+    background-color: rgb(229, 241, 59);
     border: none;
     color: black;
     font-size: 1vw;
     cursor: pointer;
-    border-radius: 0.5vw;
     text-align: center;
     text-decoration: none;
 }
@@ -1334,6 +1345,11 @@ body {
 /* Disable button by default */
 .reserve-reserve-button:disabled {
     background-color: grey;
+    cursor: not-allowed;
+}
+
+.reserve-anon-button:disabled {
+    background-color: black;
     cursor: not-allowed;
 }
 /* New styles for the reserve seat page date and time inputs */

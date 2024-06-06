@@ -50,7 +50,7 @@
         <nav class="profile-page-navbar">
             <a href="index.html">HOME</a>
             <a href="see_reservation_page.html">SEE RESERVATION</a>
-            <a href="index.html#main-page-content">RESERVE A SEAT</a>
+            <a href="index.html?scrollToContent=true">RESERVE A SEAT</a>
             <a href="profile_page.html">PROFILE</a>
             <a href="remove_reservation.html">RESERVATION DASHBOARD</a>
             <span class="profile-page-registerlogin"><a href="login_page.html">REGISTER/LOGIN</a></span>
@@ -62,9 +62,9 @@
         <div class="view-available-container">
             <div class="new-date-time-container">
                 <div class="new-date-input-container">
-                    <label class="new-date-label" for="start-date">Start Date: </label>
+                    <label class="new-date-label" for="start-date">Date: </label>
                     <div class="date-input-wrapper">
-                        <input type="date" id="start-date" class="date-input" data-placeholder="Select start date">
+                        <input type="date" id="start-date" class="date-input" data-placeholder="Select date">
                         <i class="fas fa-calendar-alt calendar-icon" onclick="document.getElementById('start-date').focus();"></i>
                     </div>
                 </div>
@@ -72,46 +72,34 @@
                     <label for="start-time">Time:</label>
                     <select id="start-time" name="start-time">
                         <option value="" disabled selected>Select Time</option>
-                        <option value="12:00 PM">12:00 PM</option>
-                        <option value="1:00 PM">1:00 PM</option>
-                        <option value="2:00 PM">2:00 PM</option>
-                        <option value="3:00 PM">3:00 PM</option>
-                        <option value="4:00 PM">4:00 PM</option>
-                        <option value="5:00 PM">5:00 PM</option>
-                        <option value="6:00 PM">6:00 PM</option>
-                        <option value="7:00 PM">7:00 PM</option>
-                        <option value="8:00 PM">8:00 PM</option>
-                        <option value="9:00 PM">9:00 PM</option>
+                        <option value="12:00 AM">12:00 AM - 12:30 AM</option>
+                        <option value="12:30 AM">12:30 AM - 1:00 AM</option>
+                        <option value="1:00 AM">1:00 AM - 1:30 AM</option>
+                        <option value="1:30 AM">1:30 AM - 2:00 AM</option>
+                        <option value="2:00 AM">2:00 AM - 2:30 AM</option>
+                        <option value="2:30 AM">2:30 AM - 3:00 AM</option>
+                        <option value="3:00 AM">3:00 AM - 3:30 AM</option>
+                        <option value="3:30 AM">3:30 AM - 4:00 AM</option>
+                        <option value="4:00 AM">4:00 AM - 4:30 AM</option>
+                        <option value="4:30 AM">4:30 AM - 5:00 AM</option>
+                        <option value="5:00 AM">5:00 AM - 5:30 AM</option>
+                        <option value="5:30 AM">5:30 AM - 6:00 AM</option>
+                        <option value="6:00 AM">6:00 AM - 6:30 AM</option>
+                        <option value="6:30 AM">6:30 AM - 7:00 AM</option>
+                        <option value="7:00 AM">7:00 AM - 7:30 AM</option>
+                        <option value="7:30 AM">7:30 AM - 8:00 AM</option>
+                        <option value="8:00 AM">8:00 AM - 8:30 AM</option>
+                        <option value="8:30 AM">8:30 AM - 9:00 AM</option>
+                        <option value="9:00 AM">9:00 AM - 9:30 AM</option>
+                        <option value="9:30 AM">9:30 AM - 10:00 AM</option>
+                        <option value="10:00 AM">10:00 AM - 10:30 AM</option>
+                        <option value="10:30 AM">10:30 AM - 11:00 AM</option>
+                        <option value="11:00 AM">11:00 AM - 11:30 AM</option>
+                        <option value="11:30 AM">11:30 AM - 12:00 PM</option>
                     </select>
                 </div>
             </div>
-    
-            <div class="new-date-time-container">
-                <div class="new-date-input-container">
-                    <label class="new-date-label" for="end-date">End Date: </label>
-                    <div class="date-input-wrapper">
-                        <input type="date" id="end-date" class="date-input" data-placeholder="Select end date">
-                        <i class="fas fa-calendar-alt calendar-icon" onclick="document.getElementById('end-date').focus();"></i>
-                    </div>
-                </div>
-                <div class="new-dropdown-container">
-                    <label for="end-time">Time:</label>
-                    <select id="end-time" name="end-time">
-                        <option value="" disabled selected>Select Time</option>
-                        <option value="12:00 PM">12:00 PM</option>
-                        <option value="1:00 PM">1:00 PM</option>
-                        <option value="2:00 PM">2:00 PM</option>
-                        <option value="3:00 PM">3:00 PM</option>
-                        <option value="4:00 PM">4:00 PM</option>
-                        <option value="5:00 PM">5:00 PM</option>
-                        <option value="6:00 PM">6:00 PM</option>
-                        <option value="7:00 PM">7:00 PM</option>
-                        <option value="8:00 PM">8:00 PM</option>
-                        <option value="9:00 PM">9:00 PM</option>
-                    </select>
-                </div>
-            </div>
-    
+
             <div class="view-available-legends">
                 <div class="view-available-legend"><span class="view-available-available"></span> Available</div>
                 <div class="view-available-legend"><span class="view-available-reserved"></span> Reserved</div>
@@ -221,7 +209,6 @@
             
             var today = new Date().toISOString().split('T')[0];
             document.getElementById('start-date').value = today;
-            document.getElementById('end-date').value = today;
 
             const buttons = document.querySelectorAll('.tooltip-container button');
             

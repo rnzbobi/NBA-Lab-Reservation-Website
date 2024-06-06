@@ -103,6 +103,7 @@
             </div>
         </div>
 
+        <button class="reserve-anon-button" id="anonymousReserveButton" onclick="finalizeAnonymousReservation()" disabled>Reserve Anonymously</button>
         <button class="reserve-reserve-button" id="reserveButton" onclick="finalizeReservation()" disabled>Reserve</button>
     </div>
     <div class="footer">
@@ -143,6 +144,7 @@
             }
 
             document.getElementById('reserveButton').disabled = selectedSeats.length === 0;
+            document.getElementById('anonymousReserveButton').disabled = selectedSeats.length === 0;
         }
 
         function finalizeReservation() {
@@ -161,12 +163,39 @@
 
             alert(`You have successfully reserved seats: ${selectedSeats.join(', ')} on ${reservationDate} at ${reservationTime}`);
 
-            // Optionally, reset the selected seats and disable the reserve button
+            // Optionally, reset the selected seats and disable the reserve buttons
             selectedSeats.forEach(seatNumber => {
                 document.getElementById(seatNumber).classList.remove('reserve-selected');
             });
             selectedSeats = [];
             document.getElementById('reserveButton').disabled = true;
+            document.getElementById('anonymousReserveButton').disabled = true;
+        }
+
+        function finalizeAnonymousReservation() {
+            const reservationDate = document.getElementById('reservation-date').value;
+            const reservationTime = document.getElementById('reservation-time').value;
+
+            if (!reservationDate || !reservationTime) {
+                alert('Please fill out all date and time fields.');
+                return;
+            }
+
+            selectedSeats.forEach(seatNumber => {
+                localStorage.setItem(`reservation_${seatNumber}_date`, reservationDate);
+                localStorage.setItem(`reservation_${seatNumber}_time`, reservationTime);
+                localStorage.setItem(`reservation_${seatNumber}_anonymous`, true);
+            });
+
+            alert(`You have successfully reserved seats: ${selectedSeats.join(', ')} on ${reservationDate} at ${reservationTime} anonymously`);
+
+            // Optionally, reset the selected seats and disable the reserve buttons
+            selectedSeats.forEach(seatNumber => {
+                document.getElementById(seatNumber).classList.remove('reserve-selected');
+            });
+            selectedSeats = [];
+            document.getElementById('reserveButton').disabled = true;
+            document.getElementById('anonymousReserveButton').disabled = true;
         }
 
         document.addEventListener('DOMContentLoaded', function() {
