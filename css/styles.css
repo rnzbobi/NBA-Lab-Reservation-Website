@@ -1139,6 +1139,7 @@ body {
 /* VIEW AVAILABLE PAGE */
 
 .available-page {
+    position: relative; 
     height: 100%;
     margin: 0;
     background-image: url('../images/view-available.png');
@@ -1150,6 +1151,23 @@ body {
     background-color: black;
     font-family: 'Montserrat', sans-serif;
 }
+
+.available-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 1; 
+}
+
+.available-page > * {
+    position: relative; /* Ensure children are above the overlay */
+    z-index: 2;
+}
+
 .view-available-body {
     font-family: 'Montserrat', sans-serif;
     position: relative;
