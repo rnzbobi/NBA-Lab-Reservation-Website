@@ -8,45 +8,35 @@ document.addEventListener('DOMContentLoaded', function() {
             seatNumber: 'A1',
             arena: 'Crypto.com Arena',
             requestDate: 'May 20, 2024',
-            startDateTime: 'May 26, 2024 12:00 PM',
-            endDateTime: 'May 26, 2024 02:00 PM',
-            isLate: false
+            dateTime: 'May 26, 2024 12:00 PM - 12:30 PM'
         },
         {
             id: 123457,
             seatNumber: 'B2',
             arena: 'Madison Square Garden',
             requestDate: 'May 21, 2024',
-            startDateTime: 'May 27, 2024 01:00 PM',
-            endDateTime: 'May 27, 2024 03:00 PM',
-            isLate: false
+            dateTime: 'May 27, 2024 1:00 PM - 1:30 PM'
         },
         {
             id: 123458,
             seatNumber: 'C3',
             arena: 'Target Center',
             requestDate: 'May 22, 2024',
-            startDateTime: 'May 28, 2024 02:00 PM',
-            endDateTime: 'May 28, 2024 04:00 PM',
-            isLate: true
+            dateTime: 'May 28, 2024 2:00 PM - 2:30 PM'
         },
         {
             id: 123459,
             seatNumber: 'D4',
             arena: 'Chase Center',
             requestDate: 'May 23, 2024',
-            startDateTime: 'May 29, 2024 03:00 PM',
-            endDateTime: 'May 29, 2024 05:00 PM',
-            isLate: false
+            dateTime: 'May 29, 2024 3:00 PM - 3:30 PM'
         },
         {
             id: 123460,
             seatNumber: 'E5',
             arena: 'Wells Fargo Center',
             requestDate: 'May 24, 2024',
-            startDateTime: 'May 30, 2024 04:00 PM',
-            endDateTime: 'May 30, 2024 06:00 PM',
-            isLate: false
+            dateTime: 'May 30, 2024 4:00 PM - 4:30 PM'
         }
     ];
 
@@ -80,8 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                     <div class="see-reservation-dates">
                         <h2>Date of Request: ${ticket.requestDate}</h2>
-                        <h2>Starting Date & Time: ${ticket.startDateTime}</h2>
-                        <h2>Ending Date & Time: ${ticket.endDateTime}</h2>
+                        <h2>Reservation Date & Time: ${ticket.dateTime}</h2>
                     </div>
                     <a class="see-reservation-modify-reservation" href="modify_reservation_page.html?id=${ticket.id}">
                         <h4>Modify</h4>

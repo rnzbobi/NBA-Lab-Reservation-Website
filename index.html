@@ -11,14 +11,12 @@
     <title>Main Page</title>
 </head>
 <body>
-    <!-- View Slot Availability HERE -->
-
     <!-- Navigation Bar -->
     <div class="main-page-header">
         <nav class="main-page-navbar">
             <a href="index.html">HOME</a>
             <a href="see_reservation_page.html">SEE RESERVATION</a>
-            <a href="index.html?scrollToContent=true">RESERVE A SEAT</a>
+            <a href="index.html#main-page-content" onclick="scrollToContent(event)">RESERVE A SEAT</a>
             <a href="profile_page.html">PROFILE</a>
             <a href="remove_reservation.html">RESERVATION DASHBOARD</a>
             <span class="profile-page-registerlogin"><a href="login_page.html">REGISTER/LOGIN</a></span>
@@ -28,7 +26,7 @@
         <h4>Reserve your seats now to witness your favorite NBA basketball action live!</h4>
     </div>
 
-    <div class="main-page-content">
+    <div class="main-page-content" id="main-page-content">
         <div class="main-page-stadiumcontainer">
             <div class="main-page-stadiumcontent">
                 <img src="images/madison-square-garden.jpg" alt="Madison Square Garden" class="main-page-stadiumimage">
@@ -143,13 +141,13 @@
 
         function scrollToContent(event) {
             event.preventDefault();
-            document.querySelector('.main-page-content').scrollIntoView({ behavior: 'smooth' });
+            document.querySelector('#main-page-content').scrollIntoView({ behavior: 'smooth' });
         }
 
-        document.addEventListener("DOMContentLoaded", function() {
-            const params = new URLSearchParams(window.location.search);
-            if (params.has('scrollToContent')) {
-                scrollToContent(new Event('custom'));
+        // Check for the presence of the hash and scroll if necessary
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.location.hash === '#main-page-content') {
+                document.querySelector('#main-page-content').scrollIntoView({ behavior: 'smooth' });
             }
         });
     </script>
