@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Route to serve the index.hbs file
 app.get('/', (req, res) => {
-  res.render('index', { title: 'Main Page' });
+  res.render('home', { title: 'Main Page' });
 });
 
 // Routes for other HTML files
