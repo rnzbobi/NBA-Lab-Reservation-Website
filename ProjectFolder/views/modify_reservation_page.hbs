@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" media="all" href="/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>Modify Reservation</title>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <div class="profile-page-header">
+        <nav class="profile-page-navbar">
+            <a href="/">HOME</a>
+            <a href="/see_reservation_page">SEE RESERVATION</a>
+            <a href="/">RESERVE A SEAT</a>
+            <a href="/profile_page">PROFILE</a>
+            <a href="/remove_reservation">RESERVATION DASHBOARD</a>
+            <span class="profile-page-registerlogin"><a href="/login_page">REGISTER/LOGIN</a></span>
+        </nav>
+    </div>
+
+    <div class="modify-reservation-content">
+        <div class="left-space-transparent"></div>
+        <div class="right-space-content">
+            <div class="header-content">
+                <h4>Modify Reservation</h4>
+            </div>
+            <div class="box-content">
+                <h3>Reservation #13456</h3>
+                <div class="date-input-container">
+                    <label class="date-label" for="reservation-date">Date: </label>
+                    <input type="date" id="reservation-date">
+                    <i class="fas fa-calendar-alt calendar-icon" onclick="document.getElementById('reservation-date').focus();"></i>
+                </div>
+                <div class="dropdown-container">
+                    <label for="time">Time:</label>
+                    <select id="time" name="time">
+                        <option value="10am">10 AM</option>
+                        <option value="1pm">1 PM</option>
+                        <option value="4pm">4 PM</option>
+                        <option value="7pm">7 PM</option>
+                    </select>
+                </div>
+                <div class="dropdown-container">
+                    <label for="seat-number">Seat Number:</label>
+                    <select id="seat-number" name="seat-number">
+                        <option value="a2">A2</option>
+                        <option value="c3">C3</option>
+                        <option value="d5">D5</option>
+                        <option value="d6">D6</option>
+                        <option value="f5">F5</option>
+                    </select>
+                </div>
+            </div>
+            <div class="buttons-content">
+                <div class="left-cancel">
+                    <a href="/profile_current_reservation_page"><h2>Cancel</h2></a>
+                </div>
+                <div class="right-update">
+                    <a href="/modify_reservation_page"><h2>Update</h2></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <a href="https://www.nba.com/?17">
+            <img src="/images/nba-logo.png" alt="NBA Logo">
+        </a>
+        <h5>© 2024 NBA All rights reserved.</h5>
+        <nav class="footer-navbar">
+            <a href="https://www.nba.com/news/about">About</a>
+            <a href="https://contact.nba.com/">Contact</a>
+            <a href="https://www.nba.com/teams">Teams</a>
+            <a href="https://www.nba.com/news">Latest News</a>
+        </nav>
+    </div>
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var today = new Date().toISOString().split('T')[0];
+        document.getElementById('reservation-date').value = today;
+    });
+</script>
+</html>
