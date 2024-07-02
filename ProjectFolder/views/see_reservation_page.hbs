@@ -1,18 +1,7 @@
 <body>
 
     <!-- Navigation Bar -->
-    <div class="see-reservation-page-header">
-        <nav class="see-reservation-page-navbar">
-            <a href="/">HOME</a>
-            <a href="/see_reservation_page">SEE RESERVATION</a>
-            <a href="/">RESERVE A SEAT</a>
-            <a href="/profile_page">PROFILE</a>
-            <a href="/remove_reservation">RESERVATION DASHBOARD</a>
-            <span class="profile-page-registerlogin"><a href="/login_page">REGISTER/LOGIN</a></span>
-        </nav>
-
-        <h1>Your Reservations</h1>
-    </div>
+     {{> header headerClass="see-reservation-page-header" navClass="see-reservation-page-navbar" title="Your Reservations" }}
 
     <div class="see-reservation-page-content" id="ticket-container">
         <!-- Reservation tickets will be inserted here by JavaScript -->
