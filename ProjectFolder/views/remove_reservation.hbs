@@ -1,18 +1,7 @@
 <body class="remove-body">
     <!-- Navigation Bar -->
-    <div class="remove-reservation-page-header">
-        <nav class="remove-reservation-page-navbar">
-            <a href="/">HOME</a>
-            <a href="/see_reservation_page">SEE RESERVATION</a>
-            <a href="/">RESERVE A SEAT</a>
-            <a href="/profile_page">PROFILE</a>
-            <a href="/remove_reservation">RESERVATION DASHBOARD</a>
-            <span class="profile-page-registerlogin"><a href="/login_page">REGISTER/LOGIN</a></span>
-        </nav>
-
-        <h1>Reservation Dashboard</h1>
-    </div>
-
+   {{> header headerClass="remove-reservation-page-header" navClass="remove-reservation-page-navbar" headerTitle="Reservation Dashboard" }}
+   
     <div class="container-custom">
         <table id="reservation-table">
             <thead>

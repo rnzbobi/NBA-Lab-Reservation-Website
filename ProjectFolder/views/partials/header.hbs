@@ -1,0 +1,16 @@
+<header class="{{headerClass}}">
+    <nav class="{{navClass}}">
+        <a href="/">HOME</a>
+        <a href="/see_reservation_page">SEE RESERVATION</a>
+        <a href="/reserve_seat_page">RESERVE A SEAT</a>
+        <a href="/profile_page">PROFILE</a>
+        <a href="/remove_reservation">RESERVATION DASHBOARD</a>
+        <span class="profile-page-registerlogin"><a href="/login_page">REGISTER/LOGIN</a></span>
+    </nav>
+    {{#if title}}
+        <h1>{{title}}</h1>
+    {{/if}}
+    {{#if subtitle}}
+        <h4>{{subtitle}}</h4>
+    {{/if}}
+</header>
