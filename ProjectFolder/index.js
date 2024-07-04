@@ -13,6 +13,8 @@ app.engine('hbs', exphbs.engine({
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 
+app.use(express.urlencoded({ extended: true }));
+
 // Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -24,6 +26,14 @@ app.get('/', (req, res) => {
 // Routes for other HTML files
 app.get('/login_page', (req, res) => {
   res.render('login_page', { title: 'Login Page' });
+});
+
+app.post('/login', (req, res) => {
+  const { username, password } = req.body;
+  
+  console.log("User: ", username + " logged in successfully!");
+
+  res.redirect('/');
 });
 
 app.get('/modify_reservation_page', (req, res) => {
@@ -40,6 +50,17 @@ app.get('/profile_page', (req, res) => {
 
 app.get('/register_page', (req, res) => {
   res.render('register_page', { title: 'Register Page' });
+});
+
+app.post('/register', (req, res) => {
+  const { firstname, lastname, username, password, description } = req.body;
+
+  var name = firstname + ' ' + lastname;
+  console.log("Registering user: ", username);
+  console.log("Name: ", name);
+  console.log("Description: ", description);
+
+  res.redirect('/login_page');
 });
 
 app.get('/remove_reservation', (req, res) => {
