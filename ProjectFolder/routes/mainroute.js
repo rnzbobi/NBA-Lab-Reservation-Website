@@ -13,7 +13,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-
 // Routes for other HTML files
 router.get('/login_page', (req, res) => {
   res.render('login_page', { title: 'Login Page' });
