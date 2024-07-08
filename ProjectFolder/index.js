@@ -8,6 +8,7 @@ const path = require('path');
 const exphbs = require('express-handlebars');
 const mainroute = require('./routes/mainroute'); 
 
+
 const app = express();
 const port = 3000;
 
@@ -35,6 +36,7 @@ app.use(session({
   secret: process.env.SECRET,
   resave: false,
   saveUninitialized: false,
+  cookie: {maxAge: 604800000}
 }));
 
 app.use(passport.initialize());

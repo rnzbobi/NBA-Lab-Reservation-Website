@@ -5,7 +5,14 @@
         <a href="/reserve_seat_page">RESERVE A SEAT</a>
         <a href="/profile_page">PROFILE</a>
         <a href="/remove_reservation">RESERVATION DASHBOARD</a>
-        <span class="profile-page-registerlogin"><a href="/login_page">REGISTER/LOGIN</a></span>
+        {{#if isAuthenticated}}
+        <div class="navbar-right">
+            <a href="/profile_page">Hi, {{user.name}}</a>
+            <a href="/logout">LOGOUT</a>
+        </div>
+        {{else}}
+            <span class="profile-page-registerlogin"><a href="/login_page">REGISTER/LOGIN</a></span>
+        {{/if}}
     </nav>
     {{#if title}}
         <h1>{{title}}</h1>

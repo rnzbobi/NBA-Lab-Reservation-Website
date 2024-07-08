@@ -913,6 +913,43 @@ body {
     box-sizing: border-box;
 }
 
+.radio-group {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.radio-group input[type="radio"] {
+    display: none;
+}
+
+.radio-group label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border: 2px solid gray;
+    border-radius: 25px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.35rem;
+    color: black;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.radio-group input[type="radio"]:checked + label {
+    background-color: darkslategrey;
+    color: white;
+    transform: scale(1.1);
+}
+
+.radio-group input[type="radio"]:focus + label {
+    outline: 2px solid #4CAF50;
+    outline-offset: 2px;
+}
+
 #profilePicturePreview {
     width: 100px;
     height: auto;
@@ -972,6 +1009,7 @@ body {
 .back-button-link-register:hover {
     transform: scale(1.05);
 }
+
 
 /* reserve_seat_page.html */
 
@@ -1893,4 +1931,12 @@ body {
 
 .footer-navbar a:hover, .footer a:hover{
     transform: scale(1.05);
+}
+
+.navbar-right {
+    position: relative;
+    bottom: 0.5rem;
+    left: 25rem;
+    display: flex;
+    gap: 5rem;
 }

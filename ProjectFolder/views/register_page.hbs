@@ -22,12 +22,14 @@
             <input type="text" id="name" name="name" required>
             
             <label for="password">Password</label>
-            <input type="password" id="password" name="password" required>
+            <input type="password" id="password" name="password" required><br>
 
-            <label for="student">Role: Student</label>
-            <input type="radio" id="student" name="role" value="student" required>
-            <label for="labtech">Role: Lab Technician</label>
-            <input type="radio" id="labtech" name="role" value="lab_technician">
+            <div class="radio-group">
+                <input type="radio" id="student" name="role" value="student" required>
+                <label for="student">Student</label>
+                <input type="radio" id="lab_technician" name="role" value="lab_technician">
+                <label for="lab_technician">Lab Technician</label>
+            </div><br>
 
             <label for="profilePicture">Profile Picture</label>
             <input type="file" id="profilePicture" name="profilePicture" accept="image/*" onchange="previewProfilePicture();">
@@ -57,5 +59,11 @@
             reader.readAsDataURL(file);
         }
     </script>
+
+    {{#if error}}
+        <script>
+            alert('{{errorMessage}}');
+        </script>
+    {{/if}}
 </body>
 </html>

@@ -35,5 +35,11 @@
             <a href="/" class="back-button-link-login">Go Back to Home</a>
         </div>
     </div>
+
+    {{#if error}}
+        <script>
+            alert('{{errorMessage}}');
+        </script>
+    {{/if}}
 </body>
 </html>
