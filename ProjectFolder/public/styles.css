@@ -774,7 +774,7 @@ body {
     width: 100%;
 }
 
-.login-form input[type="text"], .login-form input[type="password"] {
+.login-form input[type="email"], .login-form input[type="password"] {
     width: 100%;
     padding: 10px;
     margin-top: 0;
@@ -905,12 +905,19 @@ body {
     width: 100%;
 }
 
-.register-form input[type="text"], .register-form input[type="password"], .register-form textarea {
+.register-form input[type="text"], .register-form input[type="password"], .register-form input[type="email"], .register-form textarea {
     width: 100%;
     padding: 10px;
     margin-top: 0;
     font-size: 1.35rem;
     box-sizing: border-box;
+}
+
+#profilePicturePreview {
+    width: 100px;
+    height: auto;
+    display: block;
+    margin-top: 10px;
 }
 
 .register-form input[type="submit"] {
