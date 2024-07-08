@@ -8,4 +8,4 @@ const stadiumSchema = new mongoose.Schema({
   reservations: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Reservation' }]
 });
 
-module.exports = mongoose.model('Stadium', stadiumSchema);
+module.exports = mongoose.model('Stadium', stadiumSchema, 'stadiums');
