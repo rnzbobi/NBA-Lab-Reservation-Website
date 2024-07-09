@@ -1,13 +1,13 @@
 <body>
 
     <!-- Navigation Bar -->
-     {{> header headerClass="profile-page-header" navClass="profile-page-navbar" title="Information"}}
+    {{> header headerClass="profile-page-header" navClass="profile-page-navbar" title="Information"}}
 
     <div class="profile-page-content">
         <div class="profile-left-page">
             <div class="profile-username">
-                <h4>RHENZ BHOVIE VILORIA</h4>
-                <p>@rhenzbhovie</p>
+                <h4>{{user.name}}</h4>
+                <p>{{user.email}}</p>
             </div>
             <div class="personal-info">
                 <a href="/profile_page">
@@ -23,24 +23,14 @@
             </div>
         </div>
         <div class="reservation-profile-right-page">
-            <div class="profile-search-bar">
-                <div class="search-container">
-                    <button class="search-button">
-                        <img src="images/search.png" alt="Search Icon" class="search-icon">
-                    </button>
-                    <input type="text" placeholder="Search Profile..." class="search-input">
+            <div class="profile-picture-upload">
+                <div class="profile-picture-label">
+                    <img src="{{#if user.profilePicture}}/profilepics/{{user.profilePicture}}{{else}}/images/default-user.png{{/if}}" alt="Profile Picture" id="profile-picture">
                 </div>
             </div>
-            <div class="profile-picture-upload">
-                <input type="file" id="file-upload" accept="image/*" style="display:none;">
-                <label for="file-upload" class="profile-picture-label">
-                    <img src="images/default-user.png" alt="Profile Picture" id="profile-picture">
-                    <div class="plus-sign">+</div>
-                </label>
-            </div>
             <div class="profile-details">
-                <h4>ID:123456789</h4>
-                <h3>Current Reservation</h3>
+                <h4>User ID: {{user._id}}</h4>
+                <h2>Current Reservation</h2>
             </div>
             <div class="reservation-box">
                 <div class="reservation-id">

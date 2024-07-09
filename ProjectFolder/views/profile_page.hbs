@@ -1,7 +1,6 @@
 <body>
-
     <!-- Navigation Bar -->
-     {{> header headerClass="profile-page-header" navClass="profile-page-navbar" title="Information"}}
+    {{> header headerClass="profile-page-header" navClass="profile-page-navbar" title="Information"}}
 
     <div class="profile-page-content">
         <div class="profile-left-page">
@@ -22,38 +21,121 @@
                 </a>
             </div>
         </div>
-        <div class="profile-right-page">
+        <div class="profile-right-page" id="profile-right-page">
             <div class="profile-search-bar">
                 <div class="search-container">
-                    <button class="search-button">
+                    <button class="search-button" onclick="searchProfile()">
                         <img src="images/search.png" alt="Search Icon" class="search-icon">
                     </button>
-                    <input type="text" placeholder="Search Profile..." class="search-input">
+                    <input type="text" id="search-input" placeholder="Search Profile..." class="search-input">
                 </div>
             </div>
-            <div class="profile-picture-upload">
-                <input type="file" id="file-upload" accept="image/*" style="display:none;">
-                <label for="file-upload" class="profile-picture-label">
-                    <img src="images/default-user.png" alt="Profile Picture" id="profile-picture">
-                    <div class="plus-sign">+</div>
-                </label>
-            </div>
-            <div class="profile-details">
-                <h4>{{user.id}}</h4>
-                <h3>Details</h3>
-                <input type="text" placeholder="Firstname" class="profile-input">
-                <input type="text" placeholder="Lastname" class="profile-input">
-                <h3>Description</h3>
-                <textarea placeholder="Type Here..." class="description-input"></textarea>
-            </div>
-            <div class="delete-and-update-profile">
-                <a href="" class="delete-button-text">
-                    <h4>Delete Account</h4>
-                </a>
-                <a href="" class="update-button-text">
-                    <h4>Update</h4>
-                </a>
-            </div>     
+            <form action="/profile_page" method="POST" enctype="multipart/form-data" id="profile-form">
+                <div class="profile-picture-upload">
+                    <input type="file" id="file-upload" name="profilePicture" accept="image/*" style="display:none;" onchange="previewProfilePicture(event)">
+                    <label for="file-upload" class="profile-picture-label">
+                        <img src="{{#if profilePicture}}/profilepics/{{profilePicture}}{{else}}/images/default-user.png{{/if}}" alt="Profile Picture" id="profile-picture">
+                        <div class="plus-sign">+</div>
+                    </label>
+                </div>
+                <div class="profile-details">
+                    <h4>User ID: {{user.id}}</h4>
+                    <h3>Description</h3>
+                    <textarea name="description" placeholder="Type Here..." class="description-input">{{description}}</textarea>
+                </div>
+                <div class="delete-and-update-profile">
+                    <button type="button" class="delete-button-text" onclick="deleteAccount()">
+                        <h4>Delete Account</h4>
+                    </button>
+                    <button type="submit" class="update-button-text">
+                        <h4>Update</h4>
+                    </button>
+                </div> 
+                <input type="hidden" name="action" id="form-action" value="update">
+            </form>
+            <!-- Search Results Section -->
+            <div id="search-results" class="search-results-content"></div>    
         </div>
     </div>
+
+    <script>
+        function previewProfilePicture(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('profile-picture').src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function deleteAccount() {
+            if (confirm('Are you sure you want to delete your account?')) {
+                document.getElementById('form-action').value = 'delete';
+                document.getElementById('profile-form').submit();
+            }
+        }
+
+        function searchProfile() {
+            const query = document.getElementById('search-input').value;
+            fetch('/profile_page', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ action: 'search', query: query })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const profileRightPage = document.getElementById('profile-right-page');
+                profileRightPage.innerHTML = `
+                    <div class="profile-search-bar">
+                        <div class="search-container">
+                            <button class="search-button" onclick="searchProfile()">
+                                <img src="images/search.png" alt="Search Icon" class="search-icon">
+                            </button>
+                            <input type="text" id="search-input" placeholder="Search Profile..." class="search-input">
+                        </div>
+                    </div>
+                    <div id="search-results" class="search-results-content"></div>
+                `;
+                const resultsContainer = document.getElementById('search-results');
+                if (data.users.length > 0) {
+                    data.users.forEach(user => {
+                        const userElement = document.createElement('div');
+                        userElement.classList.add('user-result');
+                        userElement.innerHTML = `
+                            <div class="profile-picture-upload">
+                                <label class="profile-picture-label">
+                                    <img src="${user.profilePicture ? '/profilepics/' + user.profilePicture : '/images/default-user.png'}" alt="${user.name}" class="user-result-picture">
+                                </label>
+                            </div>
+                            <div class="profile-details">
+                                <h4>User ID: ${user._id}</h4>
+                                <h3>Description</h3>
+                                <textarea placeholder="Type Here..." class="description-input" ${user.email === "${data.currentUserEmail}" ? "" : "readonly"}>${user.description}</textarea>
+                            </div>
+                        `;
+                        if (user.email === "${data.currentUserEmail}") {
+                            userElement.innerHTML += `
+                                <div class="delete-and-update-profile">
+                                    <button type="button" class="delete-button-text" onclick="deleteAccount()">
+                                        <h4>Delete Account</h4>
+                                    </button>
+                                    <button type="submit" class="update-button-text">
+                                        <h4>Update</h4>
+                                    </button>
+                                </div>
+                                <input type="hidden" name="action" id="form-action" value="update">
+                            `;
+                        }
+                        resultsContainer.appendChild(userElement);
+                    });
+                } else {
+                    resultsContainer.innerHTML = '<p>No results found</p>';
+                }
+            });
+        }
+    </script>
 </body>
