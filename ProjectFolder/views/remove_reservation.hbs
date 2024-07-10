@@ -142,7 +142,7 @@
                                     <td class="status">${status}</td>
                                     <td><span class="time-remaining" data-start="${reservation.reservationStart}" data-end="${reservation.reservationEnd}" data-id="${reservation._id}" id="timer-${reservation._id}">--:--</span></td>
                                     <td><button class="no-show-button" data-id="${reservation._id}" style="display:none;">No Show</button></td>
-                                    <td><a href="/modify_reservation_page?id=${reservation._id}" class="edit-reservation-button-custom">Edit</a></td>
+                                    <a href="/modify_reservation_page?id={{this._id}}" class="edit-reservation-button-custom">Edit</a>
                                     <td>${status === 'Expired' || status === 'No Show' ? `<button class="remove-reservation-button-custom" data-id="${reservation._id}">Remove</button>` : `<button class="remove-reservation-button-custom" data-id="${reservation._id}" disabled>Remove</button>`}</td>
                                 `;
                                 tbody.appendChild(row);

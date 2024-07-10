@@ -1,209 +1,150 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" media="all" href="/styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <title>View Available Seats</title>
-    <style>
-        .tooltip-container {
-            position: relative;
-            display: inline-block;
-        }
-
-        .tooltiptext {
-            visibility: hidden;
-            background-color: white;
-            padding: 10px;
-            border-radius: 3px;
-            font-size: 1rem;
-            color: black;
-            position: absolute;
-            z-index: 1;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            max-width: 250px;
-            white-space: normal;
-            border: 1px solid black;
-            word-wrap: break-word;
-            text-align: center;
-        }
-
-        .tooltip-container:hover .tooltiptext {
-            visibility: visible;
-        }
-
-        .tooltiptext a {
-            color: blue;
-            text-decoration: underline;
-        }
-    </style>
-</head>
-<body class="available-page">
+<body>
     <!-- Navigation Bar -->
-     {{> header headerClass="viewavailable-page-header" navClass="profile-page-navbar" title="Stadium"}}
+    {{> header headerClass="reserve-page-header" navClass="reserve-page-navbar" title="NBA STADIUM RESERVATION" subtitle="Reserve your seats now to witness your favorite NBA basketball action live!" }}
 
-    <div class="view-available-body">
-        <div class="view-available-container">
-            <div class="new-date-time-container">
-                <div class="new-date-input-container">
-                    <label class="new-date-label" for="start-date">Date: </label>
-                    <div class="date-input-wrapper">
-                        <input type="date" id="start-date" class="date-input" data-placeholder="Select date">
-                        <i class="fas fa-calendar-alt calendar-icon" onclick="document.getElementById('start-date').focus();"></i>
-                    </div>
-                </div>
-                <div class="new-dropdown-container">
-                    <label for="start-time">Time:</label>
-                    <select id="start-time" name="start-time">
-                        <option value="" disabled selected>Select Time</option>
-                        <option value="12:00 AM">12:00 AM - 12:30 AM</option>
-                        <option value="12:30 AM">12:30 AM - 1:00 AM</option>
-                        <option value="1:00 AM">1:00 AM - 1:30 AM</option>
-                        <option value="1:30 AM">1:30 AM - 2:00 AM</option>
-                        <option value="2:00 AM">2:00 AM - 2:30 AM</option>
-                        <option value="2:30 AM">2:30 AM - 3:00 AM</option>
-                        <option value="3:00 AM">3:00 AM - 3:30 AM</option>
-                        <option value="3:30 AM">3:30 AM - 4:00 AM</option>
-                        <option value="4:00 AM">4:00 AM - 4:30 AM</option>
-                        <option value="4:30 AM">4:30 AM - 5:00 AM</option>
-                        <option value="5:00 AM">5:00 AM - 5:30 AM</option>
-                        <option value="5:30 AM">5:30 AM - 6:00 AM</option>
-                        <option value="6:00 AM">6:00 AM - 6:30 AM</option>
-                        <option value="6:30 AM">6:30 AM - 7:00 AM</option>
-                        <option value="7:00 AM">7:00 AM - 7:30 AM</option>
-                        <option value="7:30 AM">7:30 AM - 8:00 AM</option>
-                        <option value="8:00 AM">8:00 AM - 8:30 AM</option>
-                        <option value="8:30 AM">8:30 AM - 9:00 AM</option>
-                        <option value="9:00 AM">9:00 AM - 9:30 AM</option>
-                        <option value="9:30 AM">9:30 AM - 10:00 AM</option>
-                        <option value="10:00 AM">10:00 AM - 10:30 AM</option>
-                        <option value="10:30 AM">10:30 AM - 11:00 AM</option>
-                        <option value="11:00 AM">11:00 AM - 11:30 AM</option>
-                        <option value="11:30 AM">11:30 AM - 12:00 PM</option>
-                    </select>
+    <div class="reserve-container">
+        <div class="new-date-time-container">
+            <div class="new-date-input-container">
+                <label class="new-date-label" for="reservation-date">Date: </label>
+                <div class="date-input-wrapper">
+                    <input type="date" id="reservation-date" class="date-input" data-placeholder="Select date">
+                    <i class="fas fa-calendar-alt calendar-icon" onclick="document.getElementById('reservation-date').focus();"></i>
                 </div>
             </div>
-
-            <div class="view-available-legends">
-                <div class="view-available-legend"><span class="view-available-available"></span> Available</div>
-                <div class="view-available-legend"><span class="view-available-reserved"></span> Reserved</div>
+            <div class="new-dropdown-container">
+                <label for="reservation-time">Time:</label>
+                <select id="reservation-time" name="reservation-time">
+                    <option value="" disabled selected>Select Time</option>
+                    <option value="9:00 AM - 9:30 AM">9:00 AM - 9:30 AM</option>
+                    <option value="9:30 AM - 10:00 AM">9:30 AM - 10:00 AM</option>
+                    <option value="10:00 AM - 10:30 AM">10:00 AM - 10:30 AM</option>
+                    <option value="10:30 AM - 11:00 AM">10:30 AM - 11:00 AM</option>
+                    <option value="11:00 AM - 11:30 AM">11:00 AM - 11:30 AM</option>
+                    <option value="11:30 AM - 12:00 PM">11:30 AM - 12:00 PM</option>
+                    <option value="12:00 PM - 12:30 PM">12:00 PM - 12:30 PM</option>
+                    <option value="12:30 PM - 1:00 PM">12:30 PM - 1:00 PM</option>
+                    <option value="1:30 PM - 2:00 PM">1:30 PM - 2:00 PM</option>
+                    <option value="2:00 PM - 2:30 PM">2:00 PM - 2:30 PM</option>
+                    <option value="2:30 PM - 3:00 PM">2:30 PM - 3:00 PM</option>
+                    <option value="3:00 PM - 3:30 PM">3:00 PM - 3:30 PM</option>
+                    <option value="3:30 PM - 4:00 PM">3:30 PM - 4:00 PM</option>
+                    <option value="4:00 PM - 4:30 PM">4:00 PM - 4:30 PM</option>
+                     <option value="4:30 PM - 5:00 PM">4:30 PM - 5:00 PM</option>
+                     <option value="5:00 PM - 5:30 PM">5:00 PM - 5:30 PM</option>                   
+                </select>
             </div>
-            <div class="view-available-seat-chart">
-                <div class="view-available-left-column">
-                    <div class="tooltip-container">
-                        <button class="view-available-reserved" id="D1">D1</button>
-                        <span class="tooltiptext"></span>
-                    </div>
-                    <div class="tooltip-container">
-                        <button class="view-available-available" id="D2">D2</button>
-                        <span class="tooltiptext"></span>
-                    </div>
-                    <div class="tooltip-container">
-                        <button class="view-available-reserved" id="D3">D3</button>
-                        <span class="tooltiptext"></span>
-                    </div>
+        </div>
+
+        <div class="reserve-legends">
+            <div class="reserve-legend"><span class="reserve-available"></span> Available</div>
+            <div class="reserve-legend"><span class="reserve-reserved"></span> Reserved</div>
+        </div>
+        <div class="reserve-seat-chart">
+            <div class="reserve-left-column">
+                <button class="reserve-seat reserve-available" id="D1" onclick="handleSeatClick(this)">D1</button>
+                <button class="reserve-seat reserve-available" id="D2" onclick="handleSeatClick(this)">D2</button>
+                <button class="reserve-seat reserve-available" id="D3" onclick="handleSeatClick(this)">D3</button>
+            </div>
+            <div class="reserve-center-column">
+                <div class="reserve-row">
+                    <button class="reserve-seat reserve-available" id="A1" onclick="handleSeatClick(this)">A1</button>
+                    <button class="reserve-seat reserve-available" id="A2" onclick="handleSeatClick(this)">A2</button>
+                    <button class="reserve-seat reserve-available" id="A3" onclick="handleSeatClick(this)">A3</button>
+                    <button class="reserve-seat reserve-available" id="A4" onclick="handleSeatClick(this)">A4</button>
+                    <button class="reserve-seat reserve-available" id="A5" onclick="handleSeatClick(this)">A5</button>
+                    <button class="reserve-seat reserve-available" id="A6" onclick="handleSeatClick(this)">A6</button>
                 </div>
-                <div class="view-available-center-column">
-                    <div class="view-available-row">
-                        <div class="tooltip-container">
-                            <button class="view-available-available" id="A1">A1</button>
-                            <span class="tooltiptext"></span>
-                        </div>
-                        <div class="tooltip-container">
-                            <button class="view-available-reserved" id="A2">A2</button>
-                            <span class="tooltiptext"></span>
-                        </div>
-                        <div class="tooltip-container">
-                            <button class="view-available-available" id="A3">A3</button>
-                            <span class="tooltiptext"></span>
-                        </div>
-                        <div class="tooltip-container">
-                            <button class="view-available-available" id="A4">A4</button>
-                            <span class="tooltiptext"></span>
-                        </div>
-                        <div class="tooltip-container">
-                            <button class="view-available-reserved" id="A5">A5</button>
-                            <span class="tooltiptext"></span>
-                        </div>
-                        <div class="tooltip-container">
-                            <button class="view-available-available" id="A6">A6</button>
-                            <span class="tooltiptext"></span>
-                        </div>
-                    </div>
-                    <div class="view-available-court">COURT</div>
-                    <div class="view-available-row">
-                        <div class="tooltip-container">
-                            <button class="view-available-available" id="C1">C1</button>
-                            <span class="tooltiptext"></span>
-                        </div>
-                        <div class="tooltip-container">
-                            <button class="view-available-reserved" id="C2">C2</button>
-                            <span class="tooltiptext"></span>
-                        </div>
-                        <div class="tooltip-container">
-                            <button class="view-available-available" id="C3">C3</button>
-                            <span class="tooltiptext"></span>
-                        </div>
-                        <div class="tooltip-container">
-                            <button class="view-available-available" id="C4">C4</button>
-                            <span class="tooltiptext"></span>
-                        </div>
-                        <div class="tooltip-container">
-                            <button class="view-available-reserved" id="C5">C5</button>
-                            <span class="tooltiptext"></span>
-                        </div>
-                        <div class="tooltip-container">
-                            <button class="view-available-available" id="C6">C6</button>
-                            <span class="tooltiptext"></span>
-                        </div>
-                    </div>
+                <div class="reserve-court">COURT</div>
+                <div class="reserve-row">
+                    <button class="reserve-seat reserve-available" id="C1" onclick="handleSeatClick(this)">C1</button>
+                    <button class="reserve-seat reserve-available" id="C2" onclick="handleSeatClick(this)">C2</button>
+                    <button class="reserve-seat reserve-available" id="C3" onclick="handleSeatClick(this)">C3</button>
+                    <button class="reserve-seat reserve-available" id="C4" onclick="handleSeatClick(this)">C4</button>
+                    <button class="reserve-seat reserve-available" id="C5" onclick="handleSeatClick(this)">C5</button>
+                    <button class="reserve-seat reserve-available" id="C6" onclick="handleSeatClick(this)">C6</button>
                 </div>
-                <div class="view-available-right-column">
-                    <div class="tooltip-container">
-                        <button class="view-available-available" id="B1">B1</button>
-                        <span class="tooltiptext"></span>
-                    </div>
-                    <div class="tooltip-container">
-                        <button class="view-available-reserved" id="B2">B2</button>
-                        <span class="tooltiptext"></span>
-                    </div>
-                    <div class="tooltip-container">
-                        <button class="view-available-available" id="B3">B3</button>
-                        <span class="tooltiptext"></span>
-                    </div>
-                </div>
+            </div>
+            <div class="reserve-right-column">
+                <button class="reserve-seat reserve-available" id="B1" onclick="handleSeatClick(this)">B1</button>
+                <button class="reserve-seat reserve-available" id="B2" onclick="handleSeatClick(this)">B2</button>
+                <button class="reserve-seat reserve-available" id="B3" onclick="handleSeatClick(this)">B3</button>
             </div>
         </div>
     </div>
-    
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            
-            var today = new Date().toISOString().split('T')[0];
-            document.getElementById('start-date').value = today;
+    let selectedSeats = [];
 
-            const buttons = document.querySelectorAll('.tooltip-container button');
-            
-            buttons.forEach(button => {
-                const buttonId = button.id;
-                const tooltipSpan = button.nextElementSibling;
+    function isValidReservationTime(reservationDate, reservationTime) {
+        const currentDateTime = new Date();
+        const [startTime, endTime] = reservationTime.split(" - ");
+        const reservationStartTime = new Date(`${reservationDate} ${startTime}`);
+        const reservationEndTime = new Date(`${reservationDate} ${endTime}`);
 
-                if (tooltipSpan && tooltipSpan.classList.contains('tooltiptext')) {
-                    if (button.classList.contains('view-available-reserved')) {
-                        tooltipSpan.innerHTML = `This seat is reserved (ID: ${buttonId}). <a href="profile_page.html?id=${buttonId}">User</a>`;
-                    } else if (button.classList.contains('view-available-available')) {
-                        tooltipSpan.style.display = 'none';
-                    }
+        // Check if reservation start time is in the past
+        if (reservationStartTime < currentDateTime) {
+            return false;
+        }
+
+        return true;
+    }
+
+    function updateSeatStatuses(reservedSeats) {
+        const allSeats = document.querySelectorAll('.reserve-seat');
+        allSeats.forEach(seat => {
+            seat.classList.remove('reserve-available', 'reserve-reserved', 'reserve-selected');
+            if (reservedSeats.includes(seat.id)) {
+                seat.classList.add('reserve-reserved');
+            } else {
+                seat.classList.add('reserve-available');
+            }
+        });
+    }
+
+    function fetchReservedSeats() {
+        const reservationDate = document.getElementById('reservation-date').value;
+        const reservationTime = document.getElementById('reservation-time').value;
+        const selectedArena = localStorage.getItem('selectedArena');
+
+        if (!reservationDate || !reservationTime || !selectedArena) {
+            return;
+        }
+
+        fetch(`/reserved_seats?date=${reservationDate}&time=${reservationTime}&stadium=${selectedArena}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    updateSeatStatuses(data.reservedSeats);
+                } else {
+                    alert('Failed to fetch reserved seats: ' + data.message);
                 }
             });
+    }
+
+    document.getElementById('reservation-date').addEventListener('change', fetchReservedSeats);
+    document.getElementById('reservation-time').addEventListener('change', fetchReservedSeats);
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const dateInputs = document.querySelectorAll('.date-input');
+        dateInputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.type = 'date';
+                input.showPicker(); // Show calendar picker
+            });
+            input.addEventListener('blur', () => {
+                if (!input.value) {
+                    input.type = 'text';
+                    input.placeholder = input.getAttribute('data-placeholder');
+                }
+            });
+            if (!input.value) {
+                input.type = 'text';
+                input.placeholder = input.getAttribute('data-placeholder');
+            }
         });
-    </script>
+
+        // Fetch reserved seats when the page loads
+        fetchReservedSeats();
+    });
+</script>
 </body>
-</html>

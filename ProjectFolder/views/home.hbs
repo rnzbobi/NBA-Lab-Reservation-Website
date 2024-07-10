@@ -1,23 +1,25 @@
 <!-- Navigation Bar -->
 {{> header headerClass="main-page-header" navClass="main-page-navbar" title="NBA STADIUM RESERVATION" subtitle="Reserve your seats now to witness your favorite NBA basketball action live!" }}
 
-{{#each stadiums}}
-<div class="main-page-content">
-    <div class="main-page-stadiumcontainer">
-        <div class="main-page-stadiumcontent">
-            <img src="{{this.imageUrl}}" alt="{{this.name}}" class="main-page-stadiumimage">
-            <div class="main-page-stadiuminfo">
-                <h2>{{this.name}}</h2>
-                <p>{{this.location}}</p>
-            </div>
-            <div class="main-page-actions">
-                <a href="/view_available_page" class="main-view-available">View Availability</a>
-                <a href="/reserve_seat_page" class="main-reserve-seat" data-arena="{{this.name}}" onclick="reserveSeat(this)">Reserve Seat</a>
+<div id="reserve" class="stadium-section">
+    {{#each stadiums}}
+    <div class="main-page-content">
+        <div class="main-page-stadiumcontainer">
+            <div class="main-page-stadiumcontent">
+                <img src="{{this.imageUrl}}" alt="{{this.name}}" class="main-page-stadiumimage">
+                <div class="main-page-stadiuminfo">
+                    <h2>{{this.name}}</h2>
+                    <p>{{this.location}}</p>
+                </div>
+                <div class="main-page-actions">
+                    <a href="/view_available_page" class="main-view-available">View Availability</a>
+                    <a href="/reserve_seat_page" class="main-reserve-seat" data-arena="{{this.name}}" onclick="reserveSeat(this)">Reserve Seat</a>
+                </div>
             </div>
         </div>
     </div>
+    {{/each}}
 </div>
-{{/each}}
 
 <script>
     function reserveSeat(button) {
@@ -37,4 +39,10 @@
         }
         localStorage.setItem('backgroundImage', backgroundImage);
     }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        if (window.location.hash === '#reserve') {
+            document.querySelector('#reserve').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    });
 </script>

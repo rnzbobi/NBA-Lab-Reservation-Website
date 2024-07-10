@@ -1,3 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" media="all" href="/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>Your Reservations</title>
+</head>
 <body>
     <!-- Navigation Bar -->
     {{> header headerClass="see-reservation-page-header" navClass="see-reservation-page-navbar" title="Your Reservations" }}
@@ -17,7 +29,13 @@
             const ticketsPerPage = 3;
             let currentPage = 1;
 
-            const tickets = {{{json reservations}}};
+            const tickets = {{{json reservations}}}.sort((a, b) => {
+                // Sort by removed status and then by date
+                if (a.removed === b.removed) {
+                    return new Date(b.reservedAt) - new Date(a.reservedAt);
+                }
+                return a.removed - b.removed;
+            });
 
             const ticketContainer = document.getElementById('ticket-container');
             const prevPageButton = document.getElementById('prev-page');
@@ -57,9 +75,9 @@
                                 <h2>Date of Request: ${new Date(ticket.reservedAt).toLocaleDateString('en-US')}</h2>
                                 <h2>Reservation Date & Time: ${formatTime(ticket.reservationStart)} - ${formatTime(ticket.reservationEnd)}</h2>
                             </div>
-                            <a href="/modify_reservation_page?id=${ticket._id}" class="see-reservation-modify-reservation">
+                            ${!ticket.removed ? `<a href="/modify_reservation_page/${ticket._id}?ref=see_reservation" class="see-reservation-modify-reservation">
                                 <h4>Modify</h4>
-                            </a>
+                            </a>` : ''}
                         </div>
                     `;
                     ticketContainer.appendChild(ticketElement);
@@ -108,3 +126,4 @@
         });
     </script>
 </body>
+</html>
