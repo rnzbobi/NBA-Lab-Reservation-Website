@@ -3,8 +3,10 @@ const multer = require('multer');
 const path = require('path');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const moment = require('moment');
 const router = express.Router();
 const Stadium = require('../models/stadium');
+const Reservation = require('../models/reservation');
 const User = require('../models/user');
 
 // Setup multer for file handling
@@ -47,24 +49,24 @@ router.get('/login_page', (req, res) => {
   res.render('login_page', { title: 'Login Page', error: err ? true : false, errorMessage: req.query.mes });
 });
 
-loginUser = async (req, res, next) => {
-  passport.authenticate('local', function(err, user, info) {
-    if (err) { 
+const loginUser = async (req, res, next) => {
+  passport.authenticate('local', function (err, user, info) {
+    if (err) {
       console.log("Error occurred while logging in", err);
-      return next(err); 
+      return next(err);
     }
-    if (!user) { 
+    if (!user) {
       return res.redirect('/login_page?err=true&mes=' + encodeURIComponent('Invalid email or password.'));
     }
-    req.logIn(user, function(err) {
-      if (err) { 
+    req.logIn(user, function (err) {
+      if (err) {
         console.log("Error occurred while logging in", err);
-        return next(err); 
+        return next(err);
       }
       return res.redirect('/');
     });
   })(req, res, next);
-}
+};
 
 router.post('/login', loginUser);
 
@@ -186,16 +188,90 @@ router.post('/register', upload.single('profilePicture'), async (req, res) => {
   });
 });
 
-router.get('/remove_reservation', isLoggedIn, (req, res) => {
-  res.render('remove_reservation', { title: 'Remove Reservation' });
+router.get('/remove_reservation', isLoggedIn, async (req, res) => {
+  try {
+    const reservations = await Reservation.find({ removed: false }).populate('stadium user').exec();
+    const formattedReservations = reservations.map(reservation => {
+      const now = new Date();
+      const isExpired = reservation.reservationEnd < now;
+      const isActive = reservation.reservationStart <= now && now <= reservation.reservationEnd;
+      let status = 'Pending';
+      if (isExpired) {
+        status = 'Expired';
+      } else if (isActive) {
+        status = 'Active';
+      }
+      return { ...reservation.toObject(), status };
+    });
+    res.render('remove_reservation', { title: 'Remove Reservation', reservations: formattedReservations });
+  } catch (err) {
+    console.error('Error fetching reservations:', err);
+    res.status(500).send('Internal Server Error');
+  }
 });
 
-router.get('/reserve_seat_page', isLoggedIn, (req, res) => {
-  res.render('reserve_seat_page', { title: 'Reserve Seat Page' });
+router.get('/see_reservation_page', isLoggedIn, async (req, res) => {
+  try {
+    const reservations = await Reservation.find({ user: req.user._id }).populate('stadium').exec();
+    res.render('see_reservation_page', { title: 'Your Reservations', reservations });
+  } catch (err) {
+    console.error('Error fetching reservations:', err);
+    res.status(500).send('Internal Server Error');
+  }
 });
 
-router.get('/see_reservation_page', isLoggedIn, (req, res) => {
-  res.render('see_reservation_page', { title: 'See Reservation Page' });
+
+router.put('/remove_reservation/:id', isLoggedIn, async (req, res) => {
+  try {
+    const reservation = await Reservation.findById(req.params.id);
+    if (!reservation) {
+      return res.status(404).json({ success: false, message: 'Reservation not found.' });
+    }
+    reservation.removed = true;
+    await reservation.save();
+    res.json({ success: true, message: 'Reservation removed successfully.' });
+  } catch (err) {
+    console.error('Error removing reservation:', err);
+    res.status(500).json({ success: false, message: 'Internal Server Error' });
+  }
+});
+
+
+router.put('/update_reservation_status/:id', isLoggedIn, async (req, res) => {
+  try {
+    const { status } = req.body;
+    const reservation = await Reservation.findById(req.params.id);
+    if (!reservation) {
+      return res.status(404).json({ success: false, message: 'Reservation not found.' });
+    }
+    reservation.status = status;
+    await reservation.save();
+    res.json({ success: true, message: 'Reservation status updated successfully.' });
+  } catch (err) {
+    console.error('Error updating reservation status:', err);
+    res.status(500).json({ success: false, message: 'Internal Server Error' });
+  }
+});
+
+router.get('/reserve_seat_page', isLoggedIn, async (req, res) => {
+  try {
+    const reservations = await Reservation.find();
+    const reservedSeats = reservations.reduce((acc, reservation) => acc.concat(reservation.seatNumber), []);
+    res.render('reserve_seat_page', { title: 'Reserve Seat Page', reservedSeats: JSON.stringify(reservedSeats) });
+  } catch (err) {
+    console.error('Error fetching reserved seats:', err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+router.get('/see_reservation_page', isLoggedIn, async (req, res) => {
+  try {
+    const reservations = await Reservation.find({ user: req.user._id }).populate('stadium').exec();
+    res.render('see_reservation_page', { title: 'Your Reservations', reservations });
+  } catch (err) {
+    console.error('Error fetching reservations:', err);
+    res.status(500).send('Internal Server Error');
+  }
 });
 
 router.get('/view_available_page', isLoggedIn, (req, res) => {
@@ -212,6 +288,74 @@ router.get('/logout', (req, res) => {
   });
 });
 
+router.get('/reserved_seats', isLoggedIn, async (req, res) => {
+  const { date, time, stadium } = req.query;
+
+  try {
+    const [startTime, endTime] = time.split(" - ");
+    const reservationStartTime = moment(`${date} ${startTime}`, 'YYYY-MM-DD hh:mm A').toDate();
+    const reservationEndTime = moment(`${date} ${endTime}`, 'YYYY-MM-DD hh:mm A').toDate();
+
+    const stadiumObj = await Stadium.findOne({ name: stadium });
+    if (!stadiumObj) {
+      return res.status(400).json({ success: false, message: 'Invalid stadium.' });
+    }
+
+    // Find reservations that overlap with the selected time slot and are not removed
+    const reservations = await Reservation.find({
+      stadium: stadiumObj._id,
+      removed: false,
+      $or: [
+        { reservationStart: { $lt: reservationEndTime, $gte: reservationStartTime } },
+        { reservationEnd: { $lte: reservationEndTime, $gt: reservationStartTime } },
+        { reservationStart: { $lt: reservationStartTime }, reservationEnd: { $gt: reservationEndTime } }
+      ]
+    });
+
+    const reservedSeats = reservations.reduce((acc, reservation) => acc.concat(reservation.seatNumber), []);
+    res.json({ success: true, reservedSeats });
+  } catch (err) {
+    console.error('Error fetching reserved seats:', err);
+    res.status(500).json({ success: false, message: 'Internal Server Error' });
+  }
+});
+
+
+router.post('/reserve', isLoggedIn, async (req, res) => {
+  const { seats, date, time, anonymous, stadium } = req.body;
+  const user = req.user;
+
+  try {
+    const stadiumObj = await Stadium.findOne({ name: stadium });
+    if (!stadiumObj) {
+      return res.status(400).json({ success: false, message: 'Invalid stadium.' });
+    }
+
+    const [startTime, endTime] = time.split(" - ");
+    const reservationStartTime = moment(`${date} ${startTime}`, 'YYYY-MM-DD hh:mm A').toDate();
+    const reservationEndTime = moment(`${date} ${endTime}`, 'YYYY-MM-DD hh:mm A').toDate();
+
+    console.log(`Parsed Start Time: ${reservationStartTime}, Parsed End Time: ${reservationEndTime}`);
+
+    const reservation = new Reservation({
+      stadium: stadiumObj._id,
+      user: user._id,
+      seatNumber: seats,
+      reservedAt: new Date(),
+      reservationStart: reservationStartTime,
+      reservationEnd: reservationEndTime,
+      anonymous
+    });
+
+    await reservation.save();
+
+    res.json({ success: true });
+  } catch (err) {
+    console.error('Error creating reservation:', err);
+    res.status(500).json({ success: false, message: 'Internal Server Error' });
+  }
+});
+
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
@@ -222,6 +366,7 @@ function isLoggedIn(req, res, next) {
 function setAuthStatus(req, res, next) {
   res.locals.isAuthenticated = req.isAuthenticated();
   res.locals.user = req.user;
+  res.locals.isLabTech = req.isAuthenticated() && req.user.role === 'lab_technician';
   next();
 }
 
