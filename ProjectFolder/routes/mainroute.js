@@ -74,12 +74,75 @@ router.get('/modify_reservation_page', isLoggedIn, (req, res) => {
   res.render('modify_reservation_page', { title: 'Modify Reservation Page' });
 });
 
-router.get('/profile_current_reservation_page', isLoggedIn, (req, res) => {
-  res.render('profile_current_reservation_page', { title: 'Profile Current Reservation Page' });
+router.get('/profile_current_reservation_page', isLoggedIn, async (req, res) => {
+  try {
+      const user = await User.findById(req.user._id);
+      res.render('profile_current_reservation_page', {
+          title: 'Current Reservations',
+          user: user.toObject()
+      });
+  } catch (err) {
+      console.error('Error fetching user data:', err);
+      res.status(500).send('Internal Server Error');
+  }
 });
 
-router.get('/profile_page', isLoggedIn, (req, res) => {
-  res.render('profile_page', { title: 'Profile Page' });
+router.get('/profile_page', isLoggedIn, async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id);
+    res.render('profile_page', { 
+      title: 'Profile Page',
+      profilePicture: user.profilePicture,
+      description: user.description,
+      user: user // Pass user data
+    });
+  } catch (err) {
+    console.error('Error fetching user profile:', err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+// Handle profile updates and profile deletion
+router.post('/profile_page', isLoggedIn, upload.single('profilePicture'), async (req, res) => {
+  try {
+    const action = req.body.action;
+
+    if (action === 'delete') {
+      await User.findByIdAndDelete(req.user._id);
+      req.logout((err) => {
+        if (err) {
+          console.error('Error logging out after account deletion:', err);
+          return res.status(500).send('Internal Server Error');
+        }
+        res.redirect('/login_page');
+      });
+    } else if (action === 'update') {
+      const updateData = {
+        description: req.body.description,
+      };
+
+      if (req.file) {
+        updateData.profilePicture = req.file.filename;
+      }
+
+      await User.findByIdAndUpdate(req.user._id, updateData);
+      res.redirect('/profile_page');
+    } else if (action === 'search') {
+      const query = req.body.query;
+      const users = await User.find({ 
+        $or: [
+          { name: { $regex: query, $options: 'i' } },
+          { email: { $regex: query, $options: 'i' } }
+        ]
+      });
+      res.json({ users, currentUserEmail: req.user.email });
+    } else {
+      res.status(400).send('Invalid action');
+    }
+  } catch (err) {
+    console.error('Error handling profile actions:', err);
+    res.status(500).send('Internal Server Error');
+  }
 });
 
 router.get('/register_page', (req, res) => {
