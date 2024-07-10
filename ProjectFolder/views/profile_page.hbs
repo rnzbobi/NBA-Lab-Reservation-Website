@@ -1,24 +1,13 @@
 <body>
 
     <!-- Navigation Bar -->
-    <div class="profile-page-header ">
-        <nav class="profile-page-navbar">
-            <a href="/">HOME</a>
-            <a href="/see_reservation_page">SEE RESERVATION</a>
-            <a href="/">RESERVE A SEAT</a>
-            <a href="/profile_page">PROFILE</a>
-            <a href="/remove_reservation">RESERVATION DASHBOARD</a>
-            <span class="profile-page-registerlogin"><a href="/login_page">REGISTER/LOGIN</a></span>
-        </nav>
-
-        <h1>Information</h1>
-    </div>
+     {{> header headerClass="profile-page-header" navClass="profile-page-navbar" title="Information"}}
 
     <div class="profile-page-content">
         <div class="profile-left-page">
             <div class="profile-username">
-                <h4>RHENZ BHOVIE VILORIA</h4>
-                <p>@rhenzbhovie</p>
+                <h4>{{user.name}}</h4>
+                <p>{{user.email}}</p>
             </div>
             <div class="personal-info">
                 <a href="/profile_page">
@@ -50,7 +39,7 @@
                 </label>
             </div>
             <div class="profile-details">
-                <h4>ID:123456789</h4>
+                <h4>{{user.id}}</h4>
                 <h3>Details</h3>
                 <input type="text" placeholder="Firstname" class="profile-input">
                 <input type="text" placeholder="Lastname" class="profile-input">

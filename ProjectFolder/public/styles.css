@@ -774,7 +774,7 @@ body {
     width: 100%;
 }
 
-.login-form input[type="text"], .login-form input[type="password"] {
+.login-form input[type="email"], .login-form input[type="password"] {
     width: 100%;
     padding: 10px;
     margin-top: 0;
@@ -905,12 +905,56 @@ body {
     width: 100%;
 }
 
-.register-form input[type="text"], .register-form input[type="password"], .register-form textarea {
+.register-form input[type="text"], .register-form input[type="password"], .register-form input[type="email"], .register-form textarea {
     width: 100%;
     padding: 10px;
     margin-top: 0;
     font-size: 1.35rem;
     box-sizing: border-box;
+}
+
+.radio-group {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.radio-group input[type="radio"] {
+    display: none;
+}
+
+.radio-group label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border: 2px solid gray;
+    border-radius: 25px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.35rem;
+    color: black;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.radio-group input[type="radio"]:checked + label {
+    background-color: darkslategrey;
+    color: white;
+    transform: scale(1.1);
+}
+
+.radio-group input[type="radio"]:focus + label {
+    outline: 2px solid #4CAF50;
+    outline-offset: 2px;
+}
+
+#profilePicturePreview {
+    width: 100px;
+    height: auto;
+    display: block;
+    margin-top: 10px;
 }
 
 .register-form input[type="submit"] {
@@ -965,6 +1009,7 @@ body {
 .back-button-link-register:hover {
     transform: scale(1.05);
 }
+
 
 /* reserve_seat_page.html */
 
@@ -1886,4 +1931,12 @@ body {
 
 .footer-navbar a:hover, .footer a:hover{
     transform: scale(1.05);
+}
+
+.navbar-right {
+    position: relative;
+    bottom: 0.5rem;
+    left: 25rem;
+    display: flex;
+    gap: 5rem;
 }
