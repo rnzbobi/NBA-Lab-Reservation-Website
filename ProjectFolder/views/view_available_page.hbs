@@ -1,3 +1,39 @@
+<head>
+    <style>
+        .tooltip-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltiptext {
+            visibility: hidden;
+            background-color: white;
+            padding: 10px;
+            border-radius: 3px;
+            font-size: 1rem;
+            color: black;
+            position: absolute;
+            z-index: 1;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            max-width: 250px;
+            white-space: normal;
+            border: 1px solid black;
+            word-wrap: break-word;
+            text-align: center;
+        }
+
+        .tooltip-container:hover .tooltiptext {
+            visibility: visible;
+        }
+
+        .tooltiptext a {
+            color: blue;
+            text-decoration: underline;
+        }
+    </style>
+</head>
 <body>
     <!-- Navigation Bar -->
     {{> header headerClass="reserve-page-header" navClass="reserve-page-navbar" title="NBA STADIUM RESERVATION" subtitle="Reserve your seats now to witness your favorite NBA basketball action live!" }}
@@ -29,8 +65,8 @@
                     <option value="3:00 PM - 3:30 PM">3:00 PM - 3:30 PM</option>
                     <option value="3:30 PM - 4:00 PM">3:30 PM - 4:00 PM</option>
                     <option value="4:00 PM - 4:30 PM">4:00 PM - 4:30 PM</option>
-                     <option value="4:30 PM - 5:00 PM">4:30 PM - 5:00 PM</option>
-                     <option value="5:00 PM - 5:30 PM">5:00 PM - 5:30 PM</option>                   
+                    <option value="4:30 PM - 5:00 PM">4:30 PM - 5:00 PM</option>
+                    <option value="5:00 PM - 5:30 PM">5:00 PM - 5:30 PM</option>                   
                 </select>
             </div>
         </div>
@@ -41,33 +77,87 @@
         </div>
         <div class="reserve-seat-chart">
             <div class="reserve-left-column">
-                <button class="reserve-seat reserve-available" id="D1" onclick="handleSeatClick(this)">D1</button>
-                <button class="reserve-seat reserve-available" id="D2" onclick="handleSeatClick(this)">D2</button>
-                <button class="reserve-seat reserve-available" id="D3" onclick="handleSeatClick(this)">D3</button>
+                <div class="tooltip-container">
+                    <button class="reserve-seat reserve-available" id="D1" onclick="handleSeatClick(this)">D1</button>
+                    <span class="tooltiptext"></span>
+                </div>
+                <div class="tooltip-container">
+                    <button class="reserve-seat reserve-available" id="D2" onclick="handleSeatClick(this)">D2</button>
+                    <span class="tooltiptext"></span>
+                </div>
+                <div class="tooltip-container">
+                    <button class="reserve-seat reserve-available" id="D3" onclick="handleSeatClick(this)">D3</button>
+                    <span class="tooltiptext"></span>
+                </div>
             </div>
             <div class="reserve-center-column">
                 <div class="reserve-row">
-                    <button class="reserve-seat reserve-available" id="A1" onclick="handleSeatClick(this)">A1</button>
-                    <button class="reserve-seat reserve-available" id="A2" onclick="handleSeatClick(this)">A2</button>
-                    <button class="reserve-seat reserve-available" id="A3" onclick="handleSeatClick(this)">A3</button>
-                    <button class="reserve-seat reserve-available" id="A4" onclick="handleSeatClick(this)">A4</button>
-                    <button class="reserve-seat reserve-available" id="A5" onclick="handleSeatClick(this)">A5</button>
-                    <button class="reserve-seat reserve-available" id="A6" onclick="handleSeatClick(this)">A6</button>
+                    <div class="tooltip-container">
+                        <button class="reserve-seat reserve-available" id="A1" onclick="handleSeatClick(this)">A1</button>
+                        <span class="tooltiptext"></span>
+                    </div>
+                    <div class="tooltip-container">
+                        <button class="reserve-seat reserve-available" id="A2" onclick="handleSeatClick(this)">A2</button>
+                        <span class="tooltiptext"></span>
+                    </div>
+                    <div class="tooltip-container">
+                        <button class="reserve-seat reserve-available" id="A3" onclick="handleSeatClick(this)">A3</button>
+                        <span class="tooltiptext"></span>
+                    </div>
+                    <div class="tooltip-container">
+                        <button class="reserve-seat reserve-available" id="A4" onclick="handleSeatClick(this)">A4</button>
+                        <span class="tooltiptext"></span>
+                    </div>
+                    <div class="tooltip-container">
+                        <button class="reserve-seat reserve-available" id="A5" onclick="handleSeatClick(this)">A5</button>
+                        <span class="tooltiptext"></span>
+                    </div>
+                    <div class="tooltip-container">
+                        <button class="reserve-seat reserve-available" id="A6" onclick="handleSeatClick(this)">A6</button>
+                        <span class="tooltiptext"></span>
+                    </div>
                 </div>
                 <div class="reserve-court">COURT</div>
                 <div class="reserve-row">
-                    <button class="reserve-seat reserve-available" id="C1" onclick="handleSeatClick(this)">C1</button>
-                    <button class="reserve-seat reserve-available" id="C2" onclick="handleSeatClick(this)">C2</button>
-                    <button class="reserve-seat reserve-available" id="C3" onclick="handleSeatClick(this)">C3</button>
-                    <button class="reserve-seat reserve-available" id="C4" onclick="handleSeatClick(this)">C4</button>
-                    <button class="reserve-seat reserve-available" id="C5" onclick="handleSeatClick(this)">C5</button>
-                    <button class="reserve-seat reserve-available" id="C6" onclick="handleSeatClick(this)">C6</button>
+                    <div class="tooltip-container">
+                        <button class="reserve-seat reserve-available" id="C1" onclick="handleSeatClick(this)">C1</button>
+                        <span class="tooltiptext"></span>
+                    </div>
+                    <div class="tooltip-container">
+                        <button class="reserve-seat reserve-available" id="C2" onclick="handleSeatClick(this)">C2</button>
+                        <span class="tooltiptext"></span>
+                    </div>
+                    <div class="tooltip-container">
+                        <button class="reserve-seat reserve-available" id="C3" onclick="handleSeatClick(this)">C3</button>
+                        <span class="tooltiptext"></span>
+                    </div>
+                    <div class="tooltip-container">
+                        <button class="reserve-seat reserve-available" id="C4" onclick="handleSeatClick(this)">C4</button>
+                        <span class="tooltiptext"></span>
+                    </div>
+                    <div class="tooltip-container">
+                        <button class="reserve-seat reserve-available" id="C5" onclick="handleSeatClick(this)">C5</button>
+                        <span class="tooltiptext"></span>
+                    </div>
+                    <div class="tooltip-container">
+                        <button class="reserve-seat reserve-available" id="C6" onclick="handleSeatClick(this)">C6</button>
+                        <span class="tooltiptext"></span>
+                    </div>
                 </div>
             </div>
             <div class="reserve-right-column">
-                <button class="reserve-seat reserve-available" id="B1" onclick="handleSeatClick(this)">B1</button>
-                <button class="reserve-seat reserve-available" id="B2" onclick="handleSeatClick(this)">B2</button>
-                <button class="reserve-seat reserve-available" id="B3" onclick="handleSeatClick(this)">B3</button>
+                <div class="tooltip-container">
+                    <button class="reserve-seat reserve-available" id="B1" onclick="handleSeatClick(this)">B1</button>
+                    <span class="tooltiptext"></span>
+                </div>
+                <div class="tooltip-container">
+                    <button class="reserve-seat reserve-available" id="B2" onclick="handleSeatClick(this)">B2</button>
+                    <span class="tooltiptext"></span>
+                </div>
+                <div class="tooltip-container">
+                    <button class="reserve-seat reserve-available" id="B3" onclick="handleSeatClick(this)">B3</button>
+                    <span class="tooltiptext"></span>
+                </div>
             </div>
         </div>
     </div>
@@ -93,10 +183,17 @@
         const allSeats = document.querySelectorAll('.reserve-seat');
         allSeats.forEach(seat => {
             seat.classList.remove('reserve-available', 'reserve-reserved', 'reserve-selected');
+            const tooltip = seat.nextElementSibling;
             if (reservedSeats.includes(seat.id)) {
                 seat.classList.add('reserve-reserved');
+                if (tooltip) {
+                    tooltip.innerHTML = "<a href='/profile_page?name='>This seat is reserved.</a>";
+                }
             } else {
                 seat.classList.add('reserve-available');
+                if (tooltip) {
+                    tooltip.innerHTML = 'Seat is available.';
+                }
             }
         });
     }
@@ -110,7 +207,7 @@
             return;
         }
 
-        fetch(`/reserved_seats?date=${reservationDate}&time=${reservationTime}&stadium=${selectedArena}`)
+         fetch(`/reserved_seats?date=${reservationDate}&time=${reservationTime}&stadium=${selectedArena}`)
             .then(response => response.json())
             .then(data => {
                 if (data.success) {

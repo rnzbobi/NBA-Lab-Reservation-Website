@@ -77,8 +77,20 @@
             }
         }
 
-        function searchProfile() {
-            const query = document.getElementById('search-input').value;
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const query = urlParams.get('name');
+
+            if (query) {
+                const searchInput = document.getElementById('search-input');
+                searchInput.value = query;
+
+                // Simulate the search action
+                searchProfile(query);
+            }
+        });
+
+        function searchProfile(query = document.getElementById('search-input').value) {
             fetch('/profile_page', {
                 method: 'POST',
                 headers: {
@@ -95,7 +107,7 @@
                             <button class="search-button" onclick="searchProfile()">
                                 <img src="images/search.png" alt="Search Icon" class="search-icon">
                             </button>
-                            <input type="text" id="search-input" placeholder="Search Profile..." class="search-input">
+                            <input type="text" id="search-input" placeholder="Search Profile..." class="search-input" value="${query}">
                         </div>
                     </div>
                     <div id="search-results" class="search-results-content"></div>
