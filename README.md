@@ -7,6 +7,7 @@ This repository contains a project for the CCAPDEV course. The HTML and CSS vers
 - [Setup](#setup)
 - [Running the Application](#running-the-application)
 - [Prototype](#prototype)
+- [Sample Data](#sample-data)
 
 ## Setup
 
@@ -55,6 +56,10 @@ This repository contains a project for the CCAPDEV course. The HTML and CSS vers
 ## Prototype
 
 The HTML and CSS version located in the `HTML AND CSS VERSION` folder is a static prototype of the application's design and layout. It demonstrates how the application should look like but does not include the backend functionality.
+
+## Sample Data
+
+This repository includes 5 sample data entries for each JSON file. These samples are designed to help you understand the structure and expected content for the application's database.
 
 Feel free to explore and modify the code to better suit your needs. If you encounter any issues, please open an issue on GitHub.
 
