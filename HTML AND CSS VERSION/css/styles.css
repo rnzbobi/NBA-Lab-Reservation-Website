@@ -1070,6 +1070,35 @@ body {
     background-color: red;
 }
 
+.tooltip-container {
+    position: relative;
+    display: inline-block;
+}
+
+.reserve-seat.reserve-reserved .tooltiptext {
+    visibility: hidden;
+    background-color: white;
+    padding: 10px;
+    border-radius: 3px;
+    font-size: 1rem;
+    color: black;
+    position: absolute;
+    z-index: 10; /* Ensures the tooltip is above other elements */
+    bottom: 120%; /* Position above the button */
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 250px;
+    white-space: normal;
+    border: 1px solid black;
+    word-wrap: break-word;
+    text-align: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Optional: adds a shadow for better visibility */
+}
+
+.reserve-seat.reserve-reserved:hover .tooltiptext {
+    visibility: visible;
+}
+
 .reserve-selected {
     background-color: rgba(255, 255, 0, 0.705);
 }
