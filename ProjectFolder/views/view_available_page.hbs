@@ -1,3 +1,39 @@
+<head>
+    <style>
+        .tooltip-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltiptext {
+            visibility: hidden;
+            background-color: white;
+            padding: 10px;
+            border-radius: 3px;
+            font-size: 1rem;
+            color: black;
+            position: absolute;
+            z-index: 1;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            max-width: 250px;
+            white-space: normal;
+            border: 1px solid black;
+            word-wrap: break-word;
+            text-align: center;
+        }
+
+        .tooltip-container:hover .tooltiptext {
+            visibility: visible;
+        }
+
+        .tooltiptext a {
+            color: blue;
+            text-decoration: underline;
+        }
+    </style>
+</head>
 <body>
     <!-- Navigation Bar -->
     {{> header headerClass="reserve-page-header" navClass="reserve-page-navbar" title="NBA STADIUM RESERVATION" subtitle="Reserve your seats now to witness your favorite NBA basketball action live!" }}
@@ -151,12 +187,12 @@
             if (reservedSeats.includes(seat.id)) {
                 seat.classList.add('reserve-reserved');
                 if (tooltip) {
-                    tooltip.innerHTML = 'This seat has been reserved by User';
+                    tooltip.innerHTML = "<a href='/profile_page?name='>This seat is reserved.</a>";
                 }
             } else {
                 seat.classList.add('reserve-available');
                 if (tooltip) {
-                    tooltip.innerHTML = '';
+                    tooltip.innerHTML = 'Seat is available.';
                 }
             }
         });
@@ -171,7 +207,7 @@
             return;
         }
 
-        fetch(`/reserved_seats?date=${reservationDate}&time=${reservationTime}&stadium=${selectedArena}`)
+         fetch(`/reserved_seats?date=${reservationDate}&time=${reservationTime}&stadium=${selectedArena}`)
             .then(response => response.json())
             .then(data => {
                 if (data.success) {

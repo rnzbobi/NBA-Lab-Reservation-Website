@@ -519,18 +519,18 @@ router.get('/see_reservation_page', isLoggedIn, async (req, res) => {
 router.get('/view_available_page', isLoggedIn, async (req, res) => {
   try {
     const reservations = await Reservation.find().populate('user');
-    const reservedSeats = reservations.map(reservation => ({
-      seatNumber: reservation.seatNumber,
+    const reservedSeats = reservations.flatMap(reservation => reservation.seatNumber.map(seat => ({
+      seatNumber: seat,
       userName: reservation.user.name,
-      userId: reservation.user._id
-    }));
+      userId: reservation.user._id,
+      userProfileUrl: `/profile_page?name=${encodeURIComponent(reservation.user.name)}`
+    })));
     res.render('view_available_page', { title: 'View Available Page', reservedSeats: JSON.stringify(reservedSeats) });
   } catch (err) {
     console.error('Error fetching reserved seats:', err);
     res.status(500).send('Internal Server Error');
   }
 });
-
 
 router.get('/logout', (req, res) => {
   req.logout((err) => {
