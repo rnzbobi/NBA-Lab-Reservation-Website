@@ -27,12 +27,16 @@ This repository contains a project for the CCAPDEV course. The HTML and CSS vers
 
 3. **Setup environment variables:**
 
-    Create a `.env` file in the `ProjectFolder` directory and add the necessary environment variables. An example `.env` file might look like this:
+    The `.env` file is already present in the `ProjectFolder` directory with the following content:
 
     ```env
+    URL="mongodb://localhost:27017/lab_reservation"
+    TOKEN_KEY="labReservePrivateKey"
     PORT=3000
-    DB_URI=mongodb://localhost:27017/ccapdev
+    SECRET="secretKEY"
     ```
+
+    You can modify these values as needed.
 
 ## Running the Application
 
@@ -41,7 +45,7 @@ This repository contains a project for the CCAPDEV course. The HTML and CSS vers
     To start the Node.js server, run the following command in the `ProjectFolder` directory:
 
     ```bash
-    npm start
+    node index.js
     ```
 
 2. **Access the application:**
