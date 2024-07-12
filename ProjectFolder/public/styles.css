@@ -1016,7 +1016,7 @@ body {
 .reserve-page-header {
     position: relative;
     background-image: url('https://blog.ticketmaster.com/wp-content/uploads/msg-1024x768.jpg'), 
-                          linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.55));
+                      linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.55));
     background-size: cover; 
     background-repeat: no-repeat;
     background-blend-mode: darken;
@@ -1118,6 +1118,7 @@ body {
 .reserve-selected {
     background-color: rgba(255, 255, 0, 0.705);
 }
+
 .reserve-seat-chart {
     display: flex;
     justify-content: center;
@@ -1586,6 +1587,7 @@ body {
     display: flex;
     flex-direction: column; 
     background-color: white;  /* Ticket background white */
+    color: black; /* Ensure text color is black within the box */
 }
 
 .see-reservation-id h3 {
@@ -1601,7 +1603,7 @@ body {
 }
 
 .see-reservation-details-right h2, .see-reservation-details-left h2 { 
-    color: black;
+    color: black !important;
     font-size: 16px; 
     font-weight: 350;
 }
@@ -1691,7 +1693,7 @@ body {
     color: #fff;
 }
 
-/*remove_reservation.html*/
+/*remove*/
 .remove-body {
     font-family: 'Montserrat', sans-serif;
     background-color: black;
@@ -1764,10 +1766,11 @@ body {
 .container-custom {
     margin: 2rem auto;
     padding: 2rem;
-    max-width: 1200px;
-    background-color: white;
+    max-width: 1300px; /* Adjusted width for better fit */
+    background-color: rgb(255, 255, 255);
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow-x: auto; /* Added to handle overflow */
 }
 
 .container-custom h1 {
@@ -1830,6 +1833,20 @@ body {
     background-color: #c82333;
 }
 
+.no-show-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.no-show-button:hover {
+    background-color: #c82333;
+}
+
 /* Pagination controls */
 .pagination-controls-custom {
     display: flex;
@@ -1880,6 +1897,7 @@ body {
     background-color: #000;
     color: #fff;
 }
+
 
 /*FOOTER*/
 .footer {

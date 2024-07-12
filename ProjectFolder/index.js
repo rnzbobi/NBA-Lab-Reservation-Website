@@ -8,11 +8,10 @@ const path = require('path');
 const exphbs = require('express-handlebars');
 const mainroute = require('./routes/mainroute'); 
 
-
 const app = express();
 const port = 3000;
 
-app.engine('hbs', exphbs.engine({
+const hbs = exphbs.create({
     extname: '.hbs',
     defaultLayout: 'main',
     layoutsDir: path.join(__dirname, 'views/layouts'),
@@ -20,8 +19,27 @@ app.engine('hbs', exphbs.engine({
     runtimeOptions: {
         allowProtoPropertiesByDefault: true,
         allowProtoMethodsByDefault: true
+    },
+    helpers: {
+        json: function (context) {
+            return JSON.stringify(context);
+        },
+        formatDate: function (date) {
+            return new Date(date).toLocaleDateString('en-US');
+        },
+        formatTime: function (date) {
+            return new Date(date).toLocaleTimeString('en-US');
+        },
+        or: function (a, b) {
+            return a || b;
+        },
+        eq: function (a, b) {
+            return a === b;
+        }
     }
-}));
+});
+
+app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.json());

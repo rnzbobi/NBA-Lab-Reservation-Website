@@ -1,7 +1,6 @@
 <body>
-
     <!-- Navigation Bar -->
-     {{> header headerClass="see-reservation-page-header" navClass="see-reservation-page-navbar" title="Your Reservations" }}
+    {{> header headerClass="see-reservation-page-header" navClass="see-reservation-page-navbar" title="Your Reservations" }}
 
     <div class="see-reservation-page-content" id="ticket-container">
         <!-- Reservation tickets will be inserted here by JavaScript -->
@@ -12,4 +11,100 @@
         <span id="page-numbers"></span>
         <button id="next-page">Next</button>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ticketsPerPage = 3;
+            let currentPage = 1;
+
+            const tickets = {{{json reservations}}};
+
+            const ticketContainer = document.getElementById('ticket-container');
+            const prevPageButton = document.getElementById('prev-page');
+            const nextPageButton = document.getElementById('next-page');
+            const pageNumbersContainer = document.getElementById('page-numbers');
+            const totalPages = Math.ceil(tickets.length / ticketsPerPage);
+
+            function formatTime(date) {
+                return new Date(date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            }
+
+            function displayTickets() {
+                ticketContainer.innerHTML = '';
+                const start = (currentPage - 1) * ticketsPerPage;
+                const end = start + ticketsPerPage;
+                const pageTickets = tickets.slice(start, end);
+
+                pageTickets.forEach(ticket => {
+                    const ticketElement = document.createElement('div');
+                    ticketElement.classList.add('see-reservation-profile-right-page');
+                    ticketElement.innerHTML = `
+                        <div class="see-reservation-box">
+                            <div class="see-reservation-id">
+                                <h3>Reservation #${ticket._id}</h3>
+                            </div>
+                            <div class="see-reservation-details-container">
+                                <div class="see-reservation-details-left">
+                                    <h4>Seat Number:</h4>
+                                    <h3>${ticket.seatNumber}</h3>
+                                </div>
+                                <div class="see-reservation-details-right">
+                                    <h4>Arena:</h4>
+                                    <h3>${ticket.stadium.name}</h3>
+                                </div>
+                            </div>
+                            <div class="see-reservation-dates">
+                                <h2>Date of Request: ${new Date(ticket.reservedAt).toLocaleDateString('en-US')}</h2>
+                                <h2>Reservation Date & Time: ${formatTime(ticket.reservationStart)} - ${formatTime(ticket.reservationEnd)}</h2>
+                            </div>
+                            <a href="/modify_reservation_page?id=${ticket._id}" class="see-reservation-modify-reservation">
+                                <h4>Modify</h4>
+                            </a>
+                        </div>
+                    `;
+                    ticketContainer.appendChild(ticketElement);
+                });
+
+                prevPageButton.disabled = currentPage === 1;
+                nextPageButton.disabled = currentPage === totalPages;
+            }
+
+            function displayPageNumbers() {
+                pageNumbersContainer.innerHTML = '';
+                for (let i = 1; i <= totalPages; i++) {
+                    const pageNumber = document.createElement('button');
+                    pageNumber.textContent = i;
+                    pageNumber.classList.add('page-number');
+                    if (i === currentPage) {
+                        pageNumber.classList.add('active');
+                    }
+                    pageNumber.addEventListener('click', () => {
+                        currentPage = i;
+                        displayTickets();
+                        displayPageNumbers();
+                    });
+                    pageNumbersContainer.appendChild(pageNumber);
+                }
+            }
+
+            prevPageButton.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    displayTickets();
+                    displayPageNumbers();
+                }
+            });
+
+            nextPageButton.addEventListener('click', () => {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    displayTickets();
+                    displayPageNumbers();
+                }
+            });
+
+            displayTickets();
+            displayPageNumbers();
+        });
+    </script>
 </body>
