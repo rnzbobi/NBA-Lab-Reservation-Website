@@ -1,0 +1,48 @@
+<!-- Navigation Bar -->
+{{> header headerClass="main-page-header" navClass="main-page-navbar" title="NBA STADIUM RESERVATION" subtitle="Reserve your seats now to witness your favorite NBA basketball action live!" }}
+
+<div id="reserve" class="stadium-section">
+    {{#each stadiums}}
+    <div class="main-page-content">
+        <div class="main-page-stadiumcontainer">
+            <div class="main-page-stadiumcontent">
+                <img src="{{this.imageUrl}}" alt="{{this.name}}" class="main-page-stadiumimage">
+                <div class="main-page-stadiuminfo">
+                    <h2>{{this.name}}</h2>
+                    <p>{{this.location}}</p>
+                </div>
+                <div class="main-page-actions">
+                    <a href="/view_available_page?arena={{this.name}}" class="main-view-available">View Availability</a>
+                    <a href="/reserve_seat_page" class="main-reserve-seat" data-arena="{{this.name}}" onclick="reserveSeat(this)">Reserve Seat</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
+
+<script>
+    function reserveSeat(button) {
+        const arena = button.getAttribute('data-arena');
+        localStorage.setItem('selectedArena', arena);
+        let backgroundImage = '';
+        switch (arena) {
+            case 'Madison Square Garden':
+                backgroundImage = '/images/madison-square-garden.jpg';
+                break;
+            case 'Target Center':
+                backgroundImage = '/images/target-center.png';
+                break;
+            case 'Crypto.com Arena':
+                backgroundImage = '/images/crypto.com-arena.jpeg';
+                break;
+        }
+        localStorage.setItem('backgroundImage', backgroundImage);
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        if (window.location.hash === '#reserve') {
+            document.querySelector('#reserve').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    });
+</script>

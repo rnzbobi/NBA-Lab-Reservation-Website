@@ -26,6 +26,20 @@ const formatTime = (date) => {
   return `${formattedHours}:${minutes} ${ampm}`;
 };
 
+const getReservedSeatsForTimeslot = async (reservationStart, reservationEnd, stadiumId) => {
+  const reservations = await Reservation.find({
+    stadium: stadiumId,
+    removed: false,
+    $or: [
+      { reservationStart: { $lt: reservationEnd, $gte: reservationStart } },
+      { reservationEnd: { $lte: reservationEnd, $gt: reservationStart } },
+      { reservationStart: { $lt: reservationStart }, reservationEnd: { $gt: reservationEnd } }
+    ]
+  });
+
+  return reservations.reduce((acc, reservation) => acc.concat(reservation.seatNumber), []);
+};
+
 // Setup multer for file handling
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {

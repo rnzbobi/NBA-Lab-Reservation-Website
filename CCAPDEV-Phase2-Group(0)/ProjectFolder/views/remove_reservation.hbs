@@ -1,0 +1,175 @@
+<body class="remove-body">
+    <!-- Navigation Bar -->
+    {{> header headerClass="remove-reservation-page-header" navClass="remove-reservation-page-navbar" headerTitle="Reservation Dashboard" }}
+   
+    <div class="container-custom">
+        <table id="reservation-table">
+            <thead>
+                <tr>
+                    <th>Reservation ID</th>
+                    <th>Username</th>
+                    <th>Seat Number</th>
+                    <th>Arena</th>
+                    <th>Date of Request</th>
+                    <th>Date & Time</th>
+                    <th>Status</th>
+                    <th>Time Remaining</th>
+                    <th>Action</th>
+                    <th>Edit Reservation</th>
+                    <th>Remove Reservation</th>
+                </tr>
+            </thead>
+            <tbody id="remove-ticket-container">
+                {{#each reservations}}
+                <tr>
+                    <td>{{this._id}}</td>
+                    <td>{{this.user.name}}</td>
+                    <td>{{this.seatNumber}}</td>
+                    <td>{{this.stadium.name}}</td>
+                    <td>{{formatDate this.reservedAt}}</td>
+                    <td>{{formatDate this.reservationStart}} {{formatTime this.reservationStart}}- {{formatTime this.reservationEnd}}</td>
+                    <td class="status">{{this.status}}</td>
+                    <td>
+                        <span class="time-remaining" data-start="{{this.reservationStart}}" data-end="{{this.reservationEnd}}" id="timer-{{this._id}}">--:--</span>
+                    </td>
+                    <td>
+                        <button class="no-show-button" data-id="{{this._id}}" style="display:none;">No Show</button>
+                    </td>
+                   <td><a href="/modify_reservation_page?id={{this._id}}&ref=remove_reservation" class="edit-reservation-button-custom">Edit</a></td>
+                    <td>
+                        {{#if (or (eq this.status "Expired") (eq this.status "No Show"))}}
+                        <button class="remove-reservation-button-custom" data-id="{{this._id}}">Remove</button>
+                        {{else}}
+                        <button class="remove-reservation-button-custom" data-id="{{this._id}}" disabled>Remove</button>
+                        {{/if}}
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+
+        <div class="pagination-controls-custom">
+            <button id="prev-page">Previous</button>
+            <span id="page-numbers"></span>
+            <button id="next-page">Next</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const removeButtons = document.querySelectorAll('.remove-reservation-button-custom');
+            const noShowButtons = document.querySelectorAll('.no-show-button');
+            const reservationsPerPage = 5;
+            let currentPage = 1;
+
+            function updateTable() {
+                const rows = document.querySelectorAll('#remove-ticket-container tr');
+                rows.forEach((row, index) => {
+                    if (index >= (currentPage - 1) * reservationsPerPage && index < currentPage * reservationsPerPage) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+
+                const totalPages = Math.ceil(rows.length / reservationsPerPage);
+                document.getElementById('page-numbers').textContent = `Page ${currentPage} of ${totalPages}`;
+                document.getElementById('prev-page').disabled = currentPage === 1;
+                document.getElementById('next-page').disabled = currentPage === totalPages;
+            }
+
+            removeButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const reservationId = this.getAttribute('data-id');
+                    fetch(`/remove_reservation/${reservationId}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }).then(response => response.json())
+                      .then(data => {
+                          if (data.success) {
+                              alert('Reservation removed successfully');
+                              location.reload();
+                          } else {
+                              alert('Failed to remove reservation: ' + data.message);
+                          }
+                      });
+                });
+            });
+
+            noShowButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const reservationId = this.getAttribute('data-id');
+                    fetch(`/update_reservation_status/${reservationId}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ status: 'No Show' })
+                    }).then(response => response.json())
+                      .then(data => {
+                          if (data.success) {
+                              const removeButton = document.querySelector(`.remove-reservation-button-custom[data-id='${reservationId}']`);
+                              const statusCell = document.querySelector(`button.no-show-button[data-id='${reservationId}']`).closest('tr').querySelector('.status');
+                              if (removeButton && statusCell) {
+                                  removeButton.disabled = false;
+                                  statusCell.textContent = 'No Show';
+                              }
+                          } else {
+                              alert('Failed to update reservation status: ' + data.message);
+                          }
+                      });
+                });
+            });
+
+            function updateTimers() {
+                const timers = document.querySelectorAll('.time-remaining');
+                timers.forEach(timer => {
+                    const start = new Date(timer.getAttribute('data-start'));
+                    const end = new Date(timer.getAttribute('data-end'));
+                    const now = new Date();
+                    const reservationStart = new Date(start);
+                    let remainingTime;
+
+                    if (now >= reservationStart) {
+                        remainingTime = Math.max((start.getTime() + 10 * 60000) - now.getTime(), 0);
+                        if (remainingTime > 0) {
+                            const minutes = Math.floor(remainingTime / 60000);
+                            const seconds = Math.floor((remainingTime % 60000) / 1000);
+                            timer.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds} mins`;
+                        } else {
+                            timer.textContent = "Expired";
+                            const noShowButton = timer.closest('tr').querySelector('.no-show-button');
+                            if (noShowButton) {
+                                noShowButton.style.display = 'block';
+                            }
+                        }
+                    } else {
+                        // Wait until the reservation start time to start the timer
+                        timer.textContent = "--:--";
+                    }
+                });
+            }
+
+            document.getElementById('prev-page').addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    updateTable();
+                }
+            });
+
+            document.getElementById('next-page').addEventListener('click', () => {
+                const rows = document.querySelectorAll('#remove-ticket-container tr');
+                if (currentPage < Math.ceil(rows.length / reservationsPerPage)) {
+                    currentPage++;
+                    updateTable();
+                }
+            });
+
+            setInterval(updateTimers, 1000);
+            updateTimers();
+            updateTable();
+        });
+    </script>
+</body>

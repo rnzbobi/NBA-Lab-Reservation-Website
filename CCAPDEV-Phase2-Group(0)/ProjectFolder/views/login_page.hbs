@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" media="all" href="/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>Login</title>
+</head>
+<body>
+    <div class="login-main">
+        <h1>SIGN IN TO YOUR ACCOUNT</h1>
+        <form class="login-form" action="/login" method="POST">
+            <label for="email">DLSU Email</label>
+            <input type="email" id="email" name="email" pattern="^[a-zA-Z0-9._%+-]+@dlsu\.edu\.ph$" title="Please use a DLSU email address" required>
+                
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="rememberMe"> Remember Me
+                </label>
+            </div>
+                
+            <input type="submit" value="Sign In">
+
+            <a href="/register_page">Don’t have an account? Click here</a>
+        </form>
+
+        <div class="back-button-login">
+            <a href="/" class="back-button-link-login">Go Back to Home</a>
+        </div>
+    </div>
+
+    {{#if error}}
+        <script>
+            alert('{{errorMessage}}');
+        </script>
+    {{/if}}
+</body>
+</html>

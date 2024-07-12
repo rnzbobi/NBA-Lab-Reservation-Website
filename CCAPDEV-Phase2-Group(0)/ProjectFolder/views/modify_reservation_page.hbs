@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" media="all" href="/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>Modify Reservation</title>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    {{> header headerClass="profile-page-header" navClass="profile-page-navbar"}}
+    <div class="modify-reservation-content">
+        <div class="left-space-transparent"></div>
+        <div class="right-space-content">
+            <div class="header-content">
+                <h4>Modify Reservation</h4>
+            </div>
+            <form id="modify-reservation-form" action="/modify_reservation_page/{{reservation._id}}?ref={{ref}}" method="POST">
+                <div class="box-content">
+                    <h3>Reservation #{{reservation._id}}</h3>
+                    <div class="date-input-container">
+                        <label class="date-label" for="reservation-date">Date: </label>
+                        <input type="date" id="reservation-date" name="reservationDate" value="{{formatDate reservation.reservationStart}}">
+                        <i class="fas fa-calendar-alt calendar-icon" onclick="document.getElementById('reservation-date').focus();"></i>
+                    </div>
+                    <div class="date-input-container">
+                        <label class="date-label" for="timeslot">Select Time:</label>
+                        <select name="timeslot" id="timeslot" class="form-control">
+                            <option value="" disabled>Select Time</option>
+                            {{#each timeslots}}
+                            <option value="{{this}}" {{#if (eq this ../currentTimeslot)}}selected{{/if}}>{{this}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="date-input-container">
+                        <label class="date-label" for="seat-numbers">Seat Numbers:</label>
+                        <div id="seat-numbers" class="seat-numbers">
+                            {{#each seatNumbers}}
+                            <input type="checkbox" id="{{this}}" name="seatNumbers" value="{{this}}" {{#if (includes ../reservation.seatNumber this)}}checked{{/if}} {{#if (includes ../reservedSeats this)}}disabled{{/if}}>
+                            <label for="{{this}}" class="seat-label {{#if (includes ../reservedSeats this)}}reserved-seat{{/if}}">{{this}}</label>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+                <div class="buttons-content">
+                    <div class="left-cancel">
+                        {{#if (eq ref 'see_reservation')}}
+                        <a href="/see_reservation_page" id="cancel-button"><h2>Cancel</h2></a>
+                        {{else if (eq ref 'remove_reservation')}}
+                        <a href="/remove_reservation" id="cancel-button"><h2>Cancel</h2></a>
+                        {{else}}
+                        <a href="/profile_current_reservation_page" id="cancel-button"><h2>Cancel</h2></a>
+                        {{/if}}
+                    </div>
+                    <div class="right-update">
+                        {{#if (eq ref 'see_reservation')}}
+                        <button type="submit" class="update-button" formaction="/modify_reservation_page/{{reservation._id}}?ref=see_reservation"><h2>Update</h2></button>
+                        {{else if (eq ref 'remove_reservation')}}
+                        <button type="submit" class="update-button" formaction="/modify_reservation_page/{{reservation._id}}?ref=remove_reservation"><h2>Update</h2></button>
+                        {{else}}
+                        <button type="submit" class="update-button" formaction="/modify_reservation_page/{{reservation._id}}?ref=profile_current_reservation_page"><h2>Update</h2></button>
+                        {{/if}}
+                    </div>
+                </div>
+            </form>
+            {{#if errorMessage}}
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                {{errorMessage}}
+            </div>
+            {{/if}}
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var today = new Date().toISOString().split('T')[0];
+            var dateInput = document.getElementById('reservation-date');
+            dateInput.setAttribute('min', today);
+            if (!dateInput.value) {
+                dateInput.value = today;
+            }
+
+            const timeslotSelect = document.getElementById('timeslot');
+            const seatNumbersDiv = document.getElementById('seat-numbers');
+            const reservationId = "{{reservation._id}}";
+            const stadium = "{{reservation.stadium.name}}";
+            const form = document.getElementById('modify-reservation-form');
+            const ref = new URLSearchParams(window.location.search).get('ref');
+            const cancelButton = document.getElementById('cancel-button');
+
+            form.action += `?ref=${ref}`;
+            cancelButton.href = ref === 'see_reservation' ? '/see_reservation_page' : ref === 'remove_reservation' ? '/remove_reservation' : '/profile_current_reservation_page';
+
+            timeslotSelect.addEventListener('change', updateSeats);
+            dateInput.addEventListener('change', updateSeats);
+            seatNumbersDiv.addEventListener('click', handleSeatClick);
+
+            form.addEventListener('submit', function(event) {
+                const reservedSeats = seatNumbersDiv.querySelectorAll('input[type="checkbox"]:disabled');
+                const selectedSeats = seatNumbersDiv.querySelectorAll('input[type="checkbox"]:checked');
+                let conflict = false;
+
+                selectedSeats.forEach(seat => {
+                    if (seat.disabled) {
+                        conflict = true;
+                        seat.nextElementSibling.classList.add('conflict-seat');
+                    } else {
+                        seat.nextElementSibling.classList.remove('conflict-seat');
+                    }
+                });
+
+                if (conflict) {
+                    event.preventDefault();
+                    alert('One or more selected seats are already reserved for the selected timeslot.');
+                    
+                    // Uncheck conflict seats
+                    seatNumbersDiv.querySelectorAll('.conflict-seat').forEach(label => {
+                        const checkbox = label.previousElementSibling;
+                        checkbox.checked = false;
+                        label.classList.remove('conflict-seat');
+                    });
+                }
+            });
+
+            function handleSeatClick(event) {
+                if (event.target.tagName === 'INPUT' && event.target.type === 'checkbox') {
+                    if (!event.target.disabled) {
+                        if (event.target.checked) {
+                            event.target.nextElementSibling.classList.add('selected-seat');
+                        } else {
+                            event.target.nextElementSibling.classList.remove('selected-seat');
+                        }
+                    }
+                }
+            }
+
+            function updateSeats() {
+                const date = dateInput.value;
+                const time = timeslotSelect.value;
+
+                fetch(`/reserved_seats?date=${date}&time=${time}&stadium=${stadium}&reservationId=${reservationId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            const reservedSeats = data.reservedSeats;
+                            seatNumbersDiv.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                                checkbox.nextElementSibling.classList.remove('conflict-seat', 'selected-seat');
+                                if (reservedSeats.includes(checkbox.value)) {
+                                    checkbox.disabled = true;
+                                    checkbox.nextElementSibling.classList.add('reserved-seat');
+                                } else {
+                                    checkbox.disabled = false;
+                                    checkbox.nextElementSibling.classList.remove('reserved-seat');
+                                }
+                            });
+
+                            // Retain previously selected seats
+                            seatNumbersDiv.querySelectorAll('input[type="checkbox"]:checked').forEach(checkbox => {
+                                if (!checkbox.disabled) {
+                                    checkbox.nextElementSibling.classList.add('selected-seat');
+                                }
+                            });
+                        }
+                    });
+            }
+
+            updateSeats();
+        });
+    </script>
+</body>
+</html>

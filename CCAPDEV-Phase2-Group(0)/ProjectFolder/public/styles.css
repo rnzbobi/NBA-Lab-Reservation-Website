@@ -1,0 +1,2041 @@
+
+* {
+    font-family: 'Inter';
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: black;
+    font-family: 'Montserrat', sans-serif; 
+}
+
+/* index.html */
+
+.main-page-header {
+    position: relative;
+    background-image: url('https://cdn.nba.com/manage/2024/04/ANT-scaled.jpg?fbclid=IwAR3UxQSXC33ze9Mg8B05x-f00VFxSwfhPK5kZ0VEfS7Qfx948f_LRSLKD3Y'), 
+                          linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.55));
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-blend-mode: darken;
+    height: 100vh;
+    width: 100%;
+    color: white; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    text-align: center;
+}
+
+.main-page-header h1 {
+    font-family: 'Montserrat';
+    margin-bottom: 0.5rem;
+}
+
+.main-page-header h4 {
+    font-family: 'Montserrat';
+    font-weight: normal;
+    margin-top: 0;
+    border-bottom: 1px solid white;
+    padding-bottom: 0.5rem;
+    display: inline-block;
+    width: 55%;
+}
+
+.main-page-navbar {
+    position: absolute;
+    top: 0;
+    padding: 4rem 25rem 0 0;
+    display: flex;
+    justify-content: center;
+    gap: 2.75rem;
+}
+
+.main-page-navbar a {
+    color: white; 
+    text-decoration: none; 
+    font-weight: bold; 
+    font-size: 1rem;
+    transition: transform 0.2s ease;
+}
+
+.main-page-navbar a:hover {
+    transform: scale(1.05);
+}
+
+.main-page-registerlogin a {
+    position: relative;
+    bottom: 0.5rem;
+    left: 25rem;
+    border-style: solid;
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+    transition: transform 0.2s ease;
+    display: inline-block;
+}
+
+.main-page-registerlogin a:hover {
+    transform: scale(1.05);
+}
+
+.main-page-content {
+    background-color: white;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+    margin-top: 100px;
+    flex-direction: column;
+    position: relative;
+}
+
+.main-page-stadiumcontent {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    gap: 40px;
+}
+
+.main-page-stadiumimage {
+    width: 230px;
+    height: 150px;
+    margin: auto;
+    border-radius: 10px;
+}
+
+.main-page-stadiuminfo {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: auto;
+}
+
+.main-page-stadiuminfo h2{
+    margin-bottom: 0;
+    font-family: 'Inter';
+    font-weight: normal;
+}
+
+.main-page-actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 15px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 50px;
+    margin-right: 60px;
+}
+
+.main-view-available {
+    border-style: solid;
+    border-radius: 10px;
+    padding: 0.5rem 3rem;
+    transition: transform 0.2s ease;
+    display:inline-block;
+    border-color: black;
+    color: black; 
+    text-decoration: none;
+}
+
+.main-reserve-seat {
+    border-style: solid;
+    border-radius: 10px;
+    padding: 0.5rem 3.65rem;
+    transition: transform 0.2s ease;
+    display:inline-block;
+    border-color: black;
+    color: black; 
+    text-decoration: none;
+}
+
+.main-view-available:hover, .main-reserve-seat:hover{
+    transform: scale(1.05);
+}
+
+/* profile_page.html */
+
+.profile-page-header {
+    position: relative;
+    background-image: url('https://a.espncdn.com/photo/2017/0523/r212047_1296x864_3-2.jpg'), 
+                          linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.55));
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-blend-mode: darken;
+    height: 40vh;
+    width: 100%;
+    color: white; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    text-align: center;
+}
+
+.profile-page-header  h1 {
+    font-family: 'Montserrat';
+    margin-right: 42.5rem;
+    margin-top: 10rem;
+    font-weight: 420;
+    text-align: left;
+    font-size: 50px;
+}
+
+.profile-page-navbar {
+    position: absolute;
+    top: 0;
+    padding: 4rem 25rem 0 0;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.profile-page-navbar a {
+    color: white; 
+    text-decoration: none; 
+    font-weight: bold; 
+    font-size: 1rem;
+    transition: transform 0.2s ease;
+}
+
+.profile-page-navbar a:hover {
+    transform: scale(1.05);
+}
+
+.profile-page-registerlogin a {
+    position: relative;
+    bottom: 0.5rem;
+    left: 25rem;
+    border-style: solid;
+    padding: 0.5rem 1rem;
+    transition: transform 0.2s ease;
+    display: inline-block;
+}
+
+.profile-page-registerlogin a:hover {
+    transform: scale(1.05);
+}
+
+.profile-page-content {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+}
+
+/*  profile_page.html | LEFT SIDE OF PROFILE PAGE*/
+
+.profile-left-page {
+    flex: 1; 
+    background-color: #D9D9D9; 
+}
+
+.profile-username {
+    width: 55%;
+    float: right;
+}
+
+.profile-username h4{
+    color:black;
+    text-align: left;
+    font-size: 24px;
+    font-weight: 2000;
+    font-family: 'Montserrat';
+}
+
+.profile-username p{
+    color:black;
+    text-align: left;
+    font-family: 'Montserrat';
+}
+
+.personal-info, .personal-reservations {
+    width: 55%;
+    float: right;
+    margin-top: 5rem;
+}
+
+.personal-info a, .personal-reservations a {
+    display: flex; 
+    align-items: center;
+    text-decoration: none; 
+    color: inherit; 
+}
+
+.personal-info h4, .personal-reservations h4 {
+    color: black;
+    font-size: 24px;
+    font-weight: 500;
+    margin: 0;
+    margin-left: 1rem; 
+    font-family: 'Montserrat';
+}
+
+.personal-info img, .personal-reservations img {
+    width: 10%;
+    height: auto;
+}
+
+/* profile_page.html | RIGHT SIDE OF PROFILE PAGE*/
+
+.profile-right-page {
+    flex: 1.2;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+}
+
+.profile-search-bar {
+    width: 80%; 
+    margin-top: 2rem;
+    margin-bottom: 2rem; 
+    display: flex;
+    justify-content: center; 
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    width: 100%; 
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.search-button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+
+.search-icon {
+    width: 24px; 
+    height: 24px; 
+}
+
+.search-input {
+    width: 100%; 
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: none; 
+    outline: none; 
+}
+
+.profile-picture-upload {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-picture-label {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+}
+
+.profile-picture-upload img {
+    width: 150px; 
+    height: 150px; 
+    border-radius: 50%; 
+    object-fit: cover;
+    border: 2px solid #ccc; 
+    transition: background-color 0.3s ease; 
+}
+
+.profile-picture-label:hover img {
+    background-color: black; 
+}
+
+.plus-sign {
+    display: none; 
+    position: absolute;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    font-size: 2rem; 
+    color: white; 
+}
+
+.profile-picture-label:hover .plus-sign {
+    display: block;
+}
+
+#file-upload {
+    display: none;
+}
+
+.profile-details h4 {
+    color: gray;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 400;
+    font-family: 'Montserrat';
+    margin: 0;
+    padding: 0.5rem 0; 
+}
+
+.profile-details h3 {
+    color: black;
+    font-size: 18px;
+    font-weight: 700;
+    font-family: 'Montserrat';
+    margin: 0;
+    padding: 0.5rem 0; 
+}
+
+.profile-details h2 {
+    color: black;
+    font-size: 18px;
+    font-weight: 700;
+    font-family: 'Montserrat';
+    margin: 0 auto; 
+    padding: 0.5rem 0; 
+    text-align: center; 
+}
+
+
+.description-input {
+    width: 100%; 
+    height: 10rem;
+    padding: 0.5rem; 
+    border: 1px solid black; 
+    background-color: #f0f0f0; 
+    font-size: 1rem; 
+    border-radius: 4px; 
+    outline: none; 
+    box-sizing: border-box; 
+    margin-bottom: 2rem;
+    resize: none;
+}
+
+.delete-button-text h4{
+    color: black;
+}
+
+.update-button-text h4{
+    color: black;
+}
+
+.delete-and-update-profile {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    gap: 9rem; 
+    margin-top: 2rem; 
+}
+
+.delete-button-text {
+    display: inline-block;  
+    cursor: pointer;
+    text-align: center; 
+    text-decoration: none; 
+    color: black;
+    border: none;
+    background: none;
+    padding: 0; 
+    font: inherit; 
+}
+
+.update-button-text {
+    display: inline-block; 
+    width: 8rem;
+    background-color: #000000;
+    padding: 1rem 2rem; 
+    border: 1px solid black;
+    border-radius: 4px; 
+    cursor: pointer; 
+    text-align: center; 
+    text-decoration: none; 
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.update-button-text:hover {
+    background-color: #ffffff; 
+    color: black;
+}
+
+.delete-button-text h4, .update-button-text h4 {
+    margin: 0; 
+    color: inherit; 
+}
+
+/*PROFILE CURRENT RESERVATION PAGE*/
+
+.reservation-profile-right-page {
+    flex: 1.2; 
+    background-color: white;  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    display: flex;
+    overflow-y: auto;
+    padding-bottom: 10rem;
+}
+
+.reservation-box {
+    padding: 1rem 2rem; 
+    border: 1px solid black;
+    border-radius: 4px;
+    width: 40rem;
+    height: auto; 
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column; 
+}
+
+.reservation-id h3{
+    color:black;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.reservation-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.reservation-details-arena h2, .reservation-details-right h2 { 
+    color: black;
+    font-size: 16px; 
+    font-weight: 350;
+}
+
+.reservation-details-arena h3 {
+    color: black;
+    font-size: 18px; 
+}
+
+.reservation-buttons {
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    margin-top: 20px;
+}
+
+.modify-reservation {
+    width: 12rem;
+    background-color: #ffffff;
+    border: 1px solid black;
+    border-radius: 4px; 
+    cursor: pointer; 
+    text-align: center; 
+    text-decoration: none; 
+    color: black;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modify-reservation h4 {
+    margin: 0;
+}
+
+.modify-reservation:hover {
+    background-color: #000000; 
+    color: white;
+}
+
+.cancel-reservation {
+    border: none;
+    background: none;
+    padding: 0;
+    color: inherit;
+    cursor: pointer;
+    font-family: "Montserrat", sans-serif;
+}
+
+.cancel-reservation h4 {
+    margin: 0;
+    font-size: 14px;
+    color: #f44336;
+}
+
+.cancel-reservation h4:hover {
+    text-decoration: underline;
+}
+
+/*modify reservation page*/
+
+.modify-reservation-content {
+    overflow: hidden;
+    height: 860px;  
+}
+
+.left-space-transparent {
+    float: left;
+    width: 15%; 
+    height: 100%; 
+}
+
+.right-space-content { 
+    background-color: white;
+    float: right;
+    width: 85%; 
+    height: 100%;
+    border-top-left-radius: 20rem;
+    border-bottom-left-radius: 20rem;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+.header-content, .box-content, .buttons-content {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.header-content h4 {
+    font-size: 64px;
+    font-family: 'Montserrat', sans-serif; 
+}
+
+
+.box-content {
+    border: 1px solid black; 
+    padding: 10px;
+    width: 50%;
+    margin: 0 auto;
+    border-radius: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    text-align: center; 
+}
+
+/* Center the Reservation title */
+.box-content h3 {
+    margin-left: 50px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 32px;
+}
+
+.date-input-container {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    margin-left: 50px;
+    margin-bottom: 30px;
+}
+
+.date-input-container input {
+    padding: 5px;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 18px;
+}
+
+.date-input-container .calendar-icon {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.date-label {
+    margin-right: 10px;
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 18px;
+}
+
+.dropdown-container {
+    margin-top: 10px;
+    margin-left: 50px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.dropdown-container label {
+    margin-right: 10px;
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 18px;
+}
+
+.dropdown-container select {
+    padding: 5px 50px 5px 5px; 
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 18px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%231c1c1c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 5px top 50%;
+}
+
+.dropdown-container select::-ms-expand {
+    display: none;
+}
+
+.left-cancel {
+    margin-right: 0;
+    margin-left: 400px;
+    margin-top: 50px;
+}
+
+.right-update {
+    margin-left: 0;
+    margin-right: 400px;
+    margin-top: 50px;
+}
+
+.left-cancel a {
+    text-decoration: none !important;
+    font-family: 'Montserrat', sans-serif; 
+    color: #F41A1A !important;
+}
+
+.right-update button {
+    text-decoration: none !important;
+    font-family: 'Montserrat', sans-serif;
+    color: white !important;
+}
+
+.right-update button {
+    width: 12rem;
+    background-color: black;
+    border: 1px solid black;
+    border-radius: 4px; 
+    cursor: pointer; 
+    text-align: center; 
+    text-decoration: none; 
+    color: black;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.right-update button:hover {
+    background-color: white; 
+    color: black !important;
+}
+
+.buttons-content {
+    justify-content: space-around;
+}
+
+
+/* login page  */
+
+.login-main {
+    position: relative;
+    background-image: url('https://cdn.sportsbreak.com/eyJidWNrZXQiOiJwdWItc3RvcmFnZSIsImtleSI6InNwb3J0c2JyZWFrL3dwLWNvbnRlbnQvdXBsb2Fkcy8yMDE3LzA1LzE1MTEzMDAwMjQxNi1rb2JlLWJyeWFudC1uYmEtZmluYWxzLWdhbWUtNy1ib3N0b24tY2VsdGljcy12LWxvcy1hbmdlbGVzLWxha2Vycy4xMjAweDY3Mi5qcGVnIiwiZWRpdHMiOltdfQ=='), 
+                    linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.85));
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-blend-mode: darken;
+    height: 100vh;
+    width: 100%;
+    color: white; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    text-align: center;
+}
+
+.login-main h1 {
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+    font-size: 2.65rem;
+}
+
+.login-form {
+    background-color: white;
+    padding: 5%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+    box-sizing: border-box;
+}
+
+.login-form label {
+    font-family: 'Inter', sans-serif;
+    color: black;
+    text-align: left;
+    margin-top: 0;
+    font-size: 1.35rem;
+    width: 100%;
+}
+
+.login-form input[type="email"], .login-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 0;
+    font-size: 1.35rem;
+    box-sizing: border-box;
+}
+
+.login-form input[type="submit"] {
+    padding: 10px;
+    background-color: white;
+    color: black;
+    border: solid;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    margin-bottom: 20px;
+    margin-top: 15px;
+    width: 100px;
+    align-self: center;
+}
+
+.login-form input[type="submit"]:hover {
+    transform: scale(1.05);
+}
+
+.login-form a {
+    color: black;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    text-align: center;
+    transition: transform 0.2s ease;
+    align-self: center;
+}
+
+.login-form a:hover {
+    transform: scale(1.05);
+}
+
+.back-button-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.back-button-link-login {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    border: solid black;
+    border-radius: 5px;
+    transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.back-button-link-login:hover {
+    transform: scale(1.05);
+}
+
+/* register page */
+
+.register-main {
+    position: relative;
+    background-image: url('https://cdn.sportsbreak.com/eyJidWNrZXQiOiJwdWItc3RvcmFnZSIsImtleSI6InNwb3J0c2JyZWFrL3dwLWNvbnRlbnQvdXBsb2Fkcy8yMDE3LzA1LzE1MTEzMDAwMjQxNi1rb2JlLWJyeWFudC1uYmEtZmluYWxzLWdhbWUtNy1ib3N0b24tY2VsdGljcy12LWxvcy1hbmdlbGVzLWxha2Vycy4xMjAweDY3Mi5qcGVnIiwiZWRpdHMiOltdfQ=='), 
+                      linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.85));
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-blend-mode: darken;
+    background-position: center;
+    height: 100vh;
+    width: 100%;
+    color: white; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    text-align: center;
+    padding-top: 12.5rem;
+    padding-bottom: 15rem;
+}
+
+.register-main h1 {
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+    font-size: 2.65rem;
+    margin-right: 13rem;
+}
+
+.register-loginlink {
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.5rem;
+    transition: transform 0.2s ease;
+    margin-bottom: 1.5rem;
+    margin-right: 19.5rem;
+}
+
+.register-main a:hover {
+    transform: scale(1.05);
+}
+
+.register-form {
+    background-color: white;
+    padding: 5%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+    box-sizing: border-box;
+}
+
+.register-form label {
+    font-family: 'Inter', sans-serif;
+    color: black;
+    text-align: left;
+    margin-top: 0;
+    font-size: 1.35rem;
+    width: 100%;
+}
+
+.register-form input[type="text"], .register-form input[type="password"], .register-form input[type="email"], .register-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 0;
+    font-size: 1.35rem;
+    box-sizing: border-box;
+}
+
+.radio-group {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.radio-group input[type="radio"] {
+    display: none;
+}
+
+.radio-group label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border: 2px solid gray;
+    border-radius: 25px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.35rem;
+    color: black;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.radio-group input[type="radio"]:checked + label {
+    background-color: darkslategrey;
+    color: white;
+    transform: scale(1.1);
+}
+
+.radio-group input[type="radio"]:focus + label {
+    outline: 2px solid #4CAF50;
+    outline-offset: 2px;
+}
+
+#profilePicturePreview {
+    width: 100px;
+    height: auto;
+    display: block;
+    margin-top: 10px;
+}
+
+.register-form input[type="submit"] {
+    padding: 10px;
+    background-color: white;
+    color: black;
+    border: solid;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    margin-bottom: 20px;
+    margin-top: 15px;
+    width: 150px;
+    align-self: center;
+}
+
+.register-form input[type="submit"]:hover {
+    transform: scale(1.05);
+}
+
+.register-form textarea {
+    width: 100%;
+    height: 150px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    resize: none;
+    font-size: 1rem;
+}
+
+.back-button-register {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.back-button-link-register {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    border: solid black;
+    border-radius: 5px;
+    transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.back-button-link-register:hover {
+    transform: scale(1.05);
+}
+
+
+/* reserve_seat_page.html */
+
+.reserve-page-header {
+    position: relative;
+    background-image: url('https://blog.ticketmaster.com/wp-content/uploads/msg-1024x768.jpg'), 
+                      linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.55));
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-blend-mode: darken;
+    height: 50vh;
+    width: 100%;
+    color: white; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    text-align: center;
+}
+
+.reserve-page-header h1 {
+    font-family: 'Montserrat';
+    margin-bottom: 0.5rem;
+}
+
+.reserve-page-header h4 {
+    font-family: 'Montserrat';
+    font-weight: normal;
+    margin-top: 0;
+    border-bottom: 1px solid white;
+    padding-bottom: 0.5rem;
+    display: inline-block;
+    width: 55%;
+}
+
+.reserve-page-navbar {
+    position: absolute;
+    top: 0;
+    padding: 4rem 25rem 0 0;
+    display: flex;
+    justify-content: center;
+    gap: 2.75rem;
+}
+
+.reserve-page-navbar a {
+    color: white; 
+    text-decoration: none; 
+    font-weight: bold; 
+    font-size: 1rem;
+    transition: transform 0.2s ease;
+}
+
+.reserve-page-navbar a:hover {
+    transform: scale(1.05);
+}
+
+.reserve-page-registerlogin a {
+    position: relative;
+    bottom: 0.5rem;
+    left: 25rem;
+    border-style: solid;
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+    transition: transform 0.2s ease;
+    display: inline-block;
+}
+
+.reserve-page-registerlogin a:hover {
+    transform: scale(1.05);
+}
+
+.reserve-container {
+    text-align: center;
+    padding-top: 50px;
+    color: white;
+}
+
+.reserve-date-time {
+    color: white;
+}
+
+.reserve-legends {
+    margin: 20px;
+    color: white;
+}
+
+.reserve-legend {
+    display: inline-block;
+    padding: 10px;
+}
+
+.reserve-legend span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
+
+.reserve-available {
+    background-color: green;
+}
+
+.reserve-reserved {
+    background-color: red;
+}
+
+.reserve-selected {
+    background-color: rgba(255, 255, 0, 0.705);
+}
+
+.reserve-seat-chart {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.reserve-left-column, .reserve-right-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 20px;
+}
+
+.reserve-center-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.reserve-row {
+    display: flex;
+    justify-content: center;
+}
+
+.reserve-seat {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    text-align: center;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.reserve-seat.reserve-available {
+    background-color: green;
+}
+
+.reserve-seat.reserve-reserved {
+    background-color: red;
+    cursor: not-allowed;
+}
+
+.reserve-court {
+    width: 450px;
+    height: 250px;
+    background-color: #D2B48C;
+    line-height: 250px;
+    text-align: center;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.reserve-reserve-button {
+    margin-top: 20px;
+    padding: 15px 30px;
+    background-color: white;
+    border: none;
+    border-radius: 0;
+    color: black;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.reserve-anon-button {
+    margin-top: 20px;
+    padding: 15px 30px;
+    background-color: black;
+    border: none;
+    border-radius: 0;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* VIEW AVAILABLE PAGE */
+
+.available-page {
+    position: relative; 
+    height: 100%;
+    margin: 0;
+    background-image: url('../images/view-available.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: black;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.available-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 1; 
+}
+
+.available-page > * {
+    position: relative; /* Ensure children are above the overlay */
+    z-index: 2;
+}
+
+.view-available-body {
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+    z-index: 1; /* Ensure the body content is above the background */
+    width: 100%;
+    color: white; 
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    text-align: start;
+    padding-top: 40vh; /* Adjust padding to make space for header */
+    min-height: calc(100vh - 40vh); /* Ensure the body section takes the remaining height */
+}
+
+/* Transparent header */
+.viewavailable-page-header {
+    background: transparent;
+    padding: 10px;
+    position: absolute; 
+    top: 0;
+    width: 100%; 
+    height: 30vh; 
+    color: white; 
+    display: flex; 
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    text-align: center;
+    z-index: 2; /* Ensure the header is above the body content */
+}
+
+.viewavailable-page-header h1 {
+    text-decoration: solid;
+    margin-top: 20rem;
+}
+
+.view-available-container {
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.view-available-date-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.view-available-date-container label {
+    margin-bottom: 10px;
+}
+
+.view-available-date-time-input input[type="date"],
+.view-available-date-time-input input[type="time"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px; /* Adjust margin for spacing */
+}
+
+.view-available-date-time-input input[type="date"]:focus,
+.view-available-date-time-input input[type="time"]:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+
+
+.view-available-legends {
+    margin: 20px;
+    color: white;
+}
+
+.view-available-legend {
+    display: inline-block;
+    padding: 10px;
+}
+
+.view-available-legend span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
+
+.view-available-available {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    text-align: center;
+    border: none;
+    color: white;
+    cursor: auto;
+    background-color: green;
+}
+
+.view-available-reserved {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    text-align: center;
+    border: none;
+    color: white;
+    cursor: auto;
+    background-color: red;
+}
+
+.view-available-seat-chart {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.view-available-left-column, .view-available-right-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 20px;
+}
+
+.view-available-center-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.view-available-row {
+    display: flex;
+    justify-content: center;
+}
+
+.view-available-court {
+    width: 450px;
+    height: 250px;
+    background-color: #D2B48C;
+    line-height: 250px;
+    text-align: center;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.reserve-reserve-button {
+    display: inline-block;
+    margin-top: 2vh;
+    padding: .5vw 2vw;
+    background-color: rgb(229, 241, 59);
+    border: none;
+    color: black;
+    font-size: 1vw;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+
+/* Hover and selected states for available seats */
+.reserve-seat.reserve-available:hover,
+.reserve-seat.reserve-selected {
+    background-color: rgba(255, 255, 0, 0.705);
+    cursor: pointer;
+}
+
+/* Disable button by default */
+.reserve-reserve-button:disabled {
+    background-color: grey;
+    cursor: not-allowed;
+}
+
+.reserve-anon-button:disabled {
+    background-color: black;
+    cursor: not-allowed;
+}
+/* New styles for the reserve seat page date and time inputs */
+.new-date-time-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Add space between date and time input fields */
+    margin: 0 auto 30px auto; /* Center align the container and add bottom margin */
+    width: fit-content; /* Adjust width to fit content */
+}
+
+.new-date-input-container, .new-dropdown-container {
+    display: flex;
+    align-items: center;
+}
+
+.date-input-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0 10px;
+    width: 200px; /* Adjust width to be slim like the time select box */
+}
+
+.date-input {
+    width: 100%;
+    padding: 10px 0; /* Remove side padding to align with select box */
+    border: none;
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 18px;
+    color: #333; /* Darker font color */
+}
+
+.date-input:focus {
+    outline: none;
+}
+
+.calendar-icon {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    color: #666;
+}
+
+.new-date-label, .new-dropdown-container label {
+    margin-right: 10px;
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 18px;
+    color: white; /* Ensures label color contrasts well with the background */
+}
+
+.new-dropdown-container select {
+    padding: 10px;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 18px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px; /* Adjust width to be slim */
+    color: #333; /* Darker font color */
+}
+
+.new-dropdown-container select:focus {
+    outline: none;
+    border-color: #999;
+}
+
+.new-dropdown-container select::-ms-expand {
+    display: none;
+}
+
+
+/* see_reservation_page.html */
+
+.see-reservation-page-header {
+    position: relative;
+    background-image: url('https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ig6wUGTYHohs/v1/-1x-1.jpg'), 
+                          linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.55));
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-blend-mode: darken;
+    height: 50vh;
+    width: 100%;
+    color: white; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    text-align: center;
+}
+
+.see-reservation-page-header h1 {
+    font-family: 'Montserrat';
+    font-weight: normal;
+    margin-top: 0;
+    border-bottom: 1px solid white;
+    padding-bottom: 0.5rem;
+    display: inline-block;
+    width: 55%;
+}
+
+.see-reservation-page-navbar {
+    position: absolute;
+    top: 0;
+    padding: 4rem 25rem 0 0;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.see-reservation-page-navbar a {
+    color: white; 
+    text-decoration: none; 
+    font-weight: bold; 
+    font-size: 1rem;
+    transition: transform 0.2s ease;
+}
+
+.see-reservation-page-navbar a:hover {
+    transform: scale(1.05);
+}
+
+.see-reservation-page-registerlogin a {
+    position: relative;
+    bottom: 0.5rem;
+    left: 25rem;
+    border-style: solid;
+    padding: 0.5rem 1rem;
+    transition: transform 0.2s ease;
+    display: inline-block;
+}
+
+.see-reservation-page-registerlogin a:hover {
+    transform: scale(1.05);
+}
+
+.see-reservation-page-content {
+    position: relative;
+    height: auto;
+    width: 100%;
+    color: white; 
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+}
+
+.see-reservation-profile-right-page {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    margin: 1rem 0; /* Adds space between each ticket */
+}
+
+.see-reservation-details h4 {
+    color: gray;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 400;
+    font-family: 'Montserrat';
+    margin: 0;
+    padding: 0.5rem 0; 
+}
+
+.see-reservation-details h3 {
+    color: black;
+    font-size: 18px;
+    font-weight: 700;
+    font-family: 'Montserrat';
+    margin: 0;
+    padding: 0.5rem 0; 
+}
+
+.see-reservation-box {
+    padding: 1rem 2rem; 
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 50%; /* Adjusted width to make them fit better horizontally */
+    height: auto; 
+    display: flex;
+    flex-direction: column; 
+    background-color: white;  /* Ticket background white */
+    color: black; /* Ensure text color is black within the box */
+}
+
+.see-reservation-id h3 {
+    color: black;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.see-reservation-details-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.see-reservation-details-right h2, .see-reservation-details-left h2 { 
+    color: black !important;
+    font-size: 16px; 
+    font-weight: 350;
+}
+
+.see-reservation-dates h2 {
+    color: black;
+    font-size: 16px; 
+    font-weight: 350;
+    margin-top: 10px;
+}
+
+.see-reservation-modify-reservation {
+    width: 15rem; /* Increased width */
+    height: 3rem; /* Increased height */
+    background-color: #080808;
+    border: 1px solid black;
+    border-radius: 10px; 
+    cursor: pointer; 
+    text-align: center; 
+    text-decoration: none; 
+    color: white;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px; /* Add some spacing from the content above */
+    margin-right: auto; 
+}
+
+.see-reservation-modify-reservation h4 {
+    margin: 0;
+}
+
+.see-reservation-modify-reservation:hover {
+    background-color: #333; 
+    color: white;
+}
+
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1.5rem 0;
+}
+
+.pagination-controls button {
+    padding: 0.75rem 1.5rem;
+    margin: 0 0.5rem;
+    border: 1px solid #000;
+    border-radius: 10px;
+    background-color: #fff;
+    color: #000;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.pagination-controls button:disabled {
+    background-color: #eee;
+    cursor: not-allowed;
+}
+
+.pagination-controls button:hover:not(:disabled) {
+    background-color: #000;
+    color: #fff;
+}
+
+.page-number {
+    padding: 0.75rem 1.5rem;
+    margin: 0 0.5rem;
+    border: 1px solid #000;
+    border-radius: 10px;
+    background-color: #fff;
+    color: #000;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.page-number.active {
+    background-color: #000;
+    color: #fff;
+}
+
+.page-number:hover:not(.active) {
+    background-color: #000;
+    color: #fff;
+}
+
+/*remove*/
+.remove-body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: black;
+    margin: 0;
+    padding: 0;
+}
+
+.remove-reservation-page-header {
+    position: relative;
+    background-image: url('https://cdn.nba.com/manage/2021/10/GettyImages-1228132003.png'), 
+                          linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.55));
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-blend-mode: darken;
+    height: 50vh;
+    width: 100%;
+    color: white; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    text-align: center;
+}
+
+.remove-reservation-page-header h1 {
+    font-family: 'Montserrat';
+    font-weight: normal;
+    margin-top: 0;
+    border-bottom: 1px solid white;
+    padding-bottom: 0.5rem;
+    display: inline-block;
+    width: 55%;
+}
+
+.remove-reservation-page-navbar {
+    position: absolute;
+    top: 0;
+    padding: 4rem 25rem 0 0;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.remove-reservation-page-navbar a {
+    color: white; 
+    text-decoration: none; 
+    font-weight: bold; 
+    font-size: 1rem;
+    transition: transform 0.2s ease;
+}
+
+.remove-reservation-page-navbar a:hover {
+    transform: scale(1.05);
+}
+
+.remove-reservation-page-registerlogin a {
+    position: relative;
+    bottom: 0.5rem;
+    left: 25rem;
+    border-style: solid;
+    padding: 0.5rem 1rem;
+    transition: transform 0.2s ease;
+    display: inline-block;
+}
+
+.remove-reservation-page-registerlogin a:hover {
+    transform: scale(1.05);
+}
+
+.container-custom {
+    margin: 2rem auto;
+    padding: 2rem;
+    max-width: 1300px; /* Adjusted width for better fit */
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow-x: auto; /* Added to handle overflow */
+}
+
+.container-custom h1 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Table styles */
+#reservation-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#reservation-table th, #reservation-table td {
+    padding: 1rem; /* Adjusted padding for a cleaner look */
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+    font-size: 0.9rem; /* Adjusted font size for readability */
+}
+
+#reservation-table th {
+    background-color: #e9ecef;
+}
+
+#reservation-table td {
+    background-color: #ffffff;
+}
+
+/* Button styles */
+.edit-reservation-button-custom {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #080808;
+    color: white;
+    text-decoration: none;
+    border: 1px solid #080808;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+}
+
+.edit-reservation-button-custom:hover {
+    background-color: #333;
+    color: white;
+}
+
+.remove-reservation-button-custom {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem; /* Adjusted padding for a consistent look */
+    cursor: pointer;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.remove-reservation-button-custom:hover {
+    background-color: #c82333;
+}
+
+.no-show-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.no-show-button:hover {
+    background-color: #c82333;
+}
+
+/* Pagination controls */
+.pagination-controls-custom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.pagination-controls-custom button {
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    border: 1px solid #000;
+    background-color: #fff;
+    border-radius: 5px;
+    color: #000;
+    font-size: 1.2rem; /* Increased font size for better readability */
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.pagination-controls-custom button:disabled {
+    background-color: #eee;
+    cursor: not-allowed;
+}
+
+.pagination-controls-custom button:hover:not(:disabled) {
+    background-color: #000;
+    color: #fff;
+}
+
+.page-number-custom {
+    padding: 0.5rem 1rem; /* Adjusted padding for consistency */
+    margin: 0 0.5rem;
+    border: 1px solid #000;
+    background-color: #fff;
+    color: #000;
+    font-size: 1.2rem; /* Increased font size for better readability */
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.page-number-custom.active {
+    background-color: #000;
+    color: #fff;
+}
+
+.page-number-custom:hover:not(.active) {
+    background-color: #000;
+    color: #fff;
+}
+
+
+/*FOOTER*/
+.footer {
+    position: relative;
+    margin: auto;
+    margin-top: 250px;
+    padding-top: 30px;
+    padding-bottom: 50px;
+    background-color: white;
+    color: black;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    width: 100%;
+    gap: 75px;
+}
+
+.footer img {
+    height: 100px;
+    width: 100px;
+}
+
+.footer h5 {
+    font-family: "Montserrat";
+    font-weight: normal;
+    font-size: 0.75rem;
+}
+
+.footer a {
+    transition: transform 0.2s ease;
+}
+
+.footer-navbar {
+    display: flex;
+    justify-content: center;
+    gap: 2.75rem;
+}
+
+.footer-navbar a {
+    font-family: "Montserrat";
+    font-weight: normal;
+    color: black; 
+    text-decoration: none;
+    font-size: 1.75rem;
+    transition: transform 0.2s ease;
+}
+
+.footer-navbar a:hover, .footer a:hover{
+    transform: scale(1.05);
+}
+
+.navbar-right {
+    position: relative;
+    bottom: 0.5rem;
+    left: 25rem;
+    display: flex;
+    gap: 5rem;
+}
+
+/*ALERT*/
+
+.alert {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+    margin-bottom: 15px;
+    border-top-left-radius: 5px;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.closebtn:hover {
+    color: black;
+}
+
+/*SEAT CHECKBOXES*/
+
+.seat-label {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    width: 40px;
+}
+
+.reserved-seat {
+    background-color: #f44336;
+    color: white;
+    cursor: not-allowed;
+}
+
+.conflict-seat {
+    background-color: yellow;
+    color: black;
+}
+
+.selected-seat {
+    background-color: green;
+    color: white;
+}
+
+.seat-label input {
+    display: none;
+}
+
+.seat-numbers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}

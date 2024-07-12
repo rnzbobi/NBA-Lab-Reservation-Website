@@ -1,0 +1,301 @@
+<body>
+    <!-- Navigation Bar -->
+    {{> header headerClass="reserve-page-header" navClass="reserve-page-navbar" title="NBA STADIUM RESERVATION" subtitle="Reserve your seats now to witness your favorite NBA basketball action live!" }}
+
+    <div class="reserve-container">
+        <div class="new-date-time-container">
+            <div class="new-date-input-container">
+                <label class="new-date-label" for="reservation-date">Date: </label>
+                <div class="date-input-wrapper">
+                    <input type="date" id="reservation-date" class="date-input" data-placeholder="Select date">
+                    <i class="fas fa-calendar-alt calendar-icon" onclick="document.getElementById('reservation-date').focus();"></i>
+                </div>
+            </div>
+            <div class="new-dropdown-container">
+                <label for="reservation-time">Time:</label>
+                <select id="reservation-time" name="reservation-time">
+                    <option value="" disabled selected>Select Time</option>
+                    <option value="9:00 AM - 9:30 AM">9:00 AM - 9:30 AM</option>
+                    <option value="9:30 AM - 10:00 AM">9:30 AM - 10:00 AM</option>
+                    <option value="10:00 AM - 10:30 AM">10:00 AM - 10:30 AM</option>
+                    <option value="10:30 AM - 11:00 AM">10:30 AM - 11:00 AM</option>
+                    <option value="11:00 AM - 11:30 AM">11:00 AM - 11:30 AM</option>
+                    <option value="11:30 AM - 12:00 PM">11:30 AM - 12:00 PM</option>
+                    <option value="12:00 PM - 12:30 PM">12:00 PM - 12:30 PM</option>
+                    <option value="12:30 PM - 1:00 PM">12:30 PM - 1:00 PM</option>
+                    <option value="1:30 PM - 2:00 PM">1:30 PM - 2:00 PM</option>
+                    <option value="2:00 PM - 2:30 PM">2:00 PM - 2:30 PM</option>
+                    <option value="2:30 PM - 3:00 PM">2:30 PM - 3:00 PM</option>
+                    <option value="3:00 PM - 3:30 PM">3:00 PM - 3:30 PM</option>
+                    <option value="3:30 PM - 4:00 PM">3:30 PM - 4:00 PM</option>
+                    <option value="4:00 PM - 4:30 PM">4:00 PM - 4:30 PM</option>
+                    <option value="4:30 PM - 5:00 PM">4:30 PM - 5:00 PM</option>
+                    <option value="5:00 PM - 5:30 PM">5:00 PM - 5:30 PM</option>                   
+                </select>
+            </div>
+        </div>
+
+        <div class="reserve-legends">
+            <div class="reserve-legend"><span class="reserve-available"></span> Available</div>
+            <div class="reserve-legend"><span class="reserve-reserved"></span> Reserved</div>
+        </div>
+        <div class="reserve-seat-chart">
+            <div class="reserve-left-column">
+                <button class="reserve-seat reserve-available" id="D1" onclick="handleSeatClick(this)">D1</button>
+                <button class="reserve-seat reserve-available" id="D2" onclick="handleSeatClick(this)">D2</button>
+                <button class="reserve-seat reserve-available" id="D3" onclick="handleSeatClick(this)">D3</button>
+            </div>
+            <div class="reserve-center-column">
+                <div class="reserve-row">
+                    <button class="reserve-seat reserve-available" id="A1" onclick="handleSeatClick(this)">A1</button>
+                    <button class="reserve-seat reserve-available" id="A2" onclick="handleSeatClick(this)">A2</button>
+                    <button class="reserve-seat reserve-available" id="A3" onclick="handleSeatClick(this)">A3</button>
+                    <button class="reserve-seat reserve-available" id="A4" onclick="handleSeatClick(this)">A4</button>
+                    <button class="reserve-seat reserve-available" id="A5" onclick="handleSeatClick(this)">A5</button>
+                    <button class="reserve-seat reserve-available" id="A6" onclick="handleSeatClick(this)">A6</button>
+                </div>
+                <div class="reserve-court">COURT</div>
+                <div class="reserve-row">
+                    <button class="reserve-seat reserve-available" id="C1" onclick="handleSeatClick(this)">C1</button>
+                    <button class="reserve-seat reserve-available" id="C2" onclick="handleSeatClick(this)">C2</button>
+                    <button class="reserve-seat reserve-available" id="C3" onclick="handleSeatClick(this)">C3</button>
+                    <button class="reserve-seat reserve-available" id="C4" onclick="handleSeatClick(this)">C4</button>
+                    <button class="reserve-seat reserve-available" id="C5" onclick="handleSeatClick(this)">C5</button>
+                    <button class="reserve-seat reserve-available" id="C6" onclick="handleSeatClick(this)">C6</button>
+                </div>
+            </div>
+            <div class="reserve-right-column">
+                <button class="reserve-seat reserve-available" id="B1" onclick="handleSeatClick(this)">B1</button>
+                <button class="reserve-seat reserve-available" id="B2" onclick="handleSeatClick(this)">B2</button>
+                <button class="reserve-seat reserve-available" id="B3" onclick="handleSeatClick(this)">B3</button>
+            </div>
+        </div>
+
+        <button class="reserve-anon-button" id="anonymousReserveButton" onclick="finalizeAnonymousReservation()" disabled>Reserve Anonymously</button>
+        <button class="reserve-reserve-button" id="reserveButton" onclick="finalizeReservation()" disabled>Reserve</button>
+    </div>
+
+    <script>
+    let selectedSeats = [];
+
+    function handleSeatClick(seat) {
+        const reservationDate = document.getElementById('reservation-date').value;
+        const reservationTime = document.getElementById('reservation-time').value;
+
+        if (!reservationDate || !reservationTime) {
+            alert('Please pick both date and time first');
+            return;
+        }
+
+        if (!isValidReservationTime(reservationDate, reservationTime)) {
+            alert('The selected date and time are in the past. Please choose a future date and time.');
+            return;
+        }
+
+        if (seat.classList.contains('reserve-reserved')) {
+            alert('Seat is reserved');
+            return;
+        }
+
+        if (seat.classList.contains('reserve-selected')) {
+            seat.classList.remove('reserve-selected');
+            selectedSeats = selectedSeats.filter(selectedSeat => selectedSeat !== seat.id);
+        } else {
+            seat.classList.add('reserve-selected');
+            selectedSeats.push(seat.id);
+        }
+
+        checkAndToggleReserveButtons();
+    }
+
+    function isValidReservationTime(reservationDate, reservationTime) {
+        const currentDateTime = new Date();
+        const [startTime, endTime] = reservationTime.split(" - ");
+        const reservationStartTime = new Date(`${reservationDate} ${startTime}`);
+        const reservationEndTime = new Date(`${reservationDate} ${endTime}`);
+
+        // Check if reservation start time is in the past
+        if (reservationStartTime < currentDateTime) {
+            return false;
+        }
+
+        return true;
+    }
+
+    function checkAndToggleReserveButtons() {
+        const reservationDate = document.getElementById('reservation-date').value;
+        const reservationTime = document.getElementById('reservation-time').value;
+
+        const isValid = isValidReservationTime(reservationDate, reservationTime) && selectedSeats.length > 0;
+
+        document.getElementById('reserveButton').disabled = !isValid;
+        document.getElementById('anonymousReserveButton').disabled = !isValid;
+
+        const allSeats = document.querySelectorAll('.reserve-seat');
+        allSeats.forEach(seat => {
+            if (isValidReservationTime(reservationDate, reservationTime)) {
+                seat.disabled = false;
+            } else {
+                seat.disabled = true;
+                seat.classList.remove('reserve-selected');
+            }
+        });
+
+        if (!isValidReservationTime(reservationDate, reservationTime)) {
+            alert('The selected date and time are in the past. Please choose a future date and time.');
+        }
+    }
+
+    function finalizeReservation() {
+        const reservationDate = document.getElementById('reservation-date').value;
+        const reservationTime = document.getElementById('reservation-time').value;
+        const selectedArena = localStorage.getItem('selectedArena');
+
+        if (!reservationDate || !reservationTime || !selectedArena) {
+            alert('Please fill out all date and time fields.');
+            return;
+        }
+
+        if (!isValidReservationTime(reservationDate, reservationTime)) {
+            alert('The selected date and time are in the past. Please choose a future date and time.');
+            return;
+        }
+
+        fetch('/reserve', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                seats: selectedSeats,
+                date: reservationDate,
+                time: reservationTime,
+                anonymous: false,
+                stadium: selectedArena
+            })
+        }).then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Reservation successful!');
+                selectedSeats.forEach(seatId => {
+                    document.getElementById(seatId).classList.add('reserve-reserved');
+                    document.getElementById(seatId).classList.remove('reserve-selected');
+                });
+                selectedSeats = [];
+                checkAndToggleReserveButtons();
+            } else {
+                alert('Reservation failed: ' + data.message);
+            }
+        });
+    }
+
+    function finalizeAnonymousReservation() {
+        const reservationDate = document.getElementById('reservation-date').value;
+        const reservationTime = document.getElementById('reservation-time').value;
+        const selectedArena = localStorage.getItem('selectedArena');
+
+        if (!reservationDate || !reservationTime || !selectedArena) {
+            alert('Please fill out all date and time fields.');
+            return;
+        }
+
+        if (!isValidReservationTime(reservationDate, reservationTime)) {
+            alert('The selected date and time are in the past. Please choose a future date and time.');
+            return;
+        }
+
+        fetch('/reserve', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                seats: selectedSeats,
+                date: reservationDate,
+                time: reservationTime,
+                anonymous: true,
+                stadium: selectedArena
+            })
+        }).then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Anonymous reservation successful!');
+                selectedSeats.forEach(seatId => {
+                    document.getElementById(seatId).classList.add('reserve-reserved');
+                    document.getElementById(seatId).classList.remove('reserve-selected');
+                });
+                selectedSeats = [];
+                checkAndToggleReserveButtons();
+            } else {
+                alert('Reservation failed: ' + data.message);
+            }
+        });
+    }
+
+    function updateSeatStatuses(reservedSeats) {
+        const allSeats = document.querySelectorAll('.reserve-seat');
+        allSeats.forEach(seat => {
+            seat.classList.remove('reserve-available', 'reserve-reserved', 'reserve-selected');
+            if (reservedSeats.includes(seat.id)) {
+                seat.classList.add('reserve-reserved');
+            } else {
+                seat.classList.add('reserve-available');
+            }
+        });
+    }
+
+    function fetchReservedSeats() {
+        const reservationDate = document.getElementById('reservation-date').value;
+        const reservationTime = document.getElementById('reservation-time').value;
+        const selectedArena = localStorage.getItem('selectedArena');
+
+        if (!reservationDate || !reservationTime || !selectedArena) {
+            return;
+        }
+
+        fetch(`/reserved_seats?date=${reservationDate}&time=${reservationTime}&stadium=${selectedArena}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    updateSeatStatuses(data.reservedSeats);
+                } else {
+                    alert('Failed to fetch reserved seats: ' + data.message);
+                }
+            });
+    }
+
+    document.getElementById('reservation-date').addEventListener('change', () => {
+        fetchReservedSeats();
+        checkAndToggleReserveButtons();
+    });
+
+    document.getElementById('reservation-time').addEventListener('change', () => {
+        fetchReservedSeats();
+        checkAndToggleReserveButtons();
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const dateInputs = document.querySelectorAll('.date-input');
+        dateInputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.type = 'date';
+                input.showPicker(); // Show calendar picker
+            });
+            input.addEventListener('blur', () => {
+                if (!input.value) {
+                    input.type = 'text';
+                    input.placeholder = input.getAttribute('data-placeholder');
+                }
+            });
+            if (!input.value) {
+                input.type = 'text';
+                input.placeholder = input.getAttribute('data-placeholder');
+            }
+        });
+
+        // Fetch reserved seats when the page loads
+        fetchReservedSeats();
+    });
+</script>
+
+</body>

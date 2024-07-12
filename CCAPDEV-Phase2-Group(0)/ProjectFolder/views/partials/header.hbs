@@ -1,0 +1,25 @@
+<header class="{{headerClass}}">
+    <nav class="{{navClass}}">
+        <a href="/">HOME</a>
+        <a href="/see_reservation_page">SEE RESERVATION</a>
+        <a href="/#reserve">RESERVE A SEAT</a> 
+        <a href="/profile_page">PROFILE</a>
+        {{#if isLabTech}}
+        <a href="/remove_reservation">RESERVATION DASHBOARD</a>
+        {{/if}}
+        {{#if isAuthenticated}}
+        <div class="navbar-right">
+            <a href="/profile_page">Hi, {{user.name}}</a>
+            <a href="/logout">LOGOUT</a>
+        </div>
+        {{else}}
+            <span class="profile-page-registerlogin"><a href="/login_page">REGISTER/LOGIN</a></span>
+        {{/if}}
+    </nav>
+    {{#if title}}
+        <h1>{{title}}</h1>
+    {{/if}}
+    {{#if subtitle}}
+        <h4>{{subtitle}}</h4>
+    {{/if}}
+</header>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" media="all" href="/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>Your Reservations</title>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    {{> header headerClass="see-reservation-page-header" navClass="see-reservation-page-navbar" title="Your Reservations" }}
+
+    <div class="see-reservation-page-content" id="ticket-container">
+        <!-- Reservation tickets will be inserted here by JavaScript -->
+    </div>
+
+    <div class="pagination-controls">
+        <button id="prev-page" disabled>Previous</button>
+        <span id="page-numbers"></span>
+        <button id="next-page">Next</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ticketsPerPage = 3;
+            let currentPage = 1;
+
+            const tickets = {{{json reservations}}}.sort((a, b) => {
+                // Sort by removed status and then by date
+                if (a.removed === b.removed) {
+                    return new Date(b.reservedAt) - new Date(a.reservedAt);
+                }
+                return a.removed - b.removed;
+            });
+
+            const ticketContainer = document.getElementById('ticket-container');
+            const prevPageButton = document.getElementById('prev-page');
+            const nextPageButton = document.getElementById('next-page');
+            const pageNumbersContainer = document.getElementById('page-numbers');
+            const totalPages = Math.ceil(tickets.length / ticketsPerPage);
+
+            function formatTime(date) {
+                return new Date(date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            }
+
+            function formatDate(date) {
+                return new Date(date).toLocaleDateString('en-US');
+            }
+
+            function displayTickets() {
+                ticketContainer.innerHTML = '';
+                const start = (currentPage - 1) * ticketsPerPage;
+                const end = start + ticketsPerPage;
+                const pageTickets = tickets.slice(start, end);
+
+                pageTickets.forEach(ticket => {
+                    const ticketElement = document.createElement('div');
+                    ticketElement.classList.add('see-reservation-profile-right-page');
+                    ticketElement.innerHTML = `
+                        <div class="see-reservation-box">
+                            <div class="see-reservation-id">
+                                <h3>Reservation #${ticket._id}</h3>
+                            </div>
+                            <div class="see-reservation-details-container">
+                                <div class="see-reservation-details-left">
+                                    <h4>Seat Number:</h4>
+                                    <h3>${ticket.seatNumber}</h3>
+                                </div>
+                                <div class="see-reservation-details-right">
+                                    <h4>Arena:</h4>
+                                    <h3>${ticket.stadium.name}</h3>
+                                </div>
+                            </div>
+                            <div class="see-reservation-dates">
+                                <h2>Date of Request: ${formatDate(ticket.reservedAt)}</h2>
+                                <h2>Selected Reservation Date: ${formatDate(ticket.reservationStart)}</h2> <!-- Added selected date -->
+                                <h2>Reservation Date & Time: ${formatTime(ticket.reservationStart)} - ${formatTime(ticket.reservationEnd)}</h2>
+                            </div>
+                            ${!ticket.removed ? `<a href="/modify_reservation_page/${ticket._id}?ref=see_reservation" class="see-reservation-modify-reservation">
+                                <h4>Modify</h4>
+                            </a>` : ''}
+                        </div>
+                    `;
+                    ticketContainer.appendChild(ticketElement);
+                });
+
+                prevPageButton.disabled = currentPage === 1;
+                nextPageButton.disabled = currentPage === totalPages;
+            }
+
+            function displayPageNumbers() {
+                pageNumbersContainer.innerHTML = '';
+                for (let i = 1; i <= totalPages; i++) {
+                    const pageNumber = document.createElement('button');
+                    pageNumber.textContent = i;
+                    pageNumber.classList.add('page-number');
+                    if (i === currentPage) {
+                        pageNumber.classList.add('active');
+                    }
+                    pageNumber.addEventListener('click', () => {
+                        currentPage = i;
+                        displayTickets();
+                        displayPageNumbers();
+                    });
+                    pageNumbersContainer.appendChild(pageNumber);
+                }
+            }
+
+            prevPageButton.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    displayTickets();
+                    displayPageNumbers();
+                }
+            });
+
+            nextPageButton.addEventListener('click', () => {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    displayTickets();
+                    displayPageNumbers();
+                }
+            });
+
+            displayTickets();
+            displayPageNumbers();
+        });
+    </script>
+</body>
+</html>
