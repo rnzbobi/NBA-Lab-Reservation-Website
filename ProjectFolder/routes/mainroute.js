@@ -26,20 +26,6 @@ const formatTime = (date) => {
   return `${formattedHours}:${minutes} ${ampm}`;
 };
 
-const getReservedSeatsForTimeslot = async (reservationStart, reservationEnd, stadiumId) => {
-  const reservations = await Reservation.find({
-    stadium: stadiumId,
-    removed: false,
-    $or: [
-      { reservationStart: { $lt: reservationEnd, $gte: reservationStart } },
-      { reservationEnd: { $lte: reservationEnd, $gt: reservationStart } },
-      { reservationStart: { $lt: reservationStart }, reservationEnd: { $gt: reservationEnd } }
-    ]
-  });
-
-  return reservations.reduce((acc, reservation) => acc.concat(reservation.seatNumber), []);
-};
-
 // Setup multer for file handling
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -269,7 +255,7 @@ router.post('/modify_reservation_page/:id', isLoggedIn, async (req, res) => {
   }
 });
 
-// Existing route to get reserved seats based on selected date and time
+// Enhanced route to get reserved seats based on selected date and time with detailed logging
 router.get('/reserved_seats', isLoggedIn, async (req, res) => {
   const { date, time, stadium, reservationId } = req.query;
   try {
@@ -277,10 +263,20 @@ router.get('/reserved_seats', isLoggedIn, async (req, res) => {
     const reservationStartTime = moment(`${date} ${startTime}`, 'YYYY-MM-DD hh:mm A').toDate();
     const reservationEndTime = moment(`${date} ${endTime}`, 'YYYY-MM-DD hh:mm A').toDate();
 
+    console.log('Fetching reserved seats for:');
+    console.log('Date:', date);
+    console.log('Time:', time);
+    console.log('Stadium:', stadium);
+    console.log('Reservation Start:', reservationStartTime);
+    console.log('Reservation End:', reservationEndTime);
+
     const stadiumObj = await Stadium.findOne({ name: stadium });
     if (!stadiumObj) {
+      console.log('Invalid stadium:', stadium);
       return res.status(400).json({ success: false, message: 'Invalid stadium.' });
     }
+
+    console.log('Stadium found:', stadiumObj.name);
 
     // Find reservations that overlap with the selected time slot and are not removed
     const reservations = await Reservation.find({
@@ -292,9 +288,20 @@ router.get('/reserved_seats', isLoggedIn, async (req, res) => {
         { reservationEnd: { $lte: reservationEndTime, $gt: reservationStartTime } },
         { reservationStart: { $lt: reservationStartTime }, reservationEnd: { $gt: reservationEndTime } }
       ]
+    }).populate('user').exec();
+
+    console.log('Reservations fetched:', reservations.length);
+    reservations.forEach((reservation, index) => {
+      console.log(`Reservation ${index + 1}:`, reservation);
     });
 
-    const reservedSeats = reservations.reduce((acc, reservation) => acc.concat(reservation.seatNumber), []);
+    const reservedSeats = reservations.reduce((acc, reservation) => acc.concat(reservation.seatNumber.map(seat => ({
+      seatNumber: seat,
+      userName: reservation.user.name,
+      userProfileUrl: `/profile_page?name=${encodeURIComponent(reservation.user.name)}`
+    }))), []);
+
+    console.log('Reserved Seats Data:', reservedSeats); // Log the reserved seats data for debugging
     res.json({ success: true, reservedSeats });
   } catch (err) {
     console.error('Error fetching reserved seats:', err);
@@ -549,16 +556,25 @@ router.get('/reserved_seats', isLoggedIn, async (req, res) => {
     const reservationStartTime = moment(`${date} ${startTime}`, 'YYYY-MM-DD hh:mm A').toDate();
     const reservationEndTime = moment(`${date} ${endTime}`, 'YYYY-MM-DD hh:mm A').toDate();
 
+    console.log('Fetching reserved seats for:');
+    console.log('Date:', date);
+    console.log('Time:', time);
+    console.log('Stadium:', stadium);
+    console.log('Reservation Start:', reservationStartTime);
+    console.log('Reservation End:', reservationEndTime);
+
     const stadiumObj = await Stadium.findOne({ name: stadium });
     if (!stadiumObj) {
+      console.log('Invalid stadium:', stadium);
       return res.status(400).json({ success: false, message: 'Invalid stadium.' });
     }
+
+    console.log('Stadium found:', stadiumObj.name);
 
     // Find reservations that overlap with the selected time slot and are not removed
     const reservations = await Reservation.find({
       stadium: stadiumObj._id,
       removed: false,
-      _id: { $ne: reservationId }, // Exclude the current reservation
       $or: [
         { reservationStart: { $lt: reservationEndTime, $gte: reservationStartTime } },
         { reservationEnd: { $lte: reservationEndTime, $gt: reservationStartTime } },
@@ -566,14 +582,25 @@ router.get('/reserved_seats', isLoggedIn, async (req, res) => {
       ]
     }).populate('user').exec();
 
-    const reservedSeats = reservations.reduce((acc, reservation) => acc.concat(reservation.seatNumber.map(seat => ({ seatNumber: seat, user: reservation.user }))), []);
-    
+    console.log('Reservations fetched:', reservations.length);
+    reservations.forEach((reservation, index) => {
+      console.log(`Reservation ${index + 1}:`, reservation);
+    });
+
+    const reservedSeats = reservations.reduce((acc, reservation) => acc.concat(reservation.seatNumber.map(seat => ({
+      seatNumber: seat,
+      userName: reservation.user.name,
+      userProfileUrl: `/profile_page?name=${encodeURIComponent(reservation.user.name)}`
+    }))), []);
+
+    console.log('Reserved Seats Data:', reservedSeats); // Log the reserved seats data for debugging
     res.json({ success: true, reservedSeats });
   } catch (err) {
     console.error('Error fetching reserved seats:', err);
     res.status(500).json({ success: false, message: 'Internal Server Error' });
   }
 });
+
 
 router.post('/reserve', isLoggedIn, async (req, res) => {
   const { seats, date, time, anonymous, stadium } = req.body;

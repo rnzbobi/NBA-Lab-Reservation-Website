@@ -162,7 +162,7 @@
         </div>
     </div>
 
-    <script>
+<script>
     let selectedSeats = [];
 
     function isValidReservationTime(reservationDate, reservationTime) {
@@ -180,14 +180,16 @@
     }
 
     function updateSeatStatuses(reservedSeats) {
+        console.log('Reserved Seats:', reservedSeats); // Log reserved seats for debugging
         const allSeats = document.querySelectorAll('.reserve-seat');
         allSeats.forEach(seat => {
             seat.classList.remove('reserve-available', 'reserve-reserved', 'reserve-selected');
             const tooltip = seat.nextElementSibling;
-            if (reservedSeats.includes(seat.id)) {
+            const reservedSeat = reservedSeats.find(reserved => reserved.seatNumber === seat.id);
+            if (reservedSeat) {
                 seat.classList.add('reserve-reserved');
                 if (tooltip) {
-                    tooltip.innerHTML = "<a href='/profile_page?name='>This seat is reserved.</a>";
+                    tooltip.innerHTML = `<a href='${reservedSeat.userProfileUrl}'>This seat is reserved by ${reservedSeat.userName}.</a>`;
                 }
             } else {
                 seat.classList.add('reserve-available');
@@ -201,20 +203,33 @@
     function fetchReservedSeats() {
         const reservationDate = document.getElementById('reservation-date').value;
         const reservationTime = document.getElementById('reservation-time').value;
-        const selectedArena = localStorage.getItem('selectedArena');
+
+        // Get the arena from the URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const selectedArena = urlParams.get('arena');
 
         if (!reservationDate || !reservationTime || !selectedArena) {
+            console.log('Missing required data for fetching reserved seats.');
             return;
         }
 
-         fetch(`/reserved_seats?date=${reservationDate}&time=${reservationTime}&stadium=${selectedArena}`)
+        console.log('Fetching reserved seats for:');
+        console.log('Date:', reservationDate);
+        console.log('Time:', reservationTime);
+        console.log('Arena:', selectedArena);
+
+        fetch(`/reserved_seats?date=${reservationDate}&time=${reservationTime}&stadium=${selectedArena}`)
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
+                    console.log('Fetch Reserved Seats Success:', data.reservedSeats); // Log the data received
                     updateSeatStatuses(data.reservedSeats);
                 } else {
                     alert('Failed to fetch reserved seats: ' + data.message);
                 }
+            })
+            .catch(error => {
+                console.error('Error fetching reserved seats:', error);
             });
     }
 
@@ -243,5 +258,18 @@
         // Fetch reserved seats when the page loads
         fetchReservedSeats();
     });
+
+    function handleSeatClick(button) {
+        const seatId = button.id;
+        const index = selectedSeats.indexOf(seatId);
+
+        if (index > -1) {
+            selectedSeats.splice(index, 1);
+            button.classList.remove('reserve-selected');
+        } else {
+            selectedSeats.push(seatId);
+            button.classList.add('reserve-selected');
+        }
+    }
 </script>
 </body>
