@@ -27,10 +27,10 @@
                     <td>{{this.seatNumber}}</td>
                     <td>{{this.stadium.name}}</td>
                     <td>{{formatDate this.reservedAt}}</td>
-                    <td>{{formatDate this.reservationStart}} - {{formatTime this.reservationEnd}}</td>
+                    <td>{{formatDate this.reservationStart}} {{formatTime this.reservationStart}}- {{formatTime this.reservationEnd}}</td>
                     <td class="status">{{this.status}}</td>
                     <td>
-                        <span class="time-remaining" data-start="{{this.reservationStart}}" data-end="{{this.reservationEnd}}" data-id="{{this._id}}" id="timer-{{this._id}}">--:--</span>
+                        <span class="time-remaining" data-start="{{this.reservationStart}}" data-end="{{this.reservationEnd}}" id="timer-{{this._id}}">--:--</span>
                     </td>
                     <td>
                         <button class="no-show-button" data-id="{{this._id}}" style="display:none;">No Show</button>
@@ -62,39 +62,6 @@
             const reservationsPerPage = 5;
             let currentPage = 1;
 
-            async function updateExpiredReservations() {
-                const timers = document.querySelectorAll('.time-remaining');
-                for (let timer of timers) {
-                    const start = new Date(timer.getAttribute('data-start'));
-                    const end = new Date(timer.getAttribute('data-end'));
-                    const now = new Date();
-                    const reservationId = timer.getAttribute('data-id');
-                    if (now >= end) {
-                        await fetch(`/update_reservation_status/${reservationId}`, {
-                            method: 'PUT',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({ status: 'Expired' })
-                        }).then(response => response.json())
-                          .then(data => {
-                              if (!data.success) {
-                                  console.error('Failed to update expired reservation: ' + data.message);
-                              } else {
-                                  await fetch(`/remove_reservation/${reservationId}`, {
-                                      method: 'PUT',
-                                      headers: {
-                                          'Content-Type': 'application/json'
-                                      }
-                                  });
-                              }
-                          });
-                    }
-                }
-                // After updating, reload the table data
-                loadReservations();
-            }
-
             function updateTable() {
                 const rows = document.querySelectorAll('#remove-ticket-container tr');
                 rows.forEach((row, index) => {
@@ -111,94 +78,78 @@
                 document.getElementById('next-page').disabled = currentPage === totalPages;
             }
 
-            function loadReservations() {
-                fetch('/remove_reservation_data')
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            const reservations = data.reservations;
-                            const tbody = document.getElementById('remove-ticket-container');
-                            tbody.innerHTML = ''; // Clear the existing table content
-
-                            reservations.forEach(reservation => {
-                                const now = new Date();
-                                const isExpired = new Date(reservation.reservationEnd) < now;
-                                const isActive = new Date(reservation.reservationStart) <= now && now <= new Date(reservation.reservationEnd);
-                                let status = 'Pending';
-                                if (isExpired) {
-                                    status = 'Expired';
-                                } else if (isActive) {
-                                    status = 'Active';
-                                }
-
-                                const row = document.createElement('tr');
-                                row.innerHTML = `
-                                    <td>${reservation._id}</td>
-                                    <td>${reservation.user.name}</td>
-                                    <td>${reservation.seatNumber.join(', ')}</td>
-                                    <td>${reservation.stadium.name}</td>
-                                    <td>${new Date(reservation.reservedAt).toLocaleDateString('en-US')}</td>
-                                    <td>${new Date(reservation.reservationStart).toLocaleString('en-US')} - ${new Date(reservation.reservationEnd).toLocaleString('en-US')}</td>
-                                    <td class="status">${status}</td>
-                                    <td><span class="time-remaining" data-start="${reservation.reservationStart}" data-end="${reservation.reservationEnd}" data-id="${reservation._id}" id="timer-${reservation._id}">--:--</span></td>
-                                    <td><button class="no-show-button" data-id="${reservation._id}" style="display:none;">No Show</button></td>
-                                    <a href="/modify_reservation_page?id={{this._id}}" class="edit-reservation-button-custom">Edit</a>
-                                    <td>${status === 'Expired' || status === 'No Show' ? `<button class="remove-reservation-button-custom" data-id="${reservation._id}">Remove</button>` : `<button class="remove-reservation-button-custom" data-id="${reservation._id}" disabled>Remove</button>`}</td>
-                                `;
-                                tbody.appendChild(row);
-                            });
-
-                            // Re-attach event listeners
-                            document.querySelectorAll('.remove-reservation-button-custom').forEach(button => {
-                                button.addEventListener('click', function () {
-                                    const reservationId = this.getAttribute('data-id');
-                                    fetch(`/remove_reservation/${reservationId}`, {
-                                        method: 'PUT',
-                                        headers: {
-                                            'Content-Type': 'application/json'
-                                        }
-                                    }).then(response => response.json())
-                                      .then(data => {
-                                          if (data.success) {
-                                              alert('Reservation removed successfully');
-                                              loadReservations();
-                                          } else {
-                                              alert('Failed to remove reservation: ' + data.message);
-                                          }
-                                      });
-                                });
-                            });
-
-                            document.querySelectorAll('.no-show-button').forEach(button => {
-                                button.addEventListener('click', function () {
-                                    const reservationId = this.getAttribute('data-id');
-                                    fetch(`/update_reservation_status/${reservationId}`, {
-                                        method: 'PUT',
-                                        headers: {
-                                            'Content-Type': 'application/json'
-                                        },
-                                        body: JSON.stringify({ status: 'No Show' })
-                                    }).then(response => response.json())
-                                      .then(data => {
-                                          if (data.success) {
-                                              const removeButton = document.querySelector(`.remove-reservation-button-custom[data-id='${reservationId}']`);
-                                              const statusCell = document.querySelector(`button.no-show-button[data-id='${reservationId}']`).closest('tr').querySelector('.status');
-                                              if (removeButton && statusCell) {
-                                                  removeButton.disabled = false;
-                                                  statusCell.textContent = 'No Show';
-                                              }
-                                          } else {
-                                              alert('Failed to update reservation status: ' + data.message);
-                                          }
-                                      });
-                                });
-                            });
-
-                            updateTable();
-                        } else {
-                            alert('Failed to fetch reservations: ' + data.message);
+            removeButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const reservationId = this.getAttribute('data-id');
+                    fetch(`/remove_reservation/${reservationId}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
                         }
-                    });
+                    }).then(response => response.json())
+                      .then(data => {
+                          if (data.success) {
+                              alert('Reservation removed successfully');
+                              location.reload();
+                          } else {
+                              alert('Failed to remove reservation: ' + data.message);
+                          }
+                      });
+                });
+            });
+
+            noShowButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const reservationId = this.getAttribute('data-id');
+                    fetch(`/update_reservation_status/${reservationId}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ status: 'No Show' })
+                    }).then(response => response.json())
+                      .then(data => {
+                          if (data.success) {
+                              const removeButton = document.querySelector(`.remove-reservation-button-custom[data-id='${reservationId}']`);
+                              const statusCell = document.querySelector(`button.no-show-button[data-id='${reservationId}']`).closest('tr').querySelector('.status');
+                              if (removeButton && statusCell) {
+                                  removeButton.disabled = false;
+                                  statusCell.textContent = 'No Show';
+                              }
+                          } else {
+                              alert('Failed to update reservation status: ' + data.message);
+                          }
+                      });
+                });
+            });
+
+            function updateTimers() {
+                const timers = document.querySelectorAll('.time-remaining');
+                timers.forEach(timer => {
+                    const start = new Date(timer.getAttribute('data-start'));
+                    const end = new Date(timer.getAttribute('data-end'));
+                    const now = new Date();
+                    const reservationStart = new Date(start);
+                    let remainingTime;
+
+                    if (now >= reservationStart) {
+                        remainingTime = Math.max((start.getTime() + 10 * 60000) - now.getTime(), 0);
+                        if (remainingTime > 0) {
+                            const minutes = Math.floor(remainingTime / 60000);
+                            const seconds = Math.floor((remainingTime % 60000) / 1000);
+                            timer.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds} mins`;
+                        } else {
+                            timer.textContent = "Expired";
+                            const noShowButton = timer.closest('tr').querySelector('.no-show-button');
+                            if (noShowButton) {
+                                noShowButton.style.display = 'block';
+                            }
+                        }
+                    } else {
+                        // Wait until the reservation start time to start the timer
+                        timer.textContent = "--:--";
+                    }
+                });
             }
 
             document.getElementById('prev-page').addEventListener('click', () => {
@@ -217,9 +168,8 @@
             });
 
             setInterval(updateTimers, 1000);
-            setInterval(updateExpiredReservations, 60000); // Check for expired reservations every minute
             updateTimers();
-            loadReservations();
+            updateTable();
         });
     </script>
 </body>
