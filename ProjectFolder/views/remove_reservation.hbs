@@ -35,7 +35,7 @@
                     <td>
                         <button class="no-show-button" data-id="{{this._id}}" style="display:none;">No Show</button>
                     </td>
-                    <td><a href="/modify_reservation_page?id={{this._id}}" class="edit-reservation-button-custom">Edit</a></td>
+                   <td><a href="/modify_reservation_page?id={{this._id}}&ref=remove_reservation" class="edit-reservation-button-custom">Edit</a></td>
                     <td>
                         {{#if (or (eq this.status "Expired") (eq this.status "No Show"))}}
                         <button class="remove-reservation-button-custom" data-id="{{this._id}}">Remove</button>
