@@ -29,8 +29,8 @@
                     <option value="3:00 PM - 3:30 PM">3:00 PM - 3:30 PM</option>
                     <option value="3:30 PM - 4:00 PM">3:30 PM - 4:00 PM</option>
                     <option value="4:00 PM - 4:30 PM">4:00 PM - 4:30 PM</option>
-                     <option value="4:30 PM - 5:00 PM">4:30 PM - 5:00 PM</option>
-                     <option value="5:00 PM - 5:30 PM">5:00 PM - 5:30 PM</option>                   
+                    <option value="4:30 PM - 5:00 PM">4:30 PM - 5:00 PM</option>
+                    <option value="5:00 PM - 5:30 PM">5:00 PM - 5:30 PM</option>                   
                 </select>
             </div>
         </div>
@@ -59,7 +59,7 @@
                     <button class="reserve-seat reserve-available" id="C1" onclick="handleSeatClick(this)">C1</button>
                     <button class="reserve-seat reserve-available" id="C2" onclick="handleSeatClick(this)">C2</button>
                     <button class="reserve-seat reserve-available" id="C3" onclick="handleSeatClick(this)">C3</button>
-                    <button class="reserve-seat reserve-available" id="C4" onclick="handleSeatClick(this)">C4</button>
+                    <button class="reserve-seat reserve-available" id="C4" onclick="handleSeatClick(this)">C4"></button>
                     <button class="reserve-seat reserve-available" id="C5" onclick="handleSeatClick(this)">C5</button>
                     <button class="reserve-seat reserve-available" id="C6" onclick="handleSeatClick(this)">C6</button>
                 </div>
@@ -87,6 +87,11 @@
             return;
         }
 
+        if (!isValidReservationTime(reservationDate, reservationTime)) {
+            alert('The selected date and time are in the past. Please choose a future date and time.');
+            return;
+        }
+
         if (seat.classList.contains('reserve-reserved')) {
             alert('Seat is reserved');
             return;
@@ -100,8 +105,7 @@
             selectedSeats.push(seat.id);
         }
 
-        document.getElementById('reserveButton').disabled = selectedSeats.length === 0;
-        document.getElementById('anonymousReserveButton').disabled = selectedSeats.length === 0;
+        checkAndToggleReserveButtons();
     }
 
     function isValidReservationTime(reservationDate, reservationTime) {
@@ -116,6 +120,30 @@
         }
 
         return true;
+    }
+
+    function checkAndToggleReserveButtons() {
+        const reservationDate = document.getElementById('reservation-date').value;
+        const reservationTime = document.getElementById('reservation-time').value;
+
+        const isValid = isValidReservationTime(reservationDate, reservationTime) && selectedSeats.length > 0;
+
+        document.getElementById('reserveButton').disabled = !isValid;
+        document.getElementById('anonymousReserveButton').disabled = !isValid;
+
+        const allSeats = document.querySelectorAll('.reserve-seat');
+        allSeats.forEach(seat => {
+            if (isValidReservationTime(reservationDate, reservationTime)) {
+                seat.disabled = false;
+            } else {
+                seat.disabled = true;
+                seat.classList.remove('reserve-selected');
+            }
+        });
+
+        if (!isValidReservationTime(reservationDate, reservationTime)) {
+            alert('The selected date and time are in the past. Please choose a future date and time.');
+        }
     }
 
     function finalizeReservation() {
@@ -154,8 +182,7 @@
                     document.getElementById(seatId).classList.remove('reserve-selected');
                 });
                 selectedSeats = [];
-                document.getElementById('reserveButton').disabled = true;
-                document.getElementById('anonymousReserveButton').disabled = true;
+                checkAndToggleReserveButtons();
             } else {
                 alert('Reservation failed: ' + data.message);
             }
@@ -198,8 +225,7 @@
                     document.getElementById(seatId).classList.remove('reserve-selected');
                 });
                 selectedSeats = [];
-                document.getElementById('reserveButton').disabled = true;
-                document.getElementById('anonymousReserveButton').disabled = true;
+                checkAndToggleReserveButtons();
             } else {
                 alert('Reservation failed: ' + data.message);
             }
@@ -238,8 +264,15 @@
             });
     }
 
-    document.getElementById('reservation-date').addEventListener('change', fetchReservedSeats);
-    document.getElementById('reservation-time').addEventListener('change', fetchReservedSeats);
+    document.getElementById('reservation-date').addEventListener('change', () => {
+        fetchReservedSeats();
+        checkAndToggleReserveButtons();
+    });
+
+    document.getElementById('reservation-time').addEventListener('change', () => {
+        fetchReservedSeats();
+        checkAndToggleReserveButtons();
+    });
 
     document.addEventListener('DOMContentLoaded', function() {
         const dateInputs = document.querySelectorAll('.date-input');
