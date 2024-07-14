@@ -27,7 +27,7 @@
                         <input type="date" id="reservation-date" name="reservationDate" value="{{formatDate reservation.reservationStart}}">
                         <i class="fas fa-calendar-alt calendar-icon" onclick="document.getElementById('reservation-date').focus();"></i>
                     </div>
-                        <div class="date-input-container">
+                    <div class="date-input-container">
                         <label class="date-label" for="timeslot">Select Time:</label>
                         <select name="timeslot" id="timeslot" class="form-control">
                             <option value="" disabled>Select Time</option>
@@ -35,7 +35,7 @@
                             <option value="{{this}}" {{#if (eq this ../currentTimeslot)}}selected{{/if}}>{{this}}</option>
                             {{/each}}
                         </select>
-                        </div>
+                    </div>
                     <div class="date-input-container">
                         <label class="date-label" for="seat-numbers">Seat Numbers:</label>
                         <div id="seat-numbers" class="seat-numbers">
@@ -57,7 +57,13 @@
                         {{/if}}
                     </div>
                     <div class="right-update">
-                        <button type="submit" class="update-button"><h2>Update</h2></button>
+                        {{#if (eq ref 'see_reservation')}}
+                        <button type="submit" class="update-button" formaction="/modify_reservation_page/{{reservation._id}}?ref=see_reservation"><h2>Update</h2></button>
+                        {{else if (eq ref 'remove_reservation')}}
+                        <button type="submit" class="update-button" formaction="/modify_reservation_page/{{reservation._id}}?ref=remove_reservation"><h2>Update</h2></button>
+                        {{else}}
+                        <button type="submit" class="update-button" formaction="/modify_reservation_page/{{reservation._id}}?ref=profile_current_reservation_page"><h2>Update</h2></button>
+                        {{/if}}
                     </div>
                 </div>
             </form>
