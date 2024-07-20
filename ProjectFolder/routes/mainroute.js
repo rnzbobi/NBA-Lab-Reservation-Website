@@ -4,6 +4,8 @@ const path = require('path');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const moment = require('moment');
+const cookieParser = require('cookie-parser');
+const crypto = require('crypto');
 const router = express.Router();
 const Stadium = require('../models/stadium');
 const Reservation = require('../models/reservation');
@@ -81,22 +83,26 @@ router.get('/login_page', (req, res) => {
 });
 
 const loginUser = async (req, res, next) => {
-  passport.authenticate('local', function (err, user, info) {
-    if (err) {
-      console.log("Error occurred while logging in", err);
-      return next(err);
-    }
-    if (!user) {
+  const { email, password } = req.body;
+
+  try {
+    const user = await User.findOne({ email: email });
+
+    if (!user || !await user.verifyPassword(password)) {
       return res.redirect('/login_page?err=true&mes=' + encodeURIComponent('Invalid email or password.'));
     }
-    req.logIn(user, function (err) {
+
+    req.logIn(user, async function (err) {
       if (err) {
         console.log("Error occurred while logging in", err);
         return next(err);
       }
       return res.redirect('/');
     });
-  })(req, res, next);
+  } catch (err) {
+    console.log("Error occurred while logging in", err);
+    return next(err);
+  }
 };
 
 router.post('/login', loginUser);
@@ -416,10 +422,10 @@ router.get('/register_page', (req, res) => {
 });
 
 router.post('/register', upload.single('profilePicture'), async (req, res) => {
-  let { email, password, role, name, description } = req.body;
-  let profilePicture = req.file ? req.file.filename : '';
+  const { email, password, role, name, description } = req.body;
+  const profilePicture = req.file ? req.file.filename : '';
 
-  let newUser = new User({
+  const newUser = new User({
     email: email,
     password: password,
     role: role,
@@ -428,29 +434,26 @@ router.post('/register', upload.single('profilePicture'), async (req, res) => {
     profilePicture: profilePicture
   });
 
-  User.register(newUser, password, (err, user) => {
-    if (err) {
-      console.log("Error occurred while registering a user", err.message);
-      return res.redirect('/register_page?err=true&mes=' + encodeURIComponent(err.message));
-    }
-
-    passport.authenticate("local")(req, res, () => {
-      res.send(`
-        <html>
-            <head>
-                <title>Registration Complete</title>
-                <script>
-                    alert('Registration successful! You will be redirected to the login page.');
-                    window.location.href = '/login_page';
-                </script>
-            </head>
-            <body>
-                <p>If you are not redirected, <a href="/login_page">click here</a>.</p>
-            </body>
-        </html>
-      `);
-    });
-  });
+  try {
+    await newUser.save();
+    res.send(`
+      <html>
+        <head>
+          <title>Registration Complete</title>
+          <script>
+            alert('Registration successful! You will be redirected to the login page.');
+            window.location.href = '/login_page';
+          </script>
+        </head>
+        <body>
+          <p>If you are not redirected, <a href="/login_page">click here</a>.</p>
+        </body>
+      </html>
+    `);
+  } catch (err) {
+    console.log("Error occurred while registering a user", err.message);
+    res.redirect('/register_page?err=true&mes=' + encodeURIComponent(err.message));
+  }
 });
 
 router.get('/remove_reservation', isLoggedIn, async (req, res) => {

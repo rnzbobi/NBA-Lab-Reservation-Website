@@ -8,6 +8,7 @@ const path = require('path');
 const exphbs = require('express-handlebars');
 const mainroute = require('./routes/mainroute'); 
 const moment = require('moment');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 const port = 3000;
@@ -62,6 +63,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use("/uploads", express.static('uploads'));
@@ -70,7 +72,6 @@ app.use(session({
   secret: process.env.SECRET,
   resave: false,
   saveUninitialized: false,
-  cookie: { maxAge: 604800000 }
 }));
 
 app.use(passport.initialize());
