@@ -9,6 +9,7 @@ const exphbs = require('express-handlebars');
 const mainroute = require('./routes/mainroute'); 
 const moment = require('moment');
 const cookieParser = require('cookie-parser');
+const User = require('./models/user');
 
 const app = express();
 const port = 3000;
@@ -72,10 +73,53 @@ app.use(session({
   secret: process.env.SECRET,
   resave: false,
   saveUninitialized: false,
+  cookie: {
+    httpOnly: true, // Prevents client-side JavaScript from accessing the cookie
+    secure: process.env.NODE_ENV === 'production' // Ensures the cookie is only sent over HTTPS in production
+  }
 }));
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+const checkRememberMe = async (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+
+  const rememberToken = req.cookies.rememberMe;
+  if (!rememberToken) {
+    return next();
+  }
+
+  try {
+    const user = await User.findOne({ rememberToken, rememberTokenExpiry: { $gte: new Date() } });
+
+    if (user) {
+      req.logIn(user, async (err) => {
+        if (err) {
+          return next(err);
+        }
+
+        // Extend remember token expiry
+        user.rememberTokenExpiry = moment().add(3, 'weeks').toDate();
+        await user.save();
+
+        // Extend session cookie expiry
+        req.session.cookie.maxAge = 3 * 7 * 24 * 60 * 60 * 1000; // 3 weeks
+
+        return next();
+      });
+    } else {
+      next();
+    }
+  } catch (err) {
+    console.log("Error occurred while checking remember me token", err);
+    next();
+  }
+};
+
+app.use(checkRememberMe);
 
 mongoose.connect('mongodb://localhost:27017/lab_reservation').then(() => {
   console.log('Connected to MongoDB');

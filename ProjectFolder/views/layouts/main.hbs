@@ -14,6 +14,26 @@
     
     {{{body}}}
     {{> footer }}
+
+    <script>
+    async function checkRememberMe() {
+      try {
+        const response = await fetch('/checkRememberMe');
+        const data = await response.json();
+        return data.rememberMe;
+      } catch (error) {
+        console.error('Error checking remember me status:', error);
+        return false;
+      }
+    }
+
+    window.addEventListener('beforeunload', async function (event) {
+      const rememberMe = await checkRememberMe();
+      if (!rememberMe) {
+        navigator.sendBeacon('/api/logout');
+      }
+    });
+  </script>
 </body>
 </html>
 
