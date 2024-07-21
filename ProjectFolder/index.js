@@ -9,7 +9,6 @@ const exphbs = require('express-handlebars');
 const mainroute = require('./routes/mainroute'); 
 const moment = require('moment');
 const cookieParser = require('cookie-parser');
-const User = require('./models/user');
 
 const app = express();
 const port = 3000;
@@ -74,8 +73,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    httpOnly: true, // Prevents client-side JavaScript from accessing the cookie
-    secure: process.env.NODE_ENV === 'production' // Ensures the cookie is only sent over HTTPS in production
+    maxAge: 3 * 7 * 24 * 60 * 60 * 1000 // 3 weeks
   }
 }));
 
@@ -87,35 +85,32 @@ const checkRememberMe = async (req, res, next) => {
     return next();
   }
 
-  const rememberToken = req.cookies.rememberMe;
-  if (!rememberToken) {
-    return next();
-  }
-
-  try {
-    const user = await User.findOne({ rememberToken, rememberTokenExpiry: { $gte: new Date() } });
-
-    if (user) {
-      req.logIn(user, async (err) => {
-        if (err) {
-          return next(err);
-        }
-
-        // Extend remember token expiry
-        user.rememberTokenExpiry = moment().add(3, 'weeks').toDate();
-        await user.save();
-
-        // Extend session cookie expiry
-        req.session.cookie.maxAge = 3 * 7 * 24 * 60 * 60 * 1000; // 3 weeks
-
-        return next();
+  const rememberMeToken = req.cookies.remember_me;
+  if (rememberMeToken) {
+    try {
+      const user = await User.findOne({
+        rememberToken: rememberMeToken,
+        rememberTokenExpiry: { $gt: new Date() }
       });
-    } else {
-      next();
+
+      if (user) {
+        req.logIn(user, function (err) {
+          if (err) {
+            return next(err);
+          }
+          user.rememberTokenExpiry = moment().add(3, 'weeks').toDate();
+          user.save().then(() => {
+            return next();
+          }).catch(next);
+        });
+      } else {
+        return next();
+      }
+    } catch (err) {
+      return next(err);
     }
-  } catch (err) {
-    console.log("Error occurred while checking remember me token", err);
-    next();
+  } else {
+    return next();
   }
 };
 

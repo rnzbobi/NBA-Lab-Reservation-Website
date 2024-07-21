@@ -98,19 +98,13 @@ const loginUser = async (req, res, next) => {
         return next(err);
       }
 
-      // Handle remember me
       if (rememberMe) {
-        const rememberToken = crypto.randomBytes(20).toString('hex');
-        const rememberTokenExpiry = moment().add(3, 'weeks').toDate();
-
-        user.rememberToken = rememberToken;
-        user.rememberTokenExpiry = rememberTokenExpiry;
+        const token = crypto.randomBytes(20).toString('hex');
+        const expiryDate = moment().add(3, 'weeks').toDate();
+        user.rememberToken = token;
+        user.rememberTokenExpiry = expiryDate;
         await user.save();
-
-        res.cookie('rememberMe', rememberToken, { maxAge: 3 * 7 * 24 * 60 * 60 * 1000, httpOnly: true });
-        req.session.cookie.maxAge = 3 * 7 * 24 * 60 * 60 * 1000; // 3 weeks
-      } else {
-        req.session.cookie.expires = false; // Session cookie will expire when the browser is closed
+        res.cookie('remember_me', token, { path: '/', httpOnly: true, maxAge: 3 * 7 * 24 * 60 * 60 * 1000 }); // 3 weeks
       }
 
       return res.redirect('/');
@@ -581,58 +575,16 @@ router.get('/logout', (req, res) => {
       req.logout((err) => {
         if (err) {
           console.log("Error occurred while logging out", err);
-          return res.redirect('/');
         }
-        res.redirect('/login_page');
+        res.clearCookie('remember_me');
+        return res.redirect('/');
       });
     }).catch(err => {
-      console.log("Error occurred while clearing remember me token", err);
+      console.log("Error occurred while logging out", err);
       res.redirect('/');
     });
   } else {
-    res.redirect('/login_page');
-  }
-});
-
-router.post('/api/logout', (req, res) => {
-  if (req.user) {
-    req.user.rememberToken = '';
-    req.user.rememberTokenExpiry = null;
-    req.user.save().then(() => {
-      res.clearCookie('rememberMe');
-      req.logout((err) => {
-        if (err) {
-          console.log("Error occurred while logging out", err);
-          return res.status(500).send('Error logging out');
-        }
-        res.status(200).send('Logged out');
-      });
-    }).catch(err => {
-      console.log("Error occurred while clearing remember me token", err);
-      res.status(500).send('Error logging out');
-    });
-  } else {
-    res.status(200).send('No user logged in');
-  }
-});
-
-router.get('/checkRememberMe', async (req, res) => {
-  const rememberToken = req.cookies.rememberMe;
-  
-  if (!rememberToken) {
-    return res.json({ rememberMe: false });
-  }
-
-  try {
-    const user = await User.findOne({ rememberToken, rememberTokenExpiry: { $gte: new Date() } });
-    if (user) {
-      return res.json({ rememberMe: true });
-    } else {
-      return res.json({ rememberMe: false });
-    }
-  } catch (err) {
-    console.error("Error checking remember me token", err);
-    return res.status(500).json({ rememberMe: false });
+    res.redirect('/');
   }
 });
 
