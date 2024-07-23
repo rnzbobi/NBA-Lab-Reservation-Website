@@ -9,6 +9,7 @@ const exphbs = require('express-handlebars');
 const mainroute = require('./routes/mainroute'); 
 const moment = require('moment');
 const cookieParser = require('cookie-parser');
+const User = require('./models/user');
 
 const app = express();
 const port = 3000;
