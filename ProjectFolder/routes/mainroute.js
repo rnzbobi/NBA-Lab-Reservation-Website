@@ -328,8 +328,12 @@ router.get('/reserved_seats', isLoggedIn, async (req, res) => {
     const reservedSeats = reservations.reduce((acc, reservation) => acc.concat(reservation.seatNumber.map(seat => ({
       seatNumber: seat,
       userName: reservation.user.name,
+      userId: reservation.user._id,
+      anonymous: reservation.anonymous,
+      isCurrentUser: req.user._id.equals(reservation.user._id),
       userProfileUrl: `/profile_page?name=${encodeURIComponent(reservation.user.name)}`
     }))), []);
+    
 
     console.log('Reserved Seats Data:', reservedSeats); // Log the reserved seats data for debugging
     res.json({ success: true, reservedSeats });
@@ -338,6 +342,7 @@ router.get('/reserved_seats', isLoggedIn, async (req, res) => {
     res.status(500).json({ success: false, message: 'Internal Server Error' });
   }
 });
+
 
 // Route to cancel a reservation
 router.put('/cancel_reservation/:id', isLoggedIn, async (req, res) => {

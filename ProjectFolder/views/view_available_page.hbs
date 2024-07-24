@@ -189,7 +189,11 @@
             if (reservedSeat) {
                 seat.classList.add('reserve-reserved');
                 if (tooltip) {
-                    tooltip.innerHTML = `<a href='${reservedSeat.userProfileUrl}'>This seat is reserved by ${reservedSeat.userName}.</a>`;
+                    if (reservedSeat.anonymous && !reservedSeat.isCurrentUser) {
+                        tooltip.innerHTML = 'This seat is reserved.';
+                    } else {
+                        tooltip.innerHTML = `<a href='${reservedSeat.userProfileUrl}'>This seat is reserved by ${reservedSeat.userName}.</a>`;
+                    }   
                 }
             } else {
                 seat.classList.add('reserve-available');
