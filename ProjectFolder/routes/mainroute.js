@@ -343,7 +343,6 @@ router.get('/reserved_seats', isLoggedIn, async (req, res) => {
   }
 });
 
-
 // Route to cancel a reservation
 router.put('/cancel_reservation/:id', isLoggedIn, async (req, res) => {
   try {
@@ -593,7 +592,6 @@ router.get('/logout', (req, res) => {
   }
 });
 
-
 router.get('/reserved_seats', isLoggedIn, async (req, res) => {
   const { date, time, stadium, reservationId } = req.query;
   try {
@@ -646,7 +644,6 @@ router.get('/reserved_seats', isLoggedIn, async (req, res) => {
   }
 });
 
-
 router.post('/reserve', isLoggedIn, async (req, res) => {
   const { seats, date, time, anonymous, stadium } = req.body;
   const user = req.user;
@@ -680,6 +677,10 @@ router.post('/reserve', isLoggedIn, async (req, res) => {
     console.error('Error creating reservation:', err);
     res.status(500).json({ success: false, message: 'Internal Server Error' });
   }
+});
+
+router.get('/about', (req, res) => {
+  res.render('about', { title: 'About Us' });
 });
 
 function isLoggedIn(req, res, next) {
