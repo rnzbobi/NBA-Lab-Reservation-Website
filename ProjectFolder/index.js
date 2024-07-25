@@ -12,7 +12,11 @@ const cookieParser = require('cookie-parser');
 const User = require('./models/user');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
+
+// Log environment variables to ensure they are being read correctly
+console.log('MongoDB URL:', process.env.URL);
+console.log('Session Secret:', process.env.SECRET);
 
 const hbs = exphbs.create({
   extname: '.hbs',
@@ -61,16 +65,16 @@ const hbs = exphbs.create({
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-
 app.use(express.static(path.join(__dirname, 'public')));
 app.use("/uploads", express.static('uploads'));
 
 app.use(session({
-  secret: process.env.SECRET,
+  secret: process.env.SECRET || 'defaultSecret', // Fallback to a default secret
   resave: false,
   saveUninitialized: false,
   cookie: {
@@ -117,7 +121,10 @@ const checkRememberMe = async (req, res, next) => {
 
 app.use(checkRememberMe);
 
-mongoose.connect('mongodb://localhost:27017/lab_reservation').then(() => {
+mongoose.connect(process.env.URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).then(() => {
   console.log('Connected to MongoDB');
 }).catch(err => {
   console.error('Connection error', err);
