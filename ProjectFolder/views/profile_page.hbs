@@ -34,7 +34,7 @@
                 <div class="profile-picture-upload">
                     <input type="file" id="file-upload" name="profilePicture" accept="image/*" style="display:none;" onchange="previewProfilePicture(event)">
                     <label for="file-upload" class="profile-picture-label">
-                        <img src="{{#if user.profilePicture}}/profilepics/{{user.profilePicture}}{{else}}/images/default-user.png{{/if}}" alt="Profile Picture" id="profile-picture">
+                        <img src="{{#if profilePicture}}/profilepics/{{profilePicture}}{{else}}/images/default-user.png{{/if}}" alt="Profile Picture" id="profile-picture">
                         <div class="plus-sign">+</div>
                     </label>
                 </div>
