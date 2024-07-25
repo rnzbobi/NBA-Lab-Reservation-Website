@@ -45,8 +45,8 @@ const getReservedSeatsForTimeslot = async (reservationStart, reservationEnd, sta
 const fs = require('fs');
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'profilepics');  // Ensure this directory exists
-    const dir = 'profilepics';
+    cb(null, 'public/profilepics');  // Ensure this directory exists
+    const dir = 'public/profilepics';
     if (!fs.existsSync(dir)){
       fs.mkdirSync(dir, { recursive: true });
     }
