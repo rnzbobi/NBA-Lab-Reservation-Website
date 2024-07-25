@@ -4,6 +4,7 @@ const path = require('path');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const moment = require('moment');
+const fs = require('fs');
 const cookieParser = require('cookie-parser');
 const crypto = require('crypto');
 const router = express.Router();
