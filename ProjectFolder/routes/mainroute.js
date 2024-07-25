@@ -43,14 +43,19 @@ const getReservedSeatsForTimeslot = async (reservationStart, reservationEnd, sta
   return reservations.reduce((acc, reservation) => acc.concat(reservation.seatNumber), []);
 };
 
+// Setup directory for profile pictures
+const profilePicsDir = path.join(__dirname, '..', 'public', 'profilepics');
+if (!fs.existsSync(profilePicsDir)) {
+  fs.mkdirSync(profilePicsDir, { recursive: true });
+}
+
+// Serve static files from the 'public' directory
+router.use('/profilepics', express.static(profilePicsDir));
+
 // Setup multer for file handling
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    const dir = 'public/profilepics';
-    if (!fs.existsSync(dir)){
-      fs.mkdirSync(dir, { recursive: true });
-    }
-    cb(null, dir);
+    cb(null, profilePicsDir);
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
