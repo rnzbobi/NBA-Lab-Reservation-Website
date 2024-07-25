@@ -42,10 +42,10 @@ const getReservedSeatsForTimeslot = async (reservationStart, reservationEnd, sta
   return reservations.reduce((acc, reservation) => acc.concat(reservation.seatNumber), []);
 };
 
+// Setup multer for file handling
 const fs = require('fs');
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'public/profilepics');  // Ensure this directory exists
     const dir = 'public/profilepics';
     if (!fs.existsSync(dir)){
       fs.mkdirSync(dir, { recursive: true });
@@ -57,7 +57,6 @@ const storage = multer.diskStorage({
     cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
   }
 });
-
 
 const upload = multer({ storage: storage });
 
@@ -444,6 +443,8 @@ router.get('/register_page', (req, res) => {
 router.post('/register', upload.single('profilePicture'), async (req, res) => {
   const { email, password, role, name, description } = req.body;
   const profilePicture = req.file ? req.file.filename : '';
+
+  console.log('File saved as:', profilePicture); // Add this line
 
   const newUser = new User({
     email: email,
