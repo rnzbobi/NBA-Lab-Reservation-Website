@@ -190,7 +190,7 @@
                 seat.classList.add('reserve-reserved');
                 if (tooltip) {
                     if (reservedSeat.anonymous && !reservedSeat.isCurrentUser) {
-                        tooltip.innerHTML = 'This seat is reserved.';
+                        tooltip.innerHTML = 'This seat is reserved anonymously.';
                     } else {
                         tooltip.innerHTML = `<a href='${reservedSeat.userProfileUrl}'>This seat is reserved by ${reservedSeat.userName}.</a>`;
                     }   

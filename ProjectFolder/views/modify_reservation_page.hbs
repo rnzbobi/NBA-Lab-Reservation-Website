@@ -146,7 +146,7 @@
                     .then(response => response.json())
                     .then(data => {
                         if (data.success) {
-                            const reservedSeats = data.reservedSeats;
+                            const reservedSeats = data.reservedSeats.map(seat => seat.seatNumber);
                             seatNumbersDiv.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
                                 checkbox.nextElementSibling.classList.remove('conflict-seat', 'selected-seat');
                                 if (reservedSeats.includes(checkbox.value)) {
@@ -167,7 +167,6 @@
                         }
                     });
             }
-
             updateSeats();
         });
     </script>
