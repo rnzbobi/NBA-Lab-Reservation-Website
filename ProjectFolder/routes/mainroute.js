@@ -563,12 +563,15 @@ router.get('/see_reservation_page', isLoggedIn, async (req, res) => {
 router.get('/view_available_page', isLoggedIn, async (req, res) => {
   try {
     const reservations = await Reservation.find().populate('user');
+
+    // Check if the user field is null and handle it
     const reservedSeats = reservations.flatMap(reservation => reservation.seatNumber.map(seat => ({
       seatNumber: seat,
-      userName: reservation.user.name,
-      userId: reservation.user._id,
-      userProfileUrl: `/profile_page?name=${encodeURIComponent(reservation.user.name)}`
+      userName: reservation.user ? reservation.user.name : 'Unknown', // Handle null user
+      userId: reservation.user ? reservation.user._id : null, // Handle null user
+      userProfileUrl: reservation.user ? '/profile_page?name=${encodeURIComponent(reservation.user.name)}' : '#' // Properly handle null user profile URL
     })));
+
     res.render('view_available_page', { title: 'View Available Page', reservedSeats: JSON.stringify(reservedSeats) });
   } catch (err) {
     console.error('Error fetching reserved seats:', err);
