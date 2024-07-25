@@ -44,23 +44,13 @@ const getReservedSeatsForTimeslot = async (reservationStart, reservationEnd, sta
 };
 
 // Setup multer for file handling
-const ensureDirectoryExistence = (filePath) => {
-  const dirname = path.dirname(filePath);
-  if (fs.existsSync(dirname)) {
-    return true;
-  }
-  ensureDirectoryExistence(dirname);
-  fs.mkdirSync(dirname);
-};
-
-// Ensure the public/profilepics directory exists
-ensureDirectoryExistence(path.join(__dirname, 'public/profilepics'));
-
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    const uploadPath = path.join(__dirname, 'public/profilepics');
-    ensureDirectoryExistence(uploadPath);
-    cb(null, uploadPath);
+    const dir = 'public/profilepics';
+    if (!fs.existsSync(dir)){
+      fs.mkdirSync(dir, { recursive: true });
+    }
+    cb(null, dir);
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
