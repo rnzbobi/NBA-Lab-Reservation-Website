@@ -43,14 +43,9 @@ const getReservedSeatsForTimeslot = async (reservationStart, reservationEnd, sta
 };
 
 // Setup multer for file handling
-const fs = require('fs');
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    const dir = 'public/profilepics';
-    if (!fs.existsSync(dir)){
-      fs.mkdirSync(dir, { recursive: true });
-    }
-    cb(null, dir);
+    cb(null, 'public/profilepics/');
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
@@ -444,15 +439,13 @@ router.post('/register', upload.single('profilePicture'), async (req, res) => {
   const { email, password, role, name, description } = req.body;
   const profilePicture = req.file ? req.file.filename : '';
 
-  console.log('File saved as:', profilePicture); // Add this line
-
   const newUser = new User({
     email: email,
     password: password,
     role: role,
     name: name,
     description: description,
-    profilePicture: profilePicture
+    profilePicture: req.file ? path.join ('/profilepics', req.file.filename) : null
   });
 
   try {
