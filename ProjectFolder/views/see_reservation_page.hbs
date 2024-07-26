@@ -78,7 +78,7 @@
                             <div class="see-reservation-dates">
                                 <h2>Date of Request: ${formatDate(ticket.reservedAt)}</h2>
                                 <h2>Selected Reservation Date: ${formatDate(ticket.reservationStart)}</h2> <!-- Added selected date -->
-                                <h2>Reservation Date & Time: ${formatTime(ticket.reservationStart)} - ${formatTime(ticket.reservationEnd)}</h2>
+                                <h2>Reservation Date & Time: ${ticket.reservationStart} - ${ticket.reservationEnd}</h2>
                             </div>
                             ${!ticket.removed ? `<a href="/modify_reservation_page/${ticket._id}?ref=see_reservation" class="see-reservation-modify-reservation">
                                 <h4>Modify</h4>
