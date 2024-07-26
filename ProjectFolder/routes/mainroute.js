@@ -55,7 +55,7 @@ router.use('/profilepics', express.static(profilePicsDir));
 // Setup multer for file handling
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, '..', 'temp'));
+    cb(null, profilePicsDir);
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
@@ -463,20 +463,6 @@ router.post('/register', upload.single('profilePicture'), async (req, res) => {
 
   try {
     await newUser.save();
-
-    // Move file from temp to permanent directory
-    if (req.file) {
-      const tempPath = path.join(__dirname, '..', 'temp', req.file.filename);
-      const permanentPath = path.join(__dirname, '..', 'public', 'profilepics', req.file.filename);
-      
-      fs.rename(tempPath, permanentPath, (err) => {
-        if (err) {
-          console.error("Error moving file:", err);
-          // Handle error if needed
-        }
-      });
-    }
-    
     res.send(`
       <html>
         <head>
