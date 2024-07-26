@@ -43,8 +43,10 @@
             const pageNumbersContainer = document.getElementById('page-numbers');
             const totalPages = Math.ceil(tickets.length / ticketsPerPage);
 
-            function formatTime(date) {
-                return new Date(date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            function formatReservationTime(start, end) {
+                const startTime = new Date(start).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+                const endTime = new Date(end).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+                return `${startTime} - ${endTime}`;
             }
 
             function formatDate(date) {
@@ -78,7 +80,7 @@
                             <div class="see-reservation-dates">
                                 <h2>Date of Request: ${formatDate(ticket.reservedAt)}</h2>
                                 <h2>Selected Reservation Date: ${formatDate(ticket.reservationStart)}</h2> <!-- Added selected date -->
-                                <h2>Reservation Date & Time: ${ticket.reservationStart} - ${ticket.reservationEnd}</h2>
+                                <h2>Reservation Date & Time: ${formatReservationTime(ticket.reservationStart, ticket.reservationEnd)}</h2>
                             </div>
                             ${!ticket.removed ? `<a href="/modify_reservation_page/${ticket._id}?ref=see_reservation" class="see-reservation-modify-reservation">
                                 <h4>Modify</h4>
