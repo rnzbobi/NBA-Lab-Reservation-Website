@@ -618,6 +618,7 @@ router.get('/reserved_seats', isLoggedIn, async (req, res) => {
     const reservations = await Reservation.find({
       stadium: stadiumObj._id,
       removed: false,
+      _id: { $ne: reservationId }, // Exclude the current reservation
       $or: [
         { reservationStart: { $lt: reservationEndTime, $gte: reservationStartTime } },
         { reservationEnd: { $lte: reservationEndTime, $gt: reservationStartTime } },
@@ -632,8 +633,11 @@ router.get('/reserved_seats', isLoggedIn, async (req, res) => {
 
     const reservedSeats = reservations.reduce((acc, reservation) => acc.concat(reservation.seatNumber.map(seat => ({
       seatNumber: seat,
-      userName: reservation.user.name,
-      userProfileUrl: `/profile_page?name=${encodeURIComponent(reservation.user.name)}`
+      userName: reservation.anonymous ? 'Anonymous' : reservation.user.name,
+      userId: reservation.user._id,
+      anonymous: reservation.anonymous,
+      isCurrentUser: req.user._id.equals(reservation.user._id),
+      userProfileUrl: reservation.anonymous && !req.user._id.equals(reservation.user._id) ? null : `/profile_page?name=${encodeURIComponent(reservation.user.name)}`
     }))), []);
 
     console.log('Reserved Seats Data:', reservedSeats); // Log the reserved seats data for debugging
@@ -643,6 +647,7 @@ router.get('/reserved_seats', isLoggedIn, async (req, res) => {
     res.status(500).json({ success: false, message: 'Internal Server Error' });
   }
 });
+
 
 router.post('/reserve', isLoggedIn, async (req, res) => {
   const { seats, date, time, anonymous, stadium } = req.body;

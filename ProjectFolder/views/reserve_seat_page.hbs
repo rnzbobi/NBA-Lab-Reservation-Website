@@ -75,7 +75,7 @@
         <button class="reserve-reserve-button" id="reserveButton" onclick="finalizeReservation()" disabled>Reserve</button>
     </div>
 
-    <script>
+<script>
     let selectedSeats = [];
 
     function handleSeatClick(seat) {
@@ -236,7 +236,8 @@
         const allSeats = document.querySelectorAll('.reserve-seat');
         allSeats.forEach(seat => {
             seat.classList.remove('reserve-available', 'reserve-reserved', 'reserve-selected');
-            if (reservedSeats.includes(seat.id)) {
+            const reservedSeat = reservedSeats.find(rSeat => rSeat.seatNumber === seat.id);
+            if (reservedSeat) {
                 seat.classList.add('reserve-reserved');
             } else {
                 seat.classList.add('reserve-available');
@@ -297,5 +298,6 @@
         fetchReservedSeats();
     });
 </script>
+
 
 </body>
