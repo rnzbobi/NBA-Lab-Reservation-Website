@@ -1,4 +1,4 @@
-# CCAPDEV Project
+# NBA Lab Reservation Website Project
 
 This repository contains a project for the CCAPDEV course. The HTML and CSS version is a prototype of how the final application should look and is not the fully functional version. The functional application can be set up and run locally through a Node.js server.
 
