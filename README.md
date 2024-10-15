@@ -2,6 +2,22 @@
 
 This repository contains a project for the CCAPDEV course. The HTML and CSS version is a prototype of how the final application should look and is not the fully functional version. The functional application can be set up and run locally through a Node.js server.
 
+## Sample Screenshots
+
+Here are a few screenshots of the NBA Lab Reservation Website project:
+
+### Main Page
+![Main Page](https://github.com/rnzbobi/NBA-Lab-Reservation-Website/raw/main/Sample%20Screenshots/MainPage.png)
+
+### Profile Page
+![Profile Page](https://github.com/rnzbobi/NBA-Lab-Reservation-Website/raw/main/Sample%20Screenshots/ProfilePage.png)
+
+### Reserve List of Stadiums
+![Reserve List of Stadiums](https://github.com/rnzbobi/NBA-Lab-Reservation-Website/raw/main/Sample%20Screenshots/ReserveListStadiums.png)
+
+### Customized Seat Reservation
+![Customized Seat Reservation](https://github.com/rnzbobi/NBA-Lab-Reservation-Website/raw/main/Sample%20Screenshots/Customized%20Seat%20Reservation.png)
+
 ## Table of Contents
 
 - [Setup](#setup)
